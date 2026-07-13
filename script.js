@@ -10,28 +10,35 @@ function normalizeText(text) {
 }
 
 function renderCustomers(keyword = "") {
-  const normalizedKeyword = normalizeText(keyword.trim());
-
-  const filteredCustomers = customers.filter((customer) => {
-    const songTitles = customer.songs
-      .map((song) => song.title)
-      .join(" ");
-
-    const searchableText = normalizeText(
-      `${customer.id} ${customer.name} ${customer.note} ${songTitles}`
-    );
-
-    return searchableText.includes(normalizedKeyword);
-  });
+  const searchText = normalizeText(keyword.trim());
 
   customerList.innerHTML = "";
+
+  if (!searchText) {
+    emptyMessage.classList.add("hidden");
+    return;
+  }
+
+  const filteredCustomers = customers.filter((customer) => {
+    const songTitles = Array.isArray(customer.songs)
+      ? customer.songs.map((song) => song.title).join(" ")
+      : "";
+
+    const fullText = normalizeText(
+      `${customer.id} ${customer.name} ${songTitles}`
+    );
+
+    return fullText.includes(searchText);
+  });
 
   filteredCustomers.forEach((customer) => {
     const card = document.createElement("article");
     card.className = "customer-card";
 
     card.innerHTML = `
-      <div class="customer-code">${customer.id}</div>
+      <div class="customer-code">
+        Mã tra cứu: ${customer.id}
+      </div>
 
       <h3>${customer.name}</h3>
 
@@ -45,10 +52,11 @@ function renderCustomers(keyword = "") {
     customerList.appendChild(card);
   });
 
-  emptyMessage.classList.toggle(
-    "hidden",
-    filteredCustomers.length > 0
-  );
+  if (filteredCustomers.length === 0) {
+    emptyMessage.classList.remove("hidden");
+  } else {
+    emptyMessage.classList.add("hidden");
+  }
 }
 
 customerSearch.addEventListener("input", function () {
