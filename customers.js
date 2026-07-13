@@ -5,7 +5,7 @@ const customers = [
     songs: [
       {
         title: "50 NĂM VỀ SAU",
-        wavLink: "https://drive.google.com/file/d/1EdX8wvk5CCssk4jYrafY066507A80ZVw/view?usp=sharing"
+        wavLink: "https://drive.google.com/uc?export=download&id=1SRypTp2zgi3fvHP9gDNqLxpmLqaQglcT"
       }
     ]
   }
