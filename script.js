@@ -3,7 +3,7 @@ const customerSearch = document.getElementById("customerSearch");
 const emptyMessage = document.getElementById("emptyMessage");
 
 function normalizeText(text) {
-  return text
+  return String(text || "")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
@@ -13,8 +13,12 @@ function renderCustomers(keyword = "") {
   const normalizedKeyword = normalizeText(keyword.trim());
 
   const filteredCustomers = customers.filter((customer) => {
+    const songTitles = customer.songs
+      .map((song) => song.title)
+      .join(" ");
+
     const searchableText = normalizeText(
-      `${customer.id} ${customer.name} ${customer.note}`
+      `${customer.id} ${customer.name} ${customer.note} ${songTitles}`
     );
 
     return searchableText.includes(normalizedKeyword);
@@ -28,10 +32,13 @@ function renderCustomers(keyword = "") {
 
     card.innerHTML = `
       <div class="customer-code">${customer.id}</div>
+
       <h3>${customer.name}</h3>
-      <p>${customer.songs.length} bài hát</p>
+
+      <p>🎵 ${customer.songs.length} bài hát</p>
+
       <a href="customer.html?id=${encodeURIComponent(customer.id)}">
-        Xem bài hát →
+        XEM FILE →
       </a>
     `;
 
@@ -40,7 +47,7 @@ function renderCustomers(keyword = "") {
 
   emptyMessage.classList.toggle(
     "hidden",
-    filteredCustomers.length !== 0
+    filteredCustomers.length > 0
   );
 }
 
