@@ -713,3 +713,38 @@ footer {
     text-align: center;
   }
 }
+
+
+/* TRANG CHỦ TỐI GIẢN */
+
+.hero-clean {
+  min-height: 100vh;
+}
+
+.hero-content-clean {
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 55px;
+}
+
+.hero-content-clean .hero-actions {
+  padding: 16px;
+  border: 1px solid rgba(255, 150, 50, 0.22);
+  border-radius: 18px;
+  background: rgba(5, 4, 3, 0.42);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 600px) {
+  .hero-content-clean {
+    min-height: 82vh;
+    padding-bottom: 35px;
+  }
+
+  .hero-content-clean .hero-actions {
+    width: 100%;
+    max-width: 360px;
+  }
+}
