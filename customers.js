@@ -1,1 +1,323 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Khách hàng - Anh Tuấn Studio</title>
+
+  <meta
+    name="description"
+    content="Trang tải file thu âm dành cho khách hàng Anh Tuấn Studio."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Anh Tuấn Studio" />
+        <span>ANH TUẤN STUDIO</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#customers">Khách hàng</a>
+        <a href="tel:0868930933">Liên hệ</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="customer-page">
+
+    <section class="customer-hero">
+      <div class="customer-page-overlay"></div>
+
+      <div class="container customer-page-content">
+
+        <a class="back-link" href="index.html#customers">
+          ← Quay lại tìm kiếm
+        </a>
+
+        <div class="customer-profile">
+          <div>
+            <p class="customer-page-code" id="customerCode"></p>
+
+            <h1 id="customerName">
+              Khách hàng
+            </h1>
+
+            <p id="customerNote"></p>
+
+            <p id="customerSongCount" class="customer-song-count"></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section song-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>FILE THU ÂM</span>
+          <h2>Danh sách bài hát</h2>
+
+          <p>
+            Chọn bài hát cần tải xuống.
+          </p>
+        </div>
+
+        <div id="songList" class="song-list"></div>
+
+        <div id="customerNotFound" class="not-found hidden">
+
+          <h2>Không tìm thấy khách hàng</h2>
+
+          <p>
+            Đường dẫn không đúng hoặc thông tin khách hàng chưa được tạo.
+          </p>
+
+          <a class="btn btn-primary" href="index.html#customers">
+            QUAY LẠI TÌM KIẾM
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+
+      <img src="logo.png" alt="Anh Tuấn Studio" />
+
+      <p>
+        <strong>ANH TUẤN STUDIO</strong><br />
+        Trảng Bom · Đồng Nai<br />
+        Điện thoại:
+        <a href="tel:0868930933">0868 930 933</a>
+      </p>
+
+    </div>
+  </footer>
+
+  <script src="customers.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const customerId = params.get("id");
+
+    const customer = customers.find((item) => {
+      return item.id.toLowerCase() === String(customerId).toLowerCase();
+    });
+
+    const customerCode = document.getElementById("customerCode");
+    const customerName = document.getElementById("customerName");
+    const customerNote = document.getElementById("customerNote");
+    const customerSongCount = document.getElementById("customerSongCount");
+    const songList = document.getElementById("songList");
+    const customerNotFound = document.getElementById("customerNotFound");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function createSongDetail(icon, label, value) {
+      if (!value) {
+        return "";
+      }
+
+      return `
+        <div class="song-detail">
+          <span class="song-detail-icon">${icon}</span>
+
+          <span class="song-detail-text">
+            <strong>${label}:</strong>
+            ${escapeHtml(value)}
+          </span>
+        </div>
+      `;
+    }
+
+    function createSongCard(song, index) {
+      const article = document.createElement("article");
+      article.className = "song-card";
+
+      const songNumber = String(index + 1).padStart(2, "0");
+
+      const downloadLink =
+        song.wavLink ||
+        song.link ||
+        "#";
+
+      const fileName =
+        song.fileName ||
+        `${song.title || "file-thu-am"}.wav`;
+
+      const dateDetail = createSongDetail(
+        "📅",
+        "Ngày thu âm",
+        song.date
+      );
+
+      const toneDetail = createSongDetail(
+        "🎼",
+        "Tone",
+        song.tone
+      );
+
+      const versionDetail = createSongDetail(
+        "🎚️",
+        "Phiên bản",
+        song.version
+      );
+
+      const noteDetail = createSongDetail(
+        "📝",
+        "Ghi chú",
+        song.note
+      );
+
+      article.innerHTML = `
+        <div class="song-number">
+          ${songNumber}
+        </div>
+
+        <div class="song-info">
+
+          <div class="song-title-wrap">
+            <span class="song-music-icon">🎵</span>
+
+            <h3>
+              ${escapeHtml(song.title)}
+            </h3>
+          </div>
+
+          <div class="song-details">
+            ${dateDetail}
+            ${toneDetail}
+            ${versionDetail}
+            ${noteDetail}
+          </div>
+
+          <p class="song-file-type">
+            File WAV chất lượng cao từ Anh Tuấn Studio
+          </p>
+
+        </div>
+
+        <div class="song-action">
+          <a
+            class="song-download"
+            href="${escapeHtml(downloadLink)}"
+            download="${escapeHtml(fileName)}"
+            rel="noopener noreferrer"
+          >
+            <span>⬇</span>
+            TẢI FILE WAV
+          </a>
+        </div>
+      `;
+
+      return article;
+    }
+
+    function showCustomerNotFound() {
+      const customerProfile =
+        document.querySelector(".customer-profile");
+
+      const sectionHeading =
+        document.querySelector(".song-section .section-heading");
+
+      if (customerProfile) {
+        customerProfile.classList.add("hidden");
+      }
+
+      if (sectionHeading) {
+        sectionHeading.classList.add("hidden");
+      }
+
+      customerNotFound.classList.remove("hidden");
+    }
+
+    function showCustomer() {
+      document.title =
+        `${customer.name} - Anh Tuấn Studio`;
+
+     customerName.textContent = `Khách hàng: ${customer.name}`;
+
+customerCode.textContent = `Mã tra cứu: ${customer.id}`;
+
+      customerNote.textContent =
+        customer.note || "Khách hàng Anh Tuấn Studio";
+
+      const songTotal =
+        Array.isArray(customer.songs)
+          ? customer.songs.length
+          : 0;
+
+      customerSongCount.textContent =
+        `${songTotal} bài hát`;
+
+      if (songTotal === 0) {
+        songList.innerHTML = `
+          <div class="not-found">
+            <h2>Chưa có file bài hát</h2>
+
+            <p>
+              File thu âm của khách hàng đang được cập nhật.
+            </p>
+          </div>
+        `;
+
+        return;
+      }
+
+      customer.songs.forEach((song, index) => {
+        songList.appendChild(
+          createSongCard(song, index)
+        );
+      });
+    }
+
+    if (!customerId || !customer) {
+      showCustomerNotFound();
+    } else {
+      showCustomer();
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+const customers = [
+  {
+    id: "thanhsang",
+    name: "Thanh Sáng",
+
+    songs: [
+      {
+        title: "50 NĂM VỀ SAU",
+        wavLink: "https://1drv.ms/u/c/71fd2a7d74762b99/IQBn_pMgNS3xQ5gWsGJPPp9FAcHd9udieX0tVMkc23nsTM0?download=1"
+      }
+    ]
+  }
+];
+
+
 
