@@ -1,1 +1,152 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Anh Tuấn Studio</title>
+
+  <meta
+    name="description"
+    content="Anh Tuấn Studio - Recording, Mixing, Mastering tại Trảng Bom, Đồng Nai."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">
+        <img src="logo.png" alt="Anh Tuấn Studio" />
+        <span>ANH TUẤN STUDIO</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#home">Trang chủ</a>
+        <a href="#services">Dịch vụ</a>
+        <a href="#customers">Khách hàng</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <img
+          class="hero-logo"
+          src="logo.png"
+          alt="Logo Anh Tuấn Studio"
+        />
+
+        <p class="hero-kicker">
+          RECORDING · MIXING · MASTERING
+        </p>
+
+        <h1>Âm nhạc chạm đến cảm xúc</h1>
+
+        <p class="hero-description">
+          Thu âm, hòa âm, mix, master và sáng tác âm nhạc tại
+          Trảng Bom, Đồng Nai.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#customers">
+            NHẬN FILE KHÁCH HÀNG
+          </a>
+
+          <a class="btn btn-outline" href="tel:0868930933">
+            LIÊN HỆ STUDIO
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span>DỊCH VỤ</span>
+          <h2>Không gian dành cho âm nhạc</h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">🎤</div>
+            <h3>Thu âm</h3>
+            <p>
+              Thu vocal rõ nét, xử lý tự nhiên và phù hợp với chất giọng.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎹</div>
+            <h3>Hòa âm</h3>
+            <p>
+              Phối khí theo đúng phong cách và cảm xúc của từng ca khúc.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎚️</div>
+            <h3>Mix & Master</h3>
+            <p>
+              Hoàn thiện âm thanh cân bằng, rõ ràng và chuyên nghiệp.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎼</div>
+            <h3>Sáng tác</h3>
+            <p>
+              Hỗ trợ phát triển ý tưởng và hoàn thiện sản phẩm âm nhạc.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section customer-section" id="customers">
+      <div class="container">
+        <div class="section-heading">
+          <span>CỔNG KHÁCH HÀNG</span>
+          <h2>Chọn tên để xem bài hát</h2>
+        </div>
+
+        <div class="search-box">
+          <input
+            id="customerSearch"
+            type="search"
+            placeholder="Nhập tên khách hàng hoặc mã khách..."
+            autocomplete="off"
+          />
+        </div>
+
+        <div id="customerList" class="customer-grid"></div>
+
+        <p id="emptyMessage" class="empty-message hidden">
+          Không tìm thấy khách hàng.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-content">
+      <img src="logo.png" alt="Anh Tuấn Studio" />
+
+      <p>
+        <strong>ANH TUẤN STUDIO</strong><br />
+        Trảng Bom · Đồng Nai<br />
+        Điện thoại: 0868 930 933
+      </p>
+    </div>
+  </footer>
+
+  <script src="customers.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
