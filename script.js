@@ -38,7 +38,7 @@ function renderCustomers(keyword = "") {
       <p>🎵 ${customer.songs.length} bài hát</p>
 
       <a href="customer.html?id=${encodeURIComponent(customer.id)}">
-        XEM FILE →
+        📂 NHẬN FILE →
       </a>
     `;
 
