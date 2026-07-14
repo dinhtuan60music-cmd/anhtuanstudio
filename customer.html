@@ -20,6 +20,7 @@
       <nav class="main-nav">
         <a href="index.html">Trang chủ</a>
         <a href="index.html#customers">Khách hàng</a>
+        <a href="music.html">Nghe nhạc</a>
         <a href="tel:0868930933">Liên hệ</a>
       </nav>
     </div>
@@ -50,38 +51,17 @@
       <div class="container">
         <div class="section-heading">
           <span>DANH SÁCH BÀI HÁT</span>
-          <h2>Chọn bài để tải về</h2>
+          <h2>Nghe trực tuyến hoặc tải về</h2>
         </div>
 
-        
-        
-
-
-        <div style="max-width: 760px; margin: 30px auto; text-align: center;">
-  <h2 style="margin-bottom: 15px;">50 NĂM VỀ SAU</h2>
-
-  <audio controls preload="metadata" style="width: 100%;">
-    <source
-      src="https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav"
-      type="audio/wav"
-    />
-    Trình duyệt của bạn không hỗ trợ phát âm thanh.
-  </audio>
-</div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <div id="songList" class="song-list"></div>
 
         <div id="customerNotFound" class="not-found hidden">
           <h2>Không tìm thấy khách hàng</h2>
-          <p>Đường dẫn này không đúng hoặc khách hàng chưa được tạo.</p>
+
+          <p>
+            Đường dẫn này không đúng hoặc khách hàng chưa được tạo.
+          </p>
 
           <a class="btn btn-primary" href="index.html#customers">
             VỀ DANH SÁCH KHÁCH HÀNG
@@ -113,66 +93,175 @@
       (item) => item.id === customerId
     );
 
-    const customerCode = document.getElementById("customerCode");
-    const customerName = document.getElementById("customerName");
-    const customerNote = document.getElementById("customerNote");
-    const songList = document.getElementById("songList");
-    const customerNotFound = document.getElementById("customerNotFound");
+    const customerCode =
+      document.getElementById("customerCode");
 
-function createSongCard(song, index) {
-  const article = document.createElement("article");
-  article.className = "song-card";
+    const customerName =
+      document.getElementById("customerName");
 
-  article.innerHTML = `
-    <div class="song-number">
-      ${String(index + 1).padStart(2, "0")}
-    </div>
+    const customerNote =
+      document.getElementById("customerNote");
 
-    <div class="song-info">
-      <h3>${song.title}</h3>
-      <p>File âm thanh từ Anh Tuấn Studio</p>
-    </div>
+    const songList =
+      document.getElementById("songList");
 
-    <button
-      class="song-download"
-      type="button"
-    >
-      TẢI FILE WAV
-    </button>
-  `;
+    const customerNotFound =
+      document.getElementById("customerNotFound");
 
-  const downloadButton = article.querySelector(".song-download");
+    function createSongCard(song, index) {
+      const article = document.createElement("article");
 
-  downloadButton.addEventListener("click", () => {
-    const downloadLink = document.createElement("a");
+      article.className = "song-card";
 
-    downloadLink.href = song.wavLink;
-    downloadLink.download = `${song.title}.wav`;
-    downloadLink.target = "_self";
-    downloadLink.rel = "noopener noreferrer";
-    downloadLink.style.display = "none";
+      const listenLink =
+        song.listenLink ||
+        song.wavLink ||
+        "";
 
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    downloadLink.remove();
-  });
+      const downloadLink =
+        song.downloadLink ||
+        song.wavLink ||
+        song.listenLink ||
+        "";
 
-  return article;
-}
+      const listenButton = listenLink
+        ? `
+          <button
+            class="song-listen"
+            type="button"
+          >
+            NGHE
+          </button>
+        `
+        : "";
+
+      const downloadButton = downloadLink
+        ? `
+          <a
+            class="song-download"
+            href="${downloadLink}"
+            target="_self"
+          >
+            TẢI FILE WAV
+          </a>
+        `
+        : "";
+
+      article.innerHTML = `
+        <div class="song-number">
+          ${String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div class="song-info">
+          <h3>${song.title}</h3>
+          <p>File âm thanh từ Anh Tuấn Studio</p>
+        </div>
+
+        <div class="song-actions">
+          ${listenButton}
+          ${downloadButton}
+        </div>
+
+        ${
+          listenLink
+            ? `
+              <div class="song-player hidden">
+                <audio controls preload="metadata">
+                  <source
+                    src="${listenLink}"
+                    type="audio/wav"
+                  />
+                  Trình duyệt của bạn không hỗ trợ phát âm thanh.
+                </audio>
+              </div>
+            `
+            : ""
+        }
+      `;
+
+      if (listenLink) {
+        const listenButtonElement =
+          article.querySelector(".song-listen");
+
+        const player =
+          article.querySelector(".song-player");
+
+        const audio =
+          article.querySelector("audio");
+
+        listenButtonElement.addEventListener(
+          "click",
+          () => {
+            const isHidden =
+              player.classList.contains("hidden");
+
+            document
+              .querySelectorAll(".song-player")
+              .forEach((otherPlayer) => {
+                if (otherPlayer !== player) {
+                  otherPlayer.classList.add("hidden");
+
+                  const otherAudio =
+                    otherPlayer.querySelector("audio");
+
+                  if (otherAudio) {
+                    otherAudio.pause();
+                  }
+                }
+              });
+
+            document
+              .querySelectorAll(".song-listen")
+              .forEach((button) => {
+                if (button !== listenButtonElement) {
+                  button.textContent = "NGHE";
+                }
+              });
+
+            if (isHidden) {
+              player.classList.remove("hidden");
+              listenButtonElement.textContent = "ẨN TRÌNH PHÁT";
+
+              audio.play().catch(() => {});
+            } else {
+              player.classList.add("hidden");
+              listenButtonElement.textContent = "NGHE";
+              audio.pause();
+            }
+          }
+        );
+      }
+
+      return article;
+    }
 
     if (!customer) {
-      document.querySelector(".customer-profile").classList.add("hidden");
-      document.querySelector(".section-heading").classList.add("hidden");
+      document
+        .querySelector(".customer-profile")
+        .classList.add("hidden");
+
+      document
+        .querySelector(".section-heading")
+        .classList.add("hidden");
+
       customerNotFound.classList.remove("hidden");
     } else {
-      document.title = `${customer.name} - Anh Tuấn Studio`;
+      document.title =
+        `${customer.name} - Anh Tuấn Studio`;
 
-      customerCode.textContent = customer.id;
-      customerName.textContent = customer.name;
-      customerNote.textContent = customer.note;
+      customerCode.textContent =
+        customer.id || "";
+
+      customerName.textContent =
+        customer.name || "Khách hàng";
+
+      customerNote.textContent =
+        customer.note || "";
 
       customer.songs.forEach((song, index) => {
-        songList.appendChild(createSongCard(song, index));
+        songList.appendChild(
+          createSongCard(song, index)
+        );
       });
     }
   </script>
