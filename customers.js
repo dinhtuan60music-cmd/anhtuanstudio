@@ -5,7 +5,7 @@ const customers = [
     songs: [
       {
         title: "50 NĂM VỀ SAU",
-        wavLink: "https://1drv.ms/u/c/71fd2a7d74762b99/IQBn_pMgNS3xQ5gWsGJPPp9FAcHd9udieX0tVMkc23nsTM0?e=UqYpxE"
+        wavLink: "https://onedrive.live.com/personal/71fd2a7d74762b99/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F71fd2a7d74762b99%2FDocuments%2FSTUDIO%2FKHACH%2FHOANG%20TRIEU%2F50%20NAM%20VE%20SAU%20%2D%20MASTER%2Ewav"
       }
     ]
   }
