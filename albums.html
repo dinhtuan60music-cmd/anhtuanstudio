@@ -1,1 +1,493 @@
-<a href="albums.html">Tìm album</a>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tìm album khách hàng - Anh Tuấn Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #ff8614;
+      --orange-light: #ffb35d;
+      --orange-dark: #b94c00;
+      --text: #fff8f0;
+      --muted: #b8a99b;
+      --panel: rgba(18, 13, 9, 0.94);
+      --border: rgba(255, 134, 20, 0.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 134, 20, 0.15), transparent 34%),
+        linear-gradient(180deg, #130c07 0%, #060403 52%, #020202 100%);
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 4, 3, 0.92);
+      border-bottom: 1px solid rgba(255, 134, 20, 0.16);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-wrap {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .main-nav a {
+      color: #eee3d8;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.25s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: var(--orange);
+    }
+
+    .hero {
+      padding: 70px 0 34px;
+      text-align: center;
+    }
+
+    .hero span {
+      display: inline-block;
+      margin-bottom: 15px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .search-panel {
+      margin-bottom: 26px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 134, 20, 0.09), transparent 42%),
+        rgba(18, 13, 9, 0.92);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.26);
+    }
+
+    .search-box {
+      min-height: 56px;
+      padding: 0 19px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .search-icon {
+      color: var(--orange);
+      font-size: 21px;
+    }
+
+    .search-box input {
+      width: 100%;
+      color: white;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+    }
+
+    .search-box input::placeholder {
+      color: #8e8175;
+    }
+
+    .album-section {
+      padding-bottom: 80px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .album-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.075);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(255, 134, 20, 0.09), transparent 55%),
+        var(--panel);
+      box-shadow:
+        0 24px 55px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      transition: 0.25s ease;
+    }
+
+    .album-card:hover {
+      border-color: rgba(255, 134, 20, 0.45);
+      transform: translateY(-5px);
+      box-shadow: 0 30px 65px rgba(0, 0, 0, 0.36);
+    }
+
+    .album-card-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .album-avatar {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 134, 20, 0.22);
+      border-radius: 20px;
+      background: rgba(255, 134, 20, 0.08);
+    }
+
+    .album-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .album-avatar img.logo-fallback {
+      width: 52%;
+      height: 52%;
+      object-fit: contain;
+    }
+
+    .album-card h2 {
+      font-size: 23px;
+    }
+
+    .album-card small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .album-link {
+      margin-top: auto;
+      min-height: 48px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #160902;
+      text-decoration: none;
+      border: 1px solid var(--orange-light);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+      font-size: 13px;
+      font-weight: 900;
+      transition: 0.25s ease;
+    }
+
+    .album-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 110, 0, 0.24);
+    }
+
+    .empty-message {
+      grid-column: 1 / -1;
+      padding: 38px 20px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.7;
+      border: 1px dashed rgba(255, 134, 20, 0.27);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 134, 20, 0.14);
+      background: #040302;
+    }
+
+    .footer-content {
+      min-height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .footer-content img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .album-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .main-nav {
+        gap: 14px;
+      }
+
+      .main-nav a {
+        font-size: 13px;
+      }
+
+      .main-nav a:nth-child(2) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .album-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .album-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Anh Tuấn Studio" />
+        <span>ANH TUẤN STUDIO</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#customers">Khách hàng</a>
+        <a href="music.html">Nghe nhạc</a>
+        <a class="active" href="albums.html">Tìm album</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span>ALBUM KHÁCH HÀNG</span>
+        <h1>Tìm album theo tên khách hàng</h1>
+        <p>
+          Nhập tên khách hàng để mở album riêng và nghe toàn bộ bài hát trực tuyến
+          được thực hiện tại Anh Tuấn Studio.
+        </p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="search-panel">
+        <label class="search-box">
+          <span class="search-icon">⌕</span>
+
+          <input
+            id="albumSearch"
+            type="search"
+            placeholder="Nhập tên khách hàng..."
+            autocomplete="off"
+          />
+        </label>
+      </div>
+    </section>
+
+    <section class="container album-section">
+      <div id="albumGrid" class="album-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <img src="logo.png" alt="Anh Tuấn Studio" />
+
+      <p>
+        <strong>ANH TUẤN STUDIO</strong><br />
+        Trảng Bom · Đồng Nai · 0868 930 933
+      </p>
+    </div>
+  </footer>
+
+  <script src="customers.js"></script>
+
+  <script>
+    const albumSearch = document.getElementById("albumSearch");
+    const albumGrid = document.getElementById("albumGrid");
+
+    function normalizeText(text) {
+      return String(text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d");
+    }
+
+    function getPlayableSongs(customer) {
+      return (customer.songs || []).filter((song) => {
+        return (
+          typeof song.listenLink === "string" &&
+          song.listenLink.trim() !== ""
+        );
+      });
+    }
+
+    function renderAlbums(keyword = "") {
+      const normalizedKeyword = normalizeText(keyword);
+
+      const matchingCustomers = customers.filter((customer) => {
+        const playableSongs = getPlayableSongs(customer);
+
+        return (
+          playableSongs.length > 0 &&
+          normalizeText(customer.name).includes(normalizedKeyword)
+        );
+      });
+
+      albumGrid.innerHTML = "";
+
+      if (matchingCustomers.length === 0) {
+        albumGrid.innerHTML = `
+          <div class="empty-message">
+            Không tìm thấy album phù hợp.<br />
+            Anh chị vui lòng kiểm tra lại tên khách hàng.
+          </div>
+        `;
+        return;
+      }
+
+      matchingCustomers.forEach((customer) => {
+        const playableSongs = getPlayableSongs(customer);
+        const card = document.createElement("article");
+        card.className = "album-card";
+
+        const avatarPath = customer.avatar || "logo.png";
+        const fallbackClass = customer.avatar ? "" : "logo-fallback";
+
+        card.innerHTML = `
+          <div class="album-card-top">
+            <div class="album-avatar">
+              <img
+                class="${fallbackClass}"
+                src="${avatarPath}"
+                alt="${customer.name}"
+              />
+            </div>
+
+            <div>
+              <h2>${customer.name}</h2>
+              <small>
+                ${playableSongs.length} bài hát trực tuyến<br />
+                Thực hiện tại Anh Tuấn Studio
+              </small>
+            </div>
+          </div>
+
+          <a
+            class="album-link"
+            href="album.html?id=${encodeURIComponent(customer.id)}"
+          >
+            XEM ALBUM
+          </a>
+        `;
+
+        albumGrid.appendChild(card);
+      });
+    }
+
+    albumSearch.addEventListener("input", () => {
+      renderAlbums(albumSearch.value.trim());
+    });
+
+    renderAlbums();
+  </script>
+</body>
+</html>
