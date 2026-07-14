@@ -1307,13 +1307,14 @@ footer {
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:16px;
-    flex-wrap:wrap;
+    gap:12px;
+    flex-wrap:nowrap;   /* Không cho xuống dòng */
 }
 
 .hero-buttons .btn {
-  min-width: 190px;
-  text-align: center;
+    width: 160px;
+    min-width: 160px;
+    text-align: center;
 }
 
 @media (max-width: 700px) {
