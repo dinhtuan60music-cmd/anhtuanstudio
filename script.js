@@ -32,6 +32,7 @@ function renderCustomers(keyword = "") {
   });
 
   filteredCustomers.forEach((customer) => {
+
     const matchedSongs = customer.songs.filter((song) =>
       normalizeText(song.title).includes(searchText)
     );
@@ -61,12 +62,19 @@ function renderCustomers(keyword = "") {
 
       <p>🎵 ${customer.songs.length} bài hát</p>
 
-      <a href="customer.html?id=${encodeURIComponent(customer.id)}">
+      <div class="customer-open">
         📂 NHẬN FILE →
-      </a>
+      </div>
     `;
 
+    // Toàn bộ ô vuông bấm được
+    card.onclick = function () {
+      window.location.href =
+        "customer.html?id=" + encodeURIComponent(customer.id);
+    };
+
     customerList.appendChild(card);
+
   });
 
   emptyMessage.classList.toggle(
