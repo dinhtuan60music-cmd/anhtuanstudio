@@ -95,7 +95,7 @@
     const songList = document.getElementById("songList");
     const customerNotFound = document.getElementById("customerNotFound");
 
-    function createSongCard(song, index) {
+function createSongCard(song, index) {
   const article = document.createElement("article");
   article.className = "song-card";
 
@@ -119,39 +119,18 @@
 
   const downloadButton = article.querySelector(".song-download");
 
-  downloadButton.addEventListener("click", async () => {
-    const originalText = downloadButton.textContent;
+  downloadButton.addEventListener("click", () => {
+    const downloadLink = document.createElement("a");
 
-    try {
-      downloadButton.disabled = true;
-      downloadButton.textContent = "ĐANG TẢI...";
+    downloadLink.href = song.wavLink;
+    downloadLink.download = `${song.title}.wav`;
+    downloadLink.target = "_self";
+    downloadLink.rel = "noopener noreferrer";
+    downloadLink.style.display = "none";
 
-      const response = await fetch(song.wavLink);
-
-      if (!response.ok) {
-        throw new Error("Không tải được file.");
-      }
-
-      const fileBlob = await response.blob();
-      const blobUrl = URL.createObjectURL(fileBlob);
-
-      const downloadLink = document.createElement("a");
-
-      downloadLink.href = blobUrl;
-      downloadLink.download = `${song.title}.wav`;
-      downloadLink.style.display = "none";
-
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      downloadLink.remove();
-
-      URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      alert("Không thể tải trực tiếp. Máy chủ NAS chưa cho phép tải từ website.");
-    } finally {
-      downloadButton.disabled = false;
-      downloadButton.textContent = originalText;
-    }
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.remove();
   });
 
   return article;
