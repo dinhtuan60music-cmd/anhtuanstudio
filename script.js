@@ -40,9 +40,8 @@ function renderCustomers(keyword = "") {
       matchedSongs.length > 0
         ? `
           <div class="matched-songs">
-            <strong>Bài hát tìm thấy:</strong>
             ${matchedSongs
-              .map((song) => `<p>🎵 ${song.title}</p>`)
+              .map((song) => `<h3>🎵 ${song.title}</h3>`)
               .join("")}
           </div>
         `
@@ -52,6 +51,8 @@ function renderCustomers(keyword = "") {
     card.className = "customer-card";
 
     card.innerHTML = `
+      ${matchedSongHtml}
+
       <div class="customer-code">
         Mã tra cứu: ${customer.id}
       </div>
@@ -59,8 +60,6 @@ function renderCustomers(keyword = "") {
       <h3>${customer.name}</h3>
 
       <p>🎵 ${customer.songs.length} bài hát</p>
-
-      ${matchedSongHtml}
 
       <a href="customer.html?id=${encodeURIComponent(customer.id)}">
         📂 NHẬN FILE →
