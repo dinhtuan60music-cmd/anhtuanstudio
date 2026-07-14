@@ -20,9 +20,9 @@ function renderCustomers(keyword = "") {
   }
 
   const filteredCustomers = customers.filter((customer) => {
-    const songTitles = Array.isArray(customer.songs)
-      ? customer.songs.map((song) => song.title).join(" ")
-      : "";
+    const songTitles = customer.songs
+      .map((song) => song.title)
+      .join(" ");
 
     const fullText = normalizeText(
       `${customer.id} ${customer.name} ${songTitles}`
@@ -32,6 +32,22 @@ function renderCustomers(keyword = "") {
   });
 
   filteredCustomers.forEach((customer) => {
+    const matchedSongs = customer.songs.filter((song) =>
+      normalizeText(song.title).includes(searchText)
+    );
+
+    const matchedSongHtml =
+      matchedSongs.length > 0
+        ? `
+          <div class="matched-songs">
+            <strong>Bài hát tìm thấy:</strong>
+            ${matchedSongs
+              .map((song) => `<p>🎵 ${song.title}</p>`)
+              .join("")}
+          </div>
+        `
+        : "";
+
     const card = document.createElement("article");
     card.className = "customer-card";
 
@@ -44,6 +60,8 @@ function renderCustomers(keyword = "") {
 
       <p>🎵 ${customer.songs.length} bài hát</p>
 
+      ${matchedSongHtml}
+
       <a href="customer.html?id=${encodeURIComponent(customer.id)}">
         📂 NHẬN FILE →
       </a>
@@ -52,11 +70,10 @@ function renderCustomers(keyword = "") {
     customerList.appendChild(card);
   });
 
-  if (filteredCustomers.length === 0) {
-    emptyMessage.classList.remove("hidden");
-  } else {
-    emptyMessage.classList.add("hidden");
-  }
+  emptyMessage.classList.toggle(
+    "hidden",
+    filteredCustomers.length > 0
+  );
 }
 
 customerSearch.addEventListener("input", function () {
