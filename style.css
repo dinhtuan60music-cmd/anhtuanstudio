@@ -1031,32 +1031,40 @@ footer {
 
 
 
+/* ===========================
+   HERO CHO ĐIỆN THOẠI
+=========================== */
 
+@media (max-width:768px){
 
+.hero{
 
+    min-height:100svh;
 
+    padding:100px 0 60px;
 
-/* CĂN LẠI ẢNH NỀN TRÊN ĐIỆN THOẠI */
-@media (max-width: 768px) {
+    background:
 
-  .hero,
-  .hero-clean {
-    background-image:
-      linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.55),
-        rgba(0, 0, 0, 0.12),
-        rgba(0, 0, 0, 0.55)
-      ),
-      url("background.png") !important;
+    linear-gradient(
 
-    background-size: auto 100% !important;
-    background-position: 47% top !important;
-    background-repeat: no-repeat !important;
-    background-color: #050403 !important;
-  }
+        180deg,
 
-  .hero {
-    min-height: 100svh;
-  }
+        rgba(0,0,0,.22),
+
+        rgba(0,0,0,.40),
+
+        rgba(0,0,0,.75)
+
+    ),
+
+    url("backgrounddt.png");
+
+    background-repeat:no-repeat;
+
+    background-position:center center;
+
+    background-size:cover;
+
+}
+
 }
