@@ -1260,7 +1260,28 @@ footer {
 
 
 
+/* =========================================================
+   NÚT NGHE NHẠC TRÊN TRANG CHỦ
+   ========================================================= */
 
+.btn-music {
+  color: #07140b;
+  background: linear-gradient(135deg, #4ced83, #1ed760);
+  border: 1px solid #65f395;
+  box-shadow:
+    0 12px 30px rgba(30, 215, 96, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn-music:hover {
+  color: #031008;
+  background: linear-gradient(135deg, #72f59e, #2ce872);
+  border-color: #8bffb2;
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 38px rgba(30, 215, 96, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
 
 
 
