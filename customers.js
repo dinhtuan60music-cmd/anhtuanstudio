@@ -2,7 +2,7 @@ const customers = [
   {
     id: "thanhsang",
     name: "Thanh Sáng",
-    avatar: "avatar/thanhsang.png",
+    avatar: "avatars/thanhsang.png",
     songs: [
       {
         title: "50 NĂM VỀ SAU",
