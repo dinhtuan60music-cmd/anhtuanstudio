@@ -96,30 +96,66 @@
     const customerNotFound = document.getElementById("customerNotFound");
 
     function createSongCard(song, index) {
-      const article = document.createElement("article");
-      article.className = "song-card";
+  const article = document.createElement("article");
+  article.className = "song-card";
 
-      article.innerHTML = `
-        <div class="song-number">
-          ${String(index + 1).padStart(2, "0")}
-        </div>
+  article.innerHTML = `
+    <div class="song-number">
+      ${String(index + 1).padStart(2, "0")}
+    </div>
 
-        <div class="song-info">
-          <h3>${song.title}</h3>
-          <p>File âm thanh từ Anh Tuấn Studio</p>
-        </div>
+    <div class="song-info">
+      <h3>${song.title}</h3>
+      <p>File âm thanh từ Anh Tuấn Studio</p>
+    </div>
 
-        <a
-          class="song-download"
-          href="${song.wavLink}"
-          download="${song.title}.wav"
-        >
-          TẢI FILE WAV
-        </a>
-      `;
+    <button
+      class="song-download"
+      type="button"
+    >
+      TẢI FILE WAV
+    </button>
+  `;
 
-      return article;
+  const downloadButton = article.querySelector(".song-download");
+
+  downloadButton.addEventListener("click", async () => {
+    const originalText = downloadButton.textContent;
+
+    try {
+      downloadButton.disabled = true;
+      downloadButton.textContent = "ĐANG TẢI...";
+
+      const response = await fetch(song.wavLink);
+
+      if (!response.ok) {
+        throw new Error("Không tải được file.");
+      }
+
+      const fileBlob = await response.blob();
+      const blobUrl = URL.createObjectURL(fileBlob);
+
+      const downloadLink = document.createElement("a");
+
+      downloadLink.href = blobUrl;
+      downloadLink.download = `${song.title}.wav`;
+      downloadLink.style.display = "none";
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      alert("Không thể tải trực tiếp. Máy chủ NAS chưa cho phép tải từ website.");
+    } finally {
+      downloadButton.disabled = false;
+      downloadButton.textContent = originalText;
     }
+  });
+
+  return article;
+}
 
     if (!customer) {
       document.querySelector(".customer-profile").classList.add("hidden");
