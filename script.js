@@ -9,6 +9,20 @@ function normalizeText(text) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+function escapeHtml(text) {
+  return String(text || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function openCustomer(customerId) {
+  window.location.href =
+    `customer.html?id=${encodeURIComponent(customerId)}`;
+}
+
 function renderCustomers(keyword = "") {
   const searchText = normalizeText(keyword.trim());
 
@@ -20,7 +34,11 @@ function renderCustomers(keyword = "") {
   }
 
   const filteredCustomers = customers.filter((customer) => {
-    const songTitles = customer.songs
+    const songs = Array.isArray(customer.songs)
+      ? customer.songs
+      : [];
+
+    const songTitles = songs
       .map((song) => song.title)
       .join(" ");
 
@@ -32,8 +50,11 @@ function renderCustomers(keyword = "") {
   });
 
   filteredCustomers.forEach((customer) => {
+    const songs = Array.isArray(customer.songs)
+      ? customer.songs
+      : [];
 
-    const matchedSongs = customer.songs.filter((song) =>
+    const matchedSongs = songs.filter((song) =>
       normalizeText(song.title).includes(searchText)
     );
 
@@ -41,40 +62,68 @@ function renderCustomers(keyword = "") {
       matchedSongs.length > 0
         ? `
           <div class="matched-songs">
+            <span class="matched-label">Bài hát tìm thấy</span>
+
             ${matchedSongs
-              .map((song) => `<h3>🎵 ${song.title}</h3>`)
+              .map(
+                (song) => `
+                  <h3 class="matched-song-title">
+                    🎵 ${escapeHtml(song.title)}
+                  </h3>
+                `
+              )
               .join("")}
           </div>
         `
         : "";
 
     const card = document.createElement("article");
-    card.className = "customer-card";
+    card.className = "customer-card customer-card-clickable";
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute(
+      "aria-label",
+      `Mở trang nhận file của ${customer.name}`
+    );
 
     card.innerHTML = `
       ${matchedSongHtml}
 
       <div class="customer-code">
-        Mã tra cứu: ${customer.id}
+        Mã tra cứu: ${escapeHtml(customer.id)}
       </div>
 
-      <h3>${customer.name}</h3>
+      <h3 class="customer-name">
+        ${escapeHtml(customer.name)}
+      </h3>
 
-      <p>🎵 ${customer.songs.length} bài hát</p>
+      <p class="customer-song-total">
+        🎵 ${songs.length} bài hát
+      </p>
 
-      <div class="customer-open">
-        📂 NHẬN FILE →
+      <div class="customer-card-footer">
+        <span class="customer-open-text">
+          NHẬN FILE
+        </span>
+
+        <span class="customer-card-arrow" aria-hidden="true">
+          →
+        </span>
       </div>
     `;
 
-    // Toàn bộ ô vuông bấm được
-    card.onclick = function () {
-      window.location.href =
-        "customer.html?id=" + encodeURIComponent(customer.id);
-    };
+    card.addEventListener("click", function () {
+      openCustomer(customer.id);
+    });
+
+    card.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openCustomer(customer.id);
+      }
+    });
 
     customerList.appendChild(card);
-
   });
 
   emptyMessage.classList.toggle(
