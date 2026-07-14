@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nghe nhạc - Anh Tuấn Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #ff8412;
+      --orange-light: #ffa13d;
+      --orange-dark: #b94f00;
+      --black: #080706;
+      --black-soft: #11100f;
+      --card: rgba(25, 19, 14, 0.94);
+      --border: rgba(255, 132, 18, 0.32);
+      --text: #fff7ee;
+      --muted: #bbae9f;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 132, 18, 0.15), transparent 36%),
+        linear-gradient(180deg, #100b07 0%, #050403 100%);
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 7, 6, 0.94);
+      border-bottom: 1px solid rgba(255, 132, 18, 0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-wrap {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .main-nav a {
+      color: #e8ded3;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.25s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: var(--orange);
+    }
+
+    .music-hero {
+      padding: 68px 0 36px;
+      text-align: center;
+    }
+
+    .music-hero span {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+
+    .music-hero h1 {
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .music-hero p {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .music-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
+      gap: 28px;
+      padding-bottom: 80px;
+    }
+
+    .player-panel,
+    .playlist-panel {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        linear-gradient(145deg, rgba(255, 132, 18, 0.08), transparent 35%),
+        var(--card);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    .player-panel {
+      overflow: hidden;
+    }
+
+    .cover-area {
+      position: relative;
+      min-height: 440px;
+      padding: 44px;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(180deg, transparent 15%, rgba(5, 4, 3, 0.94) 100%),
+        radial-gradient(circle at 50% 35%, rgba(255, 132, 18, 0.45), transparent 30%),
+        url("logo.png") center 34% / 180px no-repeat,
+        linear-gradient(135deg, #301507, #0a0806 68%);
+    }
+
+    .cover-glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(255, 132, 18, 0.16);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+
+    .now-playing {
+      position: relative;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .now-label {
+      color: var(--orange-light);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .now-playing h2 {
+      margin-top: 12px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.03;
+    }
+
+    .now-playing p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .player-controls {
+      padding: 30px 34px 34px;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 48px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .time-row span {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .progress {
+      width: 100%;
+      height: 7px;
+      appearance: none;
+      border-radius: 999px;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(
+        to right,
+        var(--orange) 0%,
+        var(--orange) 0%,
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.13) 100%
+      );
+    }
+
+    .progress::-webkit-slider-thumb {
+      width: 18px;
+      height: 18px;
+      appearance: none;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid var(--orange);
+      box-shadow: 0 0 18px rgba(255, 132, 18, 0.75);
+    }
+
+    .main-controls {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .control-button {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      font-size: 18px;
+      transition: 0.25s;
+    }
+
+    .control-button:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    .play-button {
+      width: 72px;
+      height: 72px;
+      border: none;
+      background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+      box-shadow: 0 14px 35px rgba(255, 108, 0, 0.34);
+      font-size: 27px;
+    }
+
+    .play-button:hover {
+      color: white;
+      transform: scale(1.06);
+    }
+
+    .download-current {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-current a {
+      min-width: 230px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 900;
+      background: rgba(255, 132, 18, 0.14);
+      border: 1px solid var(--orange);
+      transition: 0.25s;
+    }
+
+    .download-current a:hover {
+      background: var(--orange);
+      color: #140a02;
+    }
+
+    .playlist-panel {
+      padding: 28px;
+    }
+
+    .playlist-heading span {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .playlist-heading h2 {
+      margin-top: 8px;
+      font-size: 29px;
+    }
+
+    .playlist-heading p {
+      margin-top: 9px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .playlist {
+      margin-top: 25px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .track {
+      width: 100%;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr) 42px;
+      align-items: center;
+      gap: 13px;
+      color: var(--text);
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.075);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.035);
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .track:hover {
+      border-color: rgba(255, 132, 18, 0.48);
+      background: rgba(255, 132, 18, 0.08);
+      transform: translateX(3px);
+    }
+
+    .track.active {
+      border-color: var(--orange);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 132, 18, 0.19),
+        rgba(255, 132, 18, 0.04)
+      );
+    }
+
+    .track-number {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--orange);
+      font-weight: 900;
+      background: rgba(255, 132, 18, 0.1);
+    }
+
+    .track-info {
+      min-width: 0;
+    }
+
+    .track-info strong {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 15px;
+    }
+
+    .track-info small {
+      display: block;
+      margin-top: 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: var(--muted);
+    }
+
+    .track-play {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--orange);
+      font-size: 14px;
+    }
+
+    .empty-track {
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px dashed rgba(255, 132, 18, 0.25);
+      border-radius: 16px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 132, 18, 0.16);
+      background: #050403;
+    }
+
+    .footer-content {
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .footer-content img {
+      width: 45px;
+    }
+
+    @media (max-width: 900px) {
+      .music-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .playlist-panel {
+        order: 2;
+      }
+
+      .cover-area {
+        min-height: 390px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-wrap {
+        min-height: 64px;
+      }
+
+      .brand span {
+        font-size: 15px;
+      }
+
+      .main-nav {
+        gap: 14px;
+      }
+
+      .main-nav a {
+        font-size: 13px;
+      }
+
+      .main-nav a:nth-child(2) {
+        display: none;
+      }
+
+      .music-hero {
+        padding-top: 48px;
+      }
+
+      .music-hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .cover-area {
+        min-height: 340px;
+        padding: 28px 24px;
+        background-size: auto, auto, 135px, auto;
+      }
+
+      .player-controls {
+        padding: 26px 20px 28px;
+      }
+
+      .playlist-panel {
+        padding: 22px 16px;
+      }
+
+      .time-row {
+        grid-template-columns: 40px 1fr 40px;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Anh Tuấn Studio" />
+        <span>ANH TUẤN STUDIO</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index.html#customers">Khách hàng</a>
+        <a class="active" href="music.html">Nghe nhạc</a>
+        <a href="tel:0868930933">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="music-hero">
+      <div class="container">
+        <span>ANH TUẤN STUDIO MUSIC</span>
+
+        <h1>Những ca khúc nổi bật</h1>
+
+        <p>
+          Không gian nghe nhạc trực tuyến của Anh Tuấn Studio.
+          Chọn một bài hát, nhấn phát và thưởng thức ngay trên website.
+        </p>
+      </div>
+    </section>
+
+    <section class="container music-layout">
+      <div class="player-panel">
+        <div class="cover-area">
+          <div class="cover-glow"></div>
+
+          <div class="now-playing">
+            <span class="now-label">ĐANG PHÁT</span>
+            <h2 id="currentTitle">50 NĂM VỀ SAU</h2>
+            <p id="currentArtist">Thanh Sáng · Anh Tuấn Studio</p>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <audio id="audioPlayer" preload="metadata"></audio>
+
+          <div class="time-row">
+            <span id="currentTime">0:00</span>
+
+            <input
+              id="progressBar"
+              class="progress"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+            />
+
+            <span id="duration">0:00</span>
+          </div>
+
+          <div class="main-controls">
+            <button
+              id="backwardButton"
+              class="control-button"
+              type="button"
+              aria-label="Lùi 10 giây"
+            >
+              ↶
+            </button>
+
+            <button
+              id="playButton"
+              class="control-button play-button"
+              type="button"
+              aria-label="Phát nhạc"
+            >
+              ▶
+            </button>
+
+            <button
+              id="forwardButton"
+              class="control-button"
+              type="button"
+              aria-label="Tiến 10 giây"
+            >
+              ↷
+            </button>
+          </div>
+
+          <div class="download-current">
+            <a id="downloadButton" href="#" target="_self">
+              TẢI FILE WAV
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="playlist-panel">
+        <div class="playlist-heading">
+          <span>PLAYLIST</span>
+          <h2>Bài hát tiêu biểu</h2>
+          <p>
+            Bấm vào từng bài hát để phát trực tiếp mà không rời khỏi trang.
+          </p>
+        </div>
+
+        <div id="playlist" class="playlist"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <img src="logo.png" alt="Anh Tuấn Studio" />
+
+      <p>
+        <strong>ANH TUẤN STUDIO</strong><br />
+        Trảng Bom · Đồng Nai · 0868 930 933
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /*
+    ============================================================
+    DANH SÁCH NHẠC TIÊU BIỂU
+    ============================================================
+
+    listenLink:
+    Link dùng để nghe trực tiếp trên website.
+
+    downloadLink:
+    Link dùng để tải file về máy.
+
+    Khi có bài mới, chỉ cần sao chép thêm một khối { ... }.
+    */
+
+    const featuredSongs = [
+      {
+        title: "50 NĂM VỀ SAU",
+        artist: "Thanh Sáng",
+        listenLink:
+          "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
+
+        downloadLink:
+          "https://onedrive.live.com/personal/71fd2a7d74762b99/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F71fd2a7d74762b99%2FDocuments%2FSTUDIO%2FKHACH%2FHOANG%20TRIEU%2F50%20NAM%20VE%20SAU%20%2D%20MASTER%2Ewav"
+      }
+
+      /*
+      Khi có link nghe trực tiếp của bài MÀU HOA BÍ,
+      mình sẽ mở phần dưới và thay link vào:
+
+      ,
+      {
+        title: "MÀU HOA BÍ",
+        artist: "Hoàng Uyên",
+        listenLink: "DÁN LINK NGHE TRỰC TIẾP VÀO ĐÂY",
+        downloadLink:
+          "https://onedrive.live.com/personal/71fd2a7d74762b99/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F71fd2a7d74762b99%2FDocuments%2FSTUDIO%2FKHACH%2FHOANG%20UYEN%2FMAU%20HOA%20BI%20%2D%20HOANG%20UYEN%20%2D%20MASTER%203%2Ewav"
+      }
+      */
+    ];
+
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playButton = document.getElementById("playButton");
+    const backwardButton = document.getElementById("backwardButton");
+    const forwardButton = document.getElementById("forwardButton");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeElement = document.getElementById("currentTime");
+    const durationElement = document.getElementById("duration");
+    const currentTitle = document.getElementById("currentTitle");
+    const currentArtist = document.getElementById("currentArtist");
+    const downloadButton = document.getElementById("downloadButton");
+    const playlist = document.getElementById("playlist");
+
+    let currentSongIndex = 0;
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) {
+        return "0:00";
+      }
+
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
+
+      return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+    }
+
+    function renderPlaylist() {
+      playlist.innerHTML = "";
+
+      if (featuredSongs.length === 0) {
+        playlist.innerHTML = `
+          <div class="empty-track">
+            Chưa có bài hát nào trong danh sách.
+          </div>
+        `;
+
+        return;
+      }
+
+      featuredSongs.forEach((song, index) => {
+        const trackButton = document.createElement("button");
+
+        trackButton.type = "button";
+        trackButton.className =
+          index === currentSongIndex ? "track active" : "track";
+
+        trackButton.innerHTML = `
+          <span class="track-number">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+
+          <span class="track-info">
+            <strong>${song.title}</strong>
+            <small>${song.artist} · Anh Tuấn Studio</small>
+          </span>
+
+          <span class="track-play">
+            ${index === currentSongIndex && !audioPlayer.paused ? "❚❚" : "▶"}
+          </span>
+        `;
+
+        trackButton.addEventListener("click", () => {
+          if (index === currentSongIndex) {
+            togglePlayback();
+            return;
+          }
+
+          loadSong(index, true);
+        });
+
+        playlist.appendChild(trackButton);
+      });
+    }
+
+    function loadSong(index, shouldPlay = false) {
+      const song = featuredSongs[index];
+
+      if (!song) {
+        return;
+      }
+
+      currentSongIndex = index;
+
+      audioPlayer.src = song.listenLink;
+      currentTitle.textContent = song.title;
+      currentArtist.textContent =
+        `${song.artist} · Anh Tuấn Studio`;
+
+      downloadButton.href = song.downloadLink;
+
+      progressBar.value = 0;
+      currentTimeElement.textContent = "0:00";
+      durationElement.textContent = "0:00";
+
+      renderPlaylist();
+
+      if (shouldPlay) {
+        audioPlayer
+          .play()
+          .catch(() => {
+            playButton.textContent = "▶";
+          });
+      }
+    }
+
+    function togglePlayback() {
+      if (!audioPlayer.src) {
+        loadSong(currentSongIndex, true);
+        return;
+      }
+
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        audioPlayer.pause();
+      }
+    }
+
+    playButton.addEventListener("click", togglePlayback);
+
+    backwardButton.addEventListener("click", () => {
+      audioPlayer.currentTime = Math.max(
+        0,
+        audioPlayer.currentTime - 10
+      );
+    });
+
+    forwardButton.addEventListener("click", () => {
+      audioPlayer.currentTime = Math.min(
+        audioPlayer.duration || 0,
+        audioPlayer.currentTime + 10
+      );
+    });
+
+    progressBar.addEventListener("input", () => {
+      if (!Number.isFinite(audioPlayer.duration)) {
+        return;
+      }
+
+      audioPlayer.currentTime =
+        (Number(progressBar.value) / 100) *
+        audioPlayer.duration;
+    });
+
+    audioPlayer.addEventListener("play", () => {
+      playButton.textContent = "❚❚";
+      renderPlaylist();
+    });
+
+    audioPlayer.addEventListener("pause", () => {
+      playButton.textContent = "▶";
+      renderPlaylist();
+    });
+
+    audioPlayer.addEventListener("loadedmetadata", () => {
+      durationElement.textContent =
+        formatTime(audioPlayer.duration);
+    });
+
+    audioPlayer.addEventListener("timeupdate", () => {
+      currentTimeElement.textContent =
+        formatTime(audioPlayer.currentTime);
+
+      if (Number.isFinite(audioPlayer.duration)) {
+        const progress =
+          (audioPlayer.currentTime / audioPlayer.duration) * 100;
+
+        progressBar.value = progress || 0;
+
+        progressBar.style.background = `
+          linear-gradient(
+            to right,
+            var(--orange) 0%,
+            var(--orange) ${progress || 0}%,
+            rgba(255, 255, 255, 0.13) ${progress || 0}%,
+            rgba(255, 255, 255, 0.13) 100%
+          )
+        `;
+      }
+    });
+
+    audioPlayer.addEventListener("ended", () => {
+      if (featuredSongs.length <= 1) {
+        audioPlayer.currentTime = 0;
+        playButton.textContent = "▶";
+        return;
+      }
+
+      const nextIndex =
+        (currentSongIndex + 1) % featuredSongs.length;
+
+      loadSong(nextIndex, true);
+    });
+
+    loadSong(0, false);
+  </script>
+</body>
+</html>
