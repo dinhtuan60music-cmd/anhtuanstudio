@@ -22,10 +22,10 @@ const customers = [
       {
         title: "MÀU HOA BÍ",
 
-        listenLink: "https://1drv.ms/u/c/71fd2a7d74762b99/IQBWfWw5eiKtSbuNumojJMVmAfDK3z4TB56Uh1Qb8-Ck8VY?e=0mKJjb",
+        listenLink: "https://drive.google.com/file/d/1eLSSLI6Ee0yx413nwXHpj3ccQfyy7EqD",
 
         downloadLink:
-          "https://drive.google.com/file/d/1HynvKbu1HVij5E5VtiIXoIjUSMWNhBF_/view?usp=sharing"
+          "https://drive.google.com/file/d/1eLSSLI6Ee0yx413nwXHpj3ccQfyy7EqD/view?usp=sharing"
       }
     ]
   }
