@@ -452,64 +452,75 @@ footer {
 /* ĐIỆN THOẠI */
 
 @media (max-width: 600px) {
-  .container {
-    width: min(100% - 24px, 1120px);
+
+  .container{
+      width:min(100% - 24px,1120px);
   }
 
-  .topbar {
-    position: absolute;
+  .topbar{
+      position:absolute;
   }
 
-  .nav-wrap {
-    min-height: 66px;
+  .nav-wrap{
+      min-height:66px;
   }
 
-  .brand img {
-    width: 42px;
-    height: 42px;
+  .brand img{
+      width:42px;
+      height:42px;
   }
 
-  .brand span {
-    font-size: 15px;
+  .brand span{
+      font-size:15px;
   }
 
-  .hero {
-    min-height: 90vh;
-    padding: 100px 0 58px;
-    background-position: 52% center;
+  .hero{
+
+      min-height:100vh;
+
+      padding:100px 0 60px;
+
+      background-image:url("background.png");
+      background-repeat:no-repeat;
+      background-size:cover;
+
+      /* CĂN GIỮA CHUẨN */
+      background-position:center center;
+
   }
 
-  .hero-logo {
-    width: min(280px, 82vw);
+  .hero-logo{
+      width:min(280px,82vw);
   }
 
-  .hero-kicker {
-    letter-spacing: 3px;
-    font-size: 11px;
+  .hero-kicker{
+      letter-spacing:3px;
+      font-size:11px;
   }
 
-  .hero-description {
-    font-size: 16px;
+  .hero-description{
+      font-size:16px;
   }
 
-  .btn {
-    width: 100%;
-    max-width: 330px;
+  .btn{
+      width:100%;
+      max-width:330px;
   }
 
-  .section {
-    padding: 60px 0;
+  .section{
+      padding:60px 0;
   }
 
   .services-grid,
-  .customer-grid {
-    grid-template-columns: 1fr;
+  .customer-grid{
+      grid-template-columns:1fr;
   }
 
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
+  .footer-content{
+      flex-direction:column;
+      text-align:center;
   }
+
 }
 
 
