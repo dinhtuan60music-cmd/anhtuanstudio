@@ -406,32 +406,43 @@
       inset: 55px;
     }
 
-    .equalizer {
-      position: absolute;
-      top: 306px;
-      left: 50%;
 
-      height: 34px;
+.equalizer {
+  position: absolute;
+  top: 245px;
+  left: 50%;
 
-      display: flex;
-      align-items: flex-end;
-      gap: 5px;
+  width: 120px;
+  height: 42px;
 
-      transform: translateX(-50%);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 
-    .equalizer span {
-      width: 4px;
-      height: 8px;
+  transform: translateX(-50%);
+  z-index: 3;
+}
 
-      border-radius: 99px;
 
-      background: linear-gradient(
-        180deg,
-        var(--orange-light),
-        var(--orange-dark)
-      );
-    }
+   .equalizer span {
+  width: 5px;
+  height: 10px;
+
+  border-radius: 99px;
+
+  background: linear-gradient(
+    180deg,
+    var(--orange-light),
+    var(--orange-dark)
+  );
+
+  box-shadow: 0 0 12px rgba(255, 134, 20, 0.45);
+}
+
+    
+
+   
 
     .equalizer.playing span {
       animation: equalizerMove 0.9s ease-in-out infinite alternate;
