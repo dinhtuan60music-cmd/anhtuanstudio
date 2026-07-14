@@ -759,3 +759,272 @@ footer {
     max-width: 360px;
   }
 }
+
+
+
+
+
+
+
+/* ==================================================
+   LÀM ĐẸP PHẦN NỘI DUNG BÊN DƯỚI ẢNH NỀN
+================================================== */
+
+/* Nền chung toàn bộ website */
+body {
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 132, 24, 0.07),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 55%,
+      rgba(255, 111, 0, 0.055),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #080503 0%,
+      #120b06 45%,
+      #050403 100%
+    );
+}
+
+/* Các khu vực nội dung */
+.section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Ánh sáng cam mờ phía sau mỗi phần */
+.section::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  top: -260px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 132, 24, 0.12) 0%,
+    rgba(255, 132, 24, 0.045) 38%,
+    transparent 70%
+  );
+
+  filter: blur(8px);
+}
+
+/* Đường sáng ngăn cách giữa các phần */
+.section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(700px, 78%);
+  height: 1px;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 151, 54, 0.5),
+    transparent
+  );
+
+  box-shadow: 0 0 18px rgba(255, 123, 20, 0.25);
+}
+
+/* Phần dịch vụ */
+.dark-section {
+  background:
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(255, 126, 25, 0.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(255, 159, 67, 0.06),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #100a06,
+      #080503 55%,
+      #130b06
+    );
+}
+
+/* Phần khách hàng */
+.customer-section {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 132, 24, 0.14),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 80%,
+      rgba(255, 167, 76, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 65%,
+      rgba(255, 101, 0, 0.06),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #090604,
+      #120b06 50%,
+      #070403
+    );
+}
+
+/* Làm các thẻ nổi bật hơn */
+.service-card,
+.customer-card {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 132, 24, 0.025)
+    ),
+    rgba(12, 8, 5, 0.74);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Ánh sáng nhẹ trong góc thẻ */
+.service-card::before,
+.customer-card::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: -80px;
+  right: -70px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 139, 38, 0.16),
+    transparent 68%
+  );
+}
+
+/* Tiêu đề phần rõ và sang hơn */
+.section-heading h2 {
+  text-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(255, 126, 25, 0.08);
+}
+
+.section-heading span {
+  text-shadow: 0 0 18px rgba(255, 126, 25, 0.28);
+}
+
+/* Khung tìm kiếm nổi bật */
+.search-box {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 132, 24, 0.025)
+    ),
+    rgba(12, 8, 5, 0.78);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(255, 126, 25, 0.045);
+}
+
+/* Chân trang */
+footer {
+  position: relative;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 132, 24, 0.1),
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      #090604,
+      #020201
+    );
+
+  border-top: 1px solid rgba(255, 147, 48, 0.2);
+}
+
+/* ==================================================
+   TỐI ƯU TRÊN ĐIỆN THOẠI
+================================================== */
+
+@media (max-width: 600px) {
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .section::before {
+    width: 340px;
+    height: 340px;
+    top: -170px;
+  }
+
+  .section::after {
+    width: 82%;
+  }
+
+  .dark-section {
+    background:
+      radial-gradient(
+        circle at 50% 10%,
+        rgba(255, 132, 24, 0.11),
+        transparent 30%
+      ),
+      linear-gradient(
+        180deg,
+        #100905,
+        #070403 60%,
+        #0e0805
+      );
+  }
+
+  .customer-section {
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(255, 132, 24, 0.12),
+        transparent 26%
+      ),
+      linear-gradient(
+        180deg,
+        #090604,
+        #110a06 48%,
+        #050302
+      );
+  }
+
+  .service-card,
+  .customer-card {
+    box-shadow:
+      0 14px 35px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  }
+}
