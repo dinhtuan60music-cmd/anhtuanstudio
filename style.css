@@ -1195,6 +1195,72 @@ footer {
 
 
 
+/* NÚT NGHE VÀ TẢI TRONG TRANG KHÁCH HÀNG */
+
+.song-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.song-listen {
+  min-width: 105px;
+  padding: 13px 20px;
+  border: 1px solid #ff8a1f;
+  border-radius: 12px;
+  color: #ff9b3e;
+  background: rgba(255, 138, 31, 0.08);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.song-listen:hover {
+  color: #140a02;
+  background: #ff8a1f;
+  transform: translateY(-2px);
+}
+
+.song-player {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding-top: 16px;
+}
+
+.song-player audio {
+  display: block;
+  width: 100%;
+  height: 48px;
+}
+
+.song-player.hidden {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .song-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .song-listen,
+  .song-download {
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+  }
+
+  .song-player {
+    padding-top: 10px;
+  }
+}
+
+
+
+
 
 
 
