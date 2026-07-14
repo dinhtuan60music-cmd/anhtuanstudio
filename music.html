@@ -358,17 +358,21 @@
         );
     }
 
-    .cover-logo {
-      position: absolute;
-      top: 68px;
-      left: 50%;
+   .cover-logo {
+  position: absolute;
 
-      width: 185px;
-      height: 185px;
+  left: 50%;
+  top: 55px;
 
-      object-fit: contain;
+  width: 185px;
+  height: 185px;
 
-      transform: translateX(-50%);
+  object-fit: contain;
+
+  transform: translateX(-50%);
+  z-index: 5;
+}
+    
 
       filter:
         drop-shadow(0 18px 30px rgba(0, 0, 0, 0.58))
@@ -411,40 +415,45 @@
 
 .equalizer {
   position: absolute;
-  top: 245px;
+  top: 247px;
   left: 50%;
+  z-index: 6;
 
-  width: 120px;
-  height: 42px;
+  width: 180px;
+  height: 54px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
 
   transform: translateX(-50%);
-  z-index: 3;
+
+  padding: 8px 16px;
+
+  border: 1px solid rgba(255, 145, 45, 0.22);
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 145, 45, 0.08),
+      rgba(255, 145, 45, 0.025)
+    ),
+    rgba(15, 9, 5, 0.62);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 28px rgba(255, 120, 20, 0.13);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  overflow: hidden;
 }
-
-
-   .equalizer span {
-  width: 5px;
-  height: 10px;
-
-  border-radius: 99px;
-
-  background: linear-gradient(
-    180deg,
-    var(--orange-light),
-    var(--orange-dark)
-  );
-
-  box-shadow: 0 0 12px rgba(255, 134, 20, 0.45);
-}
-
     
 
-   
 
     .equalizer.playing span {
       animation: equalizerMove 0.9s ease-in-out infinite alternate;
@@ -1207,13 +1216,17 @@
             alt="Anh Tuấn Studio"
           />
 
-          <div id="equalizer" class="equalizer">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+    <div id="equalizer" class="equalizer" aria-hidden="true">
+  <span style="--i: 1;"></span>
+  <span style="--i: 2;"></span>
+  <span style="--i: 3;"></span>
+  <span style="--i: 4;"></span>
+  <span style="--i: 5;"></span>
+  <span style="--i: 6;"></span>
+  <span style="--i: 7;"></span>
+  <span style="--i: 8;"></span>
+  <span style="--i: 9;"></span>
+</div>
 
           <div class="now-playing">
             <span class="now-label">ĐANG PHÁT</span>
