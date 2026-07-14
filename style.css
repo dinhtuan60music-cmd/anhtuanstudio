@@ -1288,12 +1288,12 @@ footer {
 
 /* BA NÚT Ở GIỮA TRANG CHỦ */
 
-.hero-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
 }
 
 .hero-buttons .btn {
