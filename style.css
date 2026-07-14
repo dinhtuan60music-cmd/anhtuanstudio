@@ -202,21 +202,22 @@ input {
   transform: translateY(-3px);
 }
 
-.btn-primary {
-  color: #241000;
-  background: linear-gradient(135deg, #ffa246, #e96800);
-  box-shadow: 0 12px 32px rgba(255, 105, 0, 0.24);
+.btn-primary{
+    background: rgba(255,255,255,0.03);
+    border:1px solid rgba(255,140,40,.35);
+    color:#fff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition:.3s;
 }
 
-.btn-outline {
-  color: white;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
+.btn-primary:hover{
+    border-color:#ff8c28;
+    background:rgba(255,140,40,.08);
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(255,140,40,.25);
 }
 
-.btn-outline:hover {
-  border-color: rgba(255, 168, 75, 0.72);
-}
 
 /* PHẦN CHUNG */
 
