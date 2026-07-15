@@ -413,98 +413,126 @@ footer{
     </div>
   </footer>
 
+  
   <script src="customers.js"></script>
 
+<script>
+  const albumSearch = document.getElementById("albumSearch");
+  const albumGrid = document.getElementById("albumGrid");
+
+  function normalizeText(text) {
+    return String(text || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d");
+  }
+
+  function getPlayableSongs(customer) {
+    return (customer.songs || []).filter((song) => {
+      return (
+        typeof song.listenLink === "string" &&
+        song.listenLink.trim() !== ""
+      );
+    });
+  }
+
   function renderAlbums(keyword = "") {
-  const searchText = keyword.trim();
-  const normalizedKeyword = normalizeText(searchText);
+    const searchText = keyword.trim();
+    const normalizedKeyword = normalizeText(searchText);
 
-  albumGrid.innerHTML = "";
+    albumGrid.innerHTML = "";
 
-  // Chưa gõ gì thì không hiện album nào
-  if (!searchText) {
-    albumGrid.innerHTML = `
-      <div class="empty-message">
-        Nhập tên khách hàng, mã khách hoặc tên bài hát để tìm album.
-      </div>
-    `;
-    return;
-  }
+    // Chưa nhập nội dung thì không hiện album khách hàng
+    if (!searchText) {
+      albumGrid.innerHTML = `
+        <div class="empty-message">
+          Nhập tên khách hàng, mã khách hoặc tên bài hát để tìm album.
+        </div>
+      `;
+      return;
+    }
 
-  const matchingCustomers = customers.filter((customer) => {
-    const playableSongs = getPlayableSongs(customer);
+    const matchingCustomers = customers.filter((customer) => {
+      const playableSongs = getPlayableSongs(customer);
 
-    const customerName = normalizeText(customer.name);
-    const customerId = normalizeText(customer.id);
+      const customerName = normalizeText(customer.name);
+      const customerId = normalizeText(customer.id);
 
-    const hasMatchingSong = playableSongs.some((song) =>
-      normalizeText(song.title).includes(normalizedKeyword)
-    );
+      const hasMatchingSong = playableSongs.some((song) => {
+        return normalizeText(song.title).includes(normalizedKeyword);
+      });
 
-    return (
-      playableSongs.length > 0 &&
-      (
-        customerName.includes(normalizedKeyword) ||
-        customerId.includes(normalizedKeyword) ||
-        hasMatchingSong
-      )
-    );
-  });
+      return (
+        playableSongs.length > 0 &&
+        (
+          customerName.includes(normalizedKeyword) ||
+          customerId.includes(normalizedKeyword) ||
+          hasMatchingSong
+        )
+      );
+    });
 
-  if (matchingCustomers.length === 0) {
-    albumGrid.innerHTML = `
-      <div class="empty-message">
-        Không tìm thấy album phù hợp.<br />
-        Anh chị vui lòng kiểm tra lại tên khách hàng, mã khách hoặc tên bài hát.
-      </div>
-    `;
-    return;
-  }
+    if (matchingCustomers.length === 0) {
+      albumGrid.innerHTML = `
+        <div class="empty-message">
+          Không tìm thấy album phù hợp.<br />
+          Anh chị vui lòng kiểm tra lại tên khách hàng, mã khách hoặc tên bài hát.
+        </div>
+      `;
+      return;
+    }
 
-  matchingCustomers.forEach((customer) => {
-    const playableSongs = getPlayableSongs(customer);
-    const card = document.createElement("article");
-    card.className = "album-card";
+    matchingCustomers.forEach((customer) => {
+      const playableSongs = getPlayableSongs(customer);
+      const card = document.createElement("article");
 
-    const avatarPath = customer.avatar || "logo.png";
-    const fallbackClass = customer.avatar ? "" : "logo-fallback";
+      card.className = "album-card";
 
-    card.innerHTML = `
-      <div class="album-card-top">
-        <div class="album-avatar">
-          <img
-            class="${fallbackClass}"
-            src="${avatarPath}"
-            alt="${customer.name}"
-          />
+      const avatarPath = customer.avatar || "logo.png";
+      const fallbackClass = customer.avatar ? "" : "logo-fallback";
+
+      card.innerHTML = `
+        <div class="album-card-top">
+          <div class="album-avatar">
+            <img
+              class="${fallbackClass}"
+              src="${avatarPath}"
+              alt="${customer.name}"
+            />
+          </div>
+
+          <div>
+            <h2>${customer.name}</h2>
+
+            <small>
+              ${playableSongs.length} bài hát trực tuyến<br />
+              Thực hiện tại Anh Tuấn Studio
+            </small>
+          </div>
         </div>
 
-        <div>
-          <h2>${customer.name}</h2>
-          <small>
-            ${playableSongs.length} bài hát trực tuyến<br />
-            Thực hiện tại Anh Tuấn Studio
-          </small>
-        </div>
-      </div>
+        <a
+          class="album-link"
+          href="album.html?id=${encodeURIComponent(customer.id)}"
+        >
+          XEM ALBUM
+        </a>
+      `;
 
-      <a
-        class="album-link"
-        href="album.html?id=${encodeURIComponent(customer.id)}"
-      >
-        XEM ALBUM
-      </a>
-    `;
+      albumGrid.appendChild(card);
+    });
+  }
 
-    albumGrid.appendChild(card);
+  albumSearch.addEventListener("input", () => {
+    renderAlbums(albumSearch.value);
   });
-}
 
-    albumSearch.addEventListener("input", () => {
-  renderAlbums(albumSearch.value);
-});
+  renderAlbums("");
+</script>
 
-renderAlbums("");
-  </script>
 </body>
 </html>
+
+
+
