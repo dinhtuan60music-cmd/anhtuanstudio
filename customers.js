@@ -35,7 +35,22 @@ priority: 1,
     ]
   }
 
+  {
+    id: "laudamus2025",
+    name: "Nhóm Laudamus 2025",
+    songs: [
+      {
+        title: "TRÁI TIM KHÁT MONG",
+           featured: true,
+priority: 2,
 
+        listenLink: "https://raw.github.com/dinhtuan60music-cmd/anhtuanstudio/blob/3ffd1e6ddecc65d51df8c812701802a1ae12a622/files/TRAI%20TIM%20KHAT%20MONG%20-%20MASTER%202.mp3",
+
+        downloadLink:
+          "https://github.com/dinhtuan60music-cmd/anhtuanstudio/blob/3ffd1e6ddecc65d51df8c812701802a1ae12a622/files/TRAI%20TIM%20KHAT%20MONG%20-%20MASTER%202.mp3"
+      }
+    ]
+  }
 
 
   
