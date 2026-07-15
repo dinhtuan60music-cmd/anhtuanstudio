@@ -331,87 +331,99 @@ input {
 
 .search-box {
   max-width: 650px;
-  margin: 0 auto 30px;
-  padding: 9px;
+  margin: -8px auto 18px;
+  padding: 7px;
   border: 1px solid var(--border);
-  border-radius: 17px;
-  background: rgba(255, 255, 255, 0.055);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
 }
 
 .search-box input {
   width: 100%;
-  padding: 14px 16px;
+  min-height: 48px;
+  padding: 0 14px;
   border: 0;
   outline: 0;
   color: white;
   background: transparent;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .search-box input::placeholder {
   color: #bba895;
+  font-size: 13px;
 }
 
 .customer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 12px;
 }
 
 .customer-card {
-  padding: 24px;
+  padding: 14px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 15px;
   background: var(--glass);
   backdrop-filter: blur(14px);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
-  transition: 0.25s ease;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  transition: 0.22s ease;
 }
 
 .customer-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 153, 54, 0.72);
-  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+  border-color: rgba(255, 153, 54, 0.62);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
 }
 
 .customer-code {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: var(--orange);
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .customer-card h3 {
-  margin-bottom: 8px;
-  font-size: 21px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1.2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .customer-card p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 .customer-card a {
-  display: inline-block;
-  padding: 11px 15px;
+  display: inline-flex;
+  min-height: 32px;
+  padding: 0 12px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--border);
-  border-radius: 11px;
+  border-radius: 9px;
   color: var(--gold);
+  font-size: 10px;
   font-weight: 800;
   transition: 0.2s ease;
 }
 
 .customer-card a:hover {
-  background: rgba(255, 129, 22, 0.11);
+  background: rgba(255, 129, 22, 0.1);
 }
 
 .empty-message {
-  margin-top: 28px;
+  margin-top: 18px;
   color: var(--muted);
   text-align: center;
+  font-size: 12px;
 }
 
 /* CHÂN TRANG */
