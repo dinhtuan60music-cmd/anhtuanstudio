@@ -1360,3 +1360,46 @@ footer {
     min-width: 0;
   }
 }
+
+/* ==================================================
+   CHỈNH CHÂN TRANG TRÊN ĐIỆN THOẠI
+   Không ảnh hưởng bố cục máy tính
+================================================== */
+
+@media (max-width: 600px) {
+  footer {
+    padding: 26px 0 16px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    text-align: center;
+  }
+
+  .footer-content p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .footer-content strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .footer-content img {
+    width: 30px;
+    height: 30px;
+    margin-top: 3px;
+    order: 2;
+  }
+
+  .footer-address {
+    display: block;
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: -0.15px;
+  }
+}
