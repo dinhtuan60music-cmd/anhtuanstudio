@@ -186,6 +186,11 @@ input {
   filter: drop-shadow(0 0 24px rgba(255, 116, 12, 0.3));
 }
 
+filter:
+drop-shadow(0 0 18px rgba(255,165,40,.35))
+drop-shadow(0 0 40px rgba(255,165,40,.18));
+
+
 .hero-kicker {
   margin-bottom: 18px;
   color: var(--gold);
