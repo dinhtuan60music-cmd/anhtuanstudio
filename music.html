@@ -18,17 +18,14 @@
     .vinyl{position:absolute;top:35px;left:50%;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(255,134,20,.3);background:repeating-radial-gradient(circle,rgba(255,255,255,.045) 0 2px,transparent 2px 8px),radial-gradient(circle at center,rgba(255,134,20,.18) 0 17%,#0a0806 18% 100%);box-shadow:0 0 80px rgba(255,134,20,.17),inset 0 0 50px rgba(255,134,20,.08);animation:spinVinyl 12s linear infinite;animation-play-state:paused}.vinyl.playing{animation-play-state:running}@keyframes spinVinyl{to{transform:translateX(-50%) rotate(360deg)}}
 .cover-logo{
   position:absolute;
-
-  /* Tâm đĩa = top của đĩa + nửa chiều cao đĩa */
-  top:184px;
+  top:128px;
   left:50%;
 
-  width:108px;
-  height:108px;
-  padding:20px;
+  width:86px;
+  height:86px;
+  padding:16px;
 
   transform:translate(-50%,-50%);
-
   object-fit:contain;
   border-radius:50%;
 
@@ -41,8 +38,8 @@
     );
 
   box-shadow:
-    0 0 28px rgba(255,134,20,.32),
-    inset 0 0 12px rgba(255,190,90,.18);
+    0 0 24px rgba(255,134,20,.32),
+    inset 0 0 10px rgba(255,190,90,.16);
 
   z-index:3;
 }
@@ -265,7 +262,7 @@
       .music-layout{gap:16px;padding-bottom:50px}
 
       .cover-area{min-height:330px;padding:20px 22px}
-      .vinyl{top:34px;width:300px;height:300px}
+      .vinyl{top:18px;width:220px;height:220px}
 
 
       
@@ -283,12 +280,16 @@
       
 
       
-      .equalizer{
-  top:250px;
+.equalizer{
+  top:246px;
+  left:50%;
   width:126px;
   height:36px;
   padding:5px 9px;
+  transform:translateX(-50%);
 }
+
+      
 
       
       .equalizer span{width:3px;height:17px;flex-basis:3px}
