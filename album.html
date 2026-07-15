@@ -111,466 +111,629 @@
     }
 
     .album-hero {
-      position: relative;
-      min-height: 420px;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 134, 20, 0.18);
-      background:
-        linear-gradient(180deg, rgba(4,3,2,0.1), rgba(4,3,2,0.94)),
-        radial-gradient(circle at 50% 32%, rgba(255,134,20,0.38), transparent 30%),
-        linear-gradient(135deg, #3a1807, #100b07 60%, #060504);
-    }
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 134, 20, 0.16);
+  background:
+    linear-gradient(180deg, rgba(4,3,2,0.08), rgba(4,3,2,0.94)),
+    radial-gradient(circle at 50% 32%, rgba(255,134,20,0.30), transparent 28%),
+    linear-gradient(135deg, #3a1807, #100b07 60%, #060504);
+}
 
-    .album-hero-inner {
-      min-height: 420px;
-      padding: 48px 0;
-      display: flex;
-      align-items: flex-end;
-    }
+.album-hero-inner {
+  min-height: 300px;
+  padding: 30px 0;
+  display: flex;
+  align-items: flex-end;
+}
 
-    .album-profile {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      align-items: end;
-      gap: 30px;
-    }
+.album-profile {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: end;
+  gap: 20px;
+}
 
-    .album-avatar {
-      width: 180px;
-      height: 180px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid rgba(255, 134, 20, 0.3);
-      border-radius: 32px;
-      background: rgba(255, 134, 20, 0.08);
-      box-shadow:
-        0 24px 55px rgba(0, 0, 0, 0.42),
-        0 0 45px rgba(255, 134, 20, 0.12);
-    }
+.album-avatar {
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 134, 20, 0.24);
+  border-radius: 22px;
+  background: rgba(255, 134, 20, 0.07);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(255, 134, 20, 0.10);
+}
 
-    .album-avatar img {
-      width: 72%;
-      height: 72%;
-      object-fit: contain;
-    }
+.album-avatar img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
 
-    .album-kicker {
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 4px;
-    }
+.album-kicker {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
 
-    .album-profile h1 {
-      margin-top: 12px;
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -3px;
-    }
+.album-profile h1 {
+  margin-top: 8px;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
 
-    .album-meta {
-      margin-top: 15px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+.album-meta {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
 
-    .album-actions {
-      margin-top: 20px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+.album-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
 
-    .album-action {
-      min-height: 48px;
-      padding: 0 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #160902;
-      text-decoration: none;
-      border: 1px solid var(--orange-light);
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 900;
-      transition: 0.25s ease;
-    }
+.album-action {
+  min-height: 36px;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #160902;
+  text-decoration: none;
+  border: 1px solid var(--orange-light);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  transition: 0.22s ease;
+}
 
-    .album-action.secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.055);
-      border-color: rgba(255,255,255,0.12);
-    }
+.album-action.secondary {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.11);
+}
 
-    .album-action:hover {
-      transform: translateY(-2px);
-    }
+.album-action:hover {
+  transform: translateY(-1px);
+}
 
-    .album-main {
-      padding: 38px 0 80px;
-    }
+.album-main {
+  padding: 24px 0 60px;
+}
 
-    .album-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 370px;
-      gap: 26px;
-      align-items: start;
-    }
+.album-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 18px;
+  align-items: start;
+}
 
-    .track-panel,
-    .player-panel {
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background:
-        linear-gradient(145deg, rgba(255,134,20,0.08), transparent 34%),
-        var(--panel);
-      box-shadow:
-        0 28px 75px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-    }
+.track-panel,
+.player-panel {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255,134,20,0.07), transparent 34%),
+    var(--panel);
+  box-shadow:
+    0 18px 46px rgba(0,0,0,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
 
     .track-panel {
-      padding: 26px;
-    }
+  padding: 18px;
+}
 
-    .track-panel h2 {
-      font-size: 29px;
-    }
+.track-panel h2 {
+  font-size: 20px;
+  line-height: 1.2;
+}
 
-    .track-panel p {
-      margin-top: 8px;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.track-panel p {
+  margin-top: 5px;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 11px;
+}
 
-    .album-track-list {
-      margin-top: 22px;
-      display: grid;
-      gap: 11px;
-    }
+.album-track-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 7px;
+}
 
-    .album-track {
-      width: 100%;
-      padding: 13px;
-      display: grid;
-      grid-template-columns: 50px minmax(0, 1fr) 40px;
-      align-items: center;
-      gap: 13px;
-      color: var(--text);
-      text-align: left;
-      border: 1px solid rgba(255,255,255,0.075);
-      border-radius: 17px;
-      background: rgba(255,255,255,0.035);
-      cursor: pointer;
-      transition: 0.23s ease;
-    }
+.album-track {
+  width: 100%;
+  padding: 6px 8px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 26px;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 11px;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
 
-    .album-track:hover {
-      border-color: rgba(255,134,20,0.48);
-      background: rgba(255,134,20,0.075);
-      transform: translateX(3px);
-    }
+.album-track:hover {
+  border-color: rgba(255,134,20,0.42);
+  background: rgba(255,134,20,0.065);
+  transform: translateX(2px);
+}
 
-    .album-track.active {
-      border-color: var(--orange);
-      background: linear-gradient(90deg, rgba(255,134,20,0.19), rgba(255,134,20,0.035));
-      box-shadow: inset 4px 0 0 var(--orange);
-    }
+.album-track.active {
+  border-color: var(--orange);
+  background: linear-gradient(
+    90deg,
+    rgba(255,134,20,0.17),
+    rgba(255,134,20,0.03)
+  );
+  box-shadow: inset 3px 0 0 var(--orange);
+}
 
-    .track-number {
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      color: var(--orange);
-      border: 1px solid rgba(255,134,20,0.14);
-      border-radius: 14px;
-      background: rgba(255,134,20,0.09);
-      font-weight: 900;
-    }
+.track-number {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  color: var(--orange);
+  border: 1px solid rgba(255,134,20,0.13);
+  border-radius: 9px;
+  background: rgba(255,134,20,0.08);
+  font-size: 10px;
+  font-weight: 800;
+}
 
-    .track-info {
-      min-width: 0;
-    }
+.track-info {
+  min-width: 0;
+}
 
-    .track-info strong {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 15px;
-    }
+.track-info strong {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
 
-    .track-info small {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+.track-info small {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--muted);
+  font-size: 9px;
+}
 
-    .track-play {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      color: var(--orange);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.065);
-    }
+.track-play {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  color: var(--orange);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.055);
+  font-size: 9px;
+}
 
-    .player-panel {
-      position: sticky;
-      top: 98px;
-      overflow: hidden;
-    }
+.player-panel {
+  position: sticky;
+  top: 82px;
+  overflow: hidden;
+}
 
-    .player-visual {
-      min-height: 290px;
-      padding: 28px;
-      display: flex;
-      align-items: flex-end;
-      background:
-        linear-gradient(180deg, rgba(4,3,2,0.06), rgba(4,3,2,0.94)),
-        radial-gradient(circle at 50% 35%, rgba(255,134,20,0.42), transparent 31%),
-        linear-gradient(135deg, #3a1807, #100b07 60%, #060504);
-    }
+.player-visual {
+  min-height: 230px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-end;
+  background:
+    linear-gradient(180deg, rgba(4,3,2,0.05), rgba(4,3,2,0.94)),
+    radial-gradient(circle at 50% 35%, rgba(255,134,20,0.34), transparent 29%),
+    linear-gradient(135deg, #3a1807, #100b07 60%, #060504);
+}
 
-    .player-visual img {
-      position: absolute;
-      top: 45px;
-      left: 50%;
-      width: 125px;
-      height: 125px;
-      object-fit: contain;
-      transform: translateX(-50%);
-      filter: drop-shadow(0 18px 30px rgba(0,0,0,0.5));
-    }
+.player-visual img {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  width: 98px;
+  height: 98px;
+  object-fit: contain;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.45));
+}
 
     .now-playing {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-    }
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
 
-    .now-playing span {
-      color: var(--orange-light);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 4px;
-    }
+.now-playing span {
+  color: var(--orange-light);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
 
-    .now-playing h2 {
-      margin-top: 12px;
-      font-size: 30px;
-      line-height: 1.08;
-    }
+.now-playing h2 {
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1.1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-    .now-playing p {
-      margin-top: 9px;
-      color: var(--muted);
-    }
+.now-playing p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
 
-    .player-controls {
-      padding: 24px;
-    }
+.player-controls {
+  padding: 18px;
+}
 
-    .time-row {
-      display: grid;
-      grid-template-columns: 42px minmax(0,1fr) 42px;
-      align-items: center;
-      gap: 10px;
-    }
+.time-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr) 34px;
+  align-items: center;
+  gap: 8px;
+}
 
-    .time-row span {
-      color: var(--muted);
-      text-align: center;
-      font-size: 12px;
-    }
+.time-row span {
+  color: var(--muted);
+  text-align: center;
+  font-size: 10px;
+}
 
-    .progress {
-      width: 100%;
-      height: 7px;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 999px;
-      outline: none;
-      cursor: pointer;
-      background: linear-gradient(to right, var(--orange) 0%, var(--orange) 0%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.13) 100%);
-    }
+.progress {
+  width: 100%;
+  height: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(to right,var(--orange) 0%,var(--orange) 0%,rgba(255,255,255,.13) 0%,rgba(255,255,255,.13) 100%);
+}
 
-    .progress::-webkit-slider-thumb {
-      width: 18px;
-      height: 18px;
-      appearance: none;
-      -webkit-appearance: none;
-      border: 4px solid var(--orange);
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 0 18px rgba(255,134,20,0.75);
-    }
+.progress::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 3px solid var(--orange);
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px rgba(255,134,20,.6);
+}
 
-    .main-controls {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
+.main-controls {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 
-    .control-button {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.055);
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
+.control-button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: white;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+  transition: .2s;
+}
 
-    .play-button {
-      width: 70px;
-      height: 70px;
-      color: #160902;
-      border: none;
-      background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
-      font-size: 25px;
-    }
+.play-button {
+  width: 56px;
+  height: 56px;
+  color: #160902;
+  border: none;
+  background: linear-gradient(135deg,var(--orange-light),var(--orange-dark));
+  font-size: 19px;
+}
 
-    .volume-row {
-      margin-top: 22px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.volume-row {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    .volume-range {
-      width: 100%;
-      height: 5px;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 99px;
-      outline: none;
-      background: rgba(255,255,255,0.13);
-    }
+.volume-range {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 99px;
+  outline: none;
+  background: rgba(255,255,255,.13);
+}
 
-    .volume-range::-webkit-slider-thumb {
-      width: 14px;
-      height: 14px;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 50%;
-      background: var(--orange);
-    }
+.volume-range::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  background: var(--orange);
+}
 
-    .album-not-found {
-      padding: 90px 0;
-      text-align: center;
-    }
+.album-not-found {
+  padding: 70px 0;
+  text-align: center;
+}
 
-    .album-not-found h1 {
-      font-size: 42px;
-    }
+.album-not-found h1 {
+  font-size: 32px;
+}
 
-    .album-not-found p {
-      margin: 14px 0 24px;
-      color: var(--muted);
-    }
+.album-not-found p {
+  margin: 10px 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
 
-    footer {
-      border-top: 1px solid rgba(255,134,20,0.14);
-      background: #040302;
-    }
+   footer {
+  border-top: 1px solid rgba(255,134,20,0.14);
+  background: #040302;
+}
 
-    .footer-content {
-      min-height: 112px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.6;
-    }
+.footer-content {
+  min-height: 96px;
+  padding: 16px 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.45;
+}
 
-    .footer-content img {
-      width: 46px;
-      height: 46px;
-      object-fit: contain;
-    }
+.footer-content p {
+  font-size: 12px;
+}
 
-    @media (max-width: 900px) {
-      .album-layout {
-        grid-template-columns: 1fr;
-      }
+.footer-content strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
 
-      .player-panel {
-        position: static;
-      }
-    }
+.footer-content img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
 
-    @media (max-width: 700px) {
-      .container {
-        width: min(100% - 24px, 1180px);
-      }
+@media (max-width: 900px) {
+  .album-layout {
+    grid-template-columns: 1fr;
+  }
 
-      .main-nav {
-        gap: 14px;
-      }
+  .player-panel {
+    position: static;
+  }
+}
 
-      .main-nav a {
-        font-size: 13px;
-      }
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 24px, 1180px);
+  }
 
-      .main-nav a:nth-child(2) {
-        display: none;
-      }
+  .main-nav {
+    gap: 12px;
+  }
 
-      .album-hero,
-      .album-hero-inner {
-        min-height: 370px;
-      }
+  .main-nav a {
+    font-size: 12px;
+  }
 
-      .album-profile {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
+  .main-nav a:nth-child(2) {
+    display: none;
+  }
 
-      .album-avatar {
-        width: 125px;
-        height: 125px;
-        border-radius: 24px;
-      }
+  .album-hero,
+  .album-hero-inner {
+    min-height: 250px;
+  }
 
-      .album-profile h1 {
-        letter-spacing: -2px;
-      }
+  .album-hero-inner {
+    padding: 22px 0;
+  }
 
-      .track-panel {
-        padding: 22px 15px;
-      }
+  .album-profile {
+    grid-template-columns: 82px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+  }
 
-      .album-track {
-        grid-template-columns: 46px minmax(0,1fr) 36px;
-        padding: 11px;
-      }
+  .album-avatar {
+    width: 82px;
+    height: 82px;
+    border-radius: 17px;
+  }
 
-      .track-number {
-        width: 46px;
-        height: 46px;
-      }
-    }
+  .album-kicker {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .album-profile h1 {
+    margin-top: 5px;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+  }
+
+  .album-meta {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .album-actions {
+    margin-top: 10px;
+    gap: 7px;
+  }
+
+  .album-action {
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: 9px;
+  }
+
+  .album-main {
+    padding: 16px 0 45px;
+  }
+
+  .album-layout {
+    gap: 14px;
+  }
+
+  .track-panel {
+    padding: 15px 12px;
+  }
+
+  .track-panel h2 {
+    font-size: 18px;
+  }
+
+  .track-panel p {
+    font-size: 10px;
+  }
+
+  .album-track-list {
+    margin-top: 12px;
+    gap: 6px;
+  }
+
+  .album-track {
+    grid-template-columns: 28px minmax(0,1fr) 24px;
+    gap: 7px;
+    padding: 6px 7px;
+  }
+
+  .track-number {
+    width: 28px;
+    height: 28px;
+    font-size: 9px;
+  }
+
+  .track-info strong {
+    font-size: 11px;
+  }
+
+  .track-info small {
+    font-size: 8px;
+  }
+
+  .track-play {
+    width: 22px;
+    height: 22px;
+    font-size: 8px;
+  }
+
+  .player-visual {
+    min-height: 205px;
+    padding: 15px;
+  }
+
+  .player-visual img {
+    top: 22px;
+    width: 84px;
+    height: 84px;
+  }
+
+  .now-playing span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .now-playing h2 {
+    margin-top: 6px;
+    font-size: 19px;
+  }
+
+  .now-playing p {
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
+  .player-controls {
+    padding: 15px 13px 18px;
+  }
+
+  .main-controls {
+    margin-top: 15px;
+    gap: 8px;
+  }
+
+  .control-button {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .play-button {
+    width: 50px;
+    height: 50px;
+    font-size: 17px;
+  }
+
+  .volume-row {
+    margin-top: 13px;
+  }
+
+  .footer-content {
+    min-height: 88px;
+    padding: 14px 0 10px;
+  }
+
+  .footer-content p {
+    font-size: 11px;
+  }
+
+  .footer-content img {
+    width: 25px;
+    height: 25px;
+  }
+}
   </style>
 </head>
 
-<body>
+ <body>
   <header class="topbar">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
@@ -592,22 +755,34 @@
       <div class="container album-hero-inner">
         <div class="album-profile">
           <div class="album-avatar">
-            <img id="albumAvatar" src="logo.png" alt="Album khách hàng" />
+            <img
+              id="albumAvatar"
+              src="logo.png"
+              alt="Album khách hàng"
+            />
           </div>
 
           <div>
             <span class="album-kicker">ALBUM KHÁCH HÀNG</span>
+
             <h1 id="albumName">Khách hàng</h1>
 
             <p id="albumMeta" class="album-meta"></p>
 
             <div class="album-actions">
-              <button id="shareAlbumButton" class="album-action" type="button">
-                SAO CHÉP LINK ALBUM
+              <button
+                id="shareAlbumButton"
+                class="album-action"
+                type="button"
+              >
+                SAO CHÉP LINK
               </button>
 
-              <a class="album-action secondary" href="music.html">
-                VỀ TRANG NGHE NHẠC
+              <a
+                class="album-action secondary"
+                href="music.html"
+              >
+                TRANG NGHE NHẠC
               </a>
             </div>
           </div>
@@ -619,24 +794,40 @@
       <div class="album-layout">
         <section class="track-panel">
           <h2>Danh sách bài hát</h2>
-          <p>Bấm vào một bài hát để nghe trực tuyến ngay trên trang.</p>
 
-          <div id="albumTrackList" class="album-track-list"></div>
+          <p>Chọn một bài để nghe trực tuyến.</p>
+
+          <div
+            id="albumTrackList"
+            class="album-track-list"
+          ></div>
         </section>
 
         <aside class="player-panel">
           <div class="player-visual">
-            <img src="logo.png" alt="Anh Tuấn Studio" />
+            <img
+              src="logo.png"
+              alt="Anh Tuấn Studio"
+            />
 
             <div class="now-playing">
               <span>ĐANG PHÁT</span>
-              <h2 id="currentTitle">Chọn một bài hát</h2>
-              <p id="currentArtist">Anh Tuấn Studio</p>
+
+              <h2 id="currentTitle">
+                Chọn một bài hát
+              </h2>
+
+              <p id="currentArtist">
+                Anh Tuấn Studio
+              </p>
             </div>
           </div>
 
           <div class="player-controls">
-            <audio id="audioPlayer" preload="metadata"></audio>
+            <audio
+              id="audioPlayer"
+              preload="metadata"
+            ></audio>
 
             <div class="time-row">
               <span id="currentTime">0:00</span>
@@ -655,9 +846,32 @@
             </div>
 
             <div class="main-controls">
-              <button id="previousButton" class="control-button" type="button">⏮</button>
-              <button id="playButton" class="control-button play-button" type="button">▶</button>
-              <button id="nextButton" class="control-button" type="button">⏭</button>
+              <button
+                id="previousButton"
+                class="control-button"
+                type="button"
+                title="Bài trước"
+              >
+                ⏮
+              </button>
+
+              <button
+                id="playButton"
+                class="control-button play-button"
+                type="button"
+                title="Phát hoặc tạm dừng"
+              >
+                ▶
+              </button>
+
+              <button
+                id="nextButton"
+                class="control-button"
+                type="button"
+                title="Bài tiếp theo"
+              >
+                ⏭
+              </button>
             </div>
 
             <div class="volume-row">
