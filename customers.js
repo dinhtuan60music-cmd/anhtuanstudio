@@ -7,7 +7,7 @@ const customers = [
       {
         title: "50 NĂM VỀ SAU",
         featured: true,
-priority: 1,
+priority: 99,
 
         listenLink:
           "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
@@ -25,7 +25,7 @@ priority: 1,
       {
         title: "MÀU HOA BÍ",
            featured: true,
-priority: 2,
+priority: 1,
 
         listenLink: "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/81490acbd7f5e53e5eebed6e0854e2a15870a03f/files/MAU%20HOA%20BI%20-%20HOANG%20UYEN%20-%20MASTER.mp3",
 
