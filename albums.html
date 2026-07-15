@@ -334,25 +334,32 @@ footer {
 
     @media (max-width: 700px) {
 
-      .hero{
-    padding:28px 0 10px;
+     .hero {
+  padding: 14px 0 6px;
+}
+      
+
+.hero span {
+  margin-bottom: 5px;
+  font-size: 9px;
+  letter-spacing: 2.5px;
 }
 
-.hero span{
-    font-size:11px;
-    letter-spacing:5px;
+.hero h1 {
+  max-width: 330px;
+  font-size: 28px;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
 }
+      
 
-.hero h1{
-    font-size:48px;
-    line-height:1.05;
+.hero p {
+  max-width: 340px;
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.4;
 }
-
-.hero p{
-    margin-top:12px;
-    font-size:15px;
-    line-height:1.6;
-}
+      
 
 
       
@@ -370,10 +377,17 @@ footer {
   .hero h1 { font-size: 34px; line-height: 1.06; letter-spacing: -1px; }
   .hero p { margin-top: 10px; font-size: 12px; line-height: 1.5; }
 
-  .search-panel{
-    margin-top:-6px;
-    padding:8px 0 14px;
+  .search-panel {
+  margin-top: -4px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 14px;
 }
+
+   .album-section {
+  padding-top: 0;
+  padding-bottom: 45px;
+}   
 
       
   .search-box { min-height: 40px; padding: 0 12px; }
@@ -436,7 +450,7 @@ footer {
   type="search"
   placeholder="Nhập tên khách hàng..."
   autocomplete="off"
-  autofocus
+
 />
 
           
@@ -576,9 +590,7 @@ footer {
   });
 
   renderAlbums("");
-  setTimeout(() => {
-  albumSearch.focus();
-}, 200);
+  
 
   
 </script>
