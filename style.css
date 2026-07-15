@@ -130,15 +130,15 @@ input {
   inset: 0;
   background:
     radial-gradient(
-      circle at 50% 30%,
-      rgba(255, 126, 22, 0.1),
-      transparent 34%
+      circle at 50% 28%,
+      rgba(255, 170, 60, 0.18),
+      transparent 38%
     ),
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.08),
-      rgba(0, 0, 0, 0.42) 70%,
-      var(--black)
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.18) 72%,
+      rgba(0, 0, 0, 0.45)
     );
 }
 
