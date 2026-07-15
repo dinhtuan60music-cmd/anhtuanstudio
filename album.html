@@ -989,6 +989,11 @@
     const shareAlbumButton = document.getElementById("shareAlbumButton");
     const albumTrackList = document.getElementById("albumTrackList");
 
+    const albumPagination =
+  document.getElementById("albumPagination");
+
+    
+
     const audioPlayer = document.getElementById("audioPlayer");
     const playButton = document.getElementById("playButton");
     const previousButton = document.getElementById("previousButton");
@@ -1001,6 +1006,13 @@
     const volumeRange = document.getElementById("volumeRange");
 
     let currentSongIndex = 0;
+
+
+    const tracksPerPage = 10;
+let currentTrackPage = 1;
+
+
+    
 
     function formatTime(seconds) {
       if (!Number.isFinite(seconds)) {
