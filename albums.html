@@ -334,31 +334,32 @@ footer {
 
     @media (max-width: 700px) {
 
-     .hero {
-  padding: 14px 0 6px;
+     .hero{
+    padding:10px 0 0;
 }
+
+.hero span{
+    display:block;
+    margin-bottom:4px;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.hero h1{
+    margin-top:0;
+    margin-bottom:6px;
+    font-size:26px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.hero p{
+    margin-top:0;
+    font-size:11px;
+    line-height:1.45;
+}
+
       
-
-.hero span {
-  margin-bottom: 5px;
-  font-size: 9px;
-  letter-spacing: 2.5px;
-}
-
-.hero h1 {
-  max-width: 330px;
-  font-size: 28px;
-  line-height: 1.08;
-  letter-spacing: -0.5px;
-}
-      
-
-.hero p {
-  max-width: 340px;
-  margin-top: 7px;
-  font-size: 11px;
-  line-height: 1.4;
-}
       
 
 
@@ -377,12 +378,12 @@ footer {
   .hero h1 { font-size: 34px; line-height: 1.06; letter-spacing: -1px; }
   .hero p { margin-top: 10px; font-size: 12px; line-height: 1.5; }
 
-  .search-panel {
-  margin-top: -4px;
-  margin-bottom: 8px;
-  padding: 8px;
-  border-radius: 14px;
+  .search-panel{
+    margin-top:-8px;
+    padding:6px 0 8px;
 }
+
+      
 
    .album-section {
   padding-top: 0;
@@ -391,7 +392,12 @@ footer {
 
       
   .search-box { min-height: 40px; padding: 0 12px; }
-  .search-box input,
+  .search-box input{
+    font-size:15px;
+    padding:11px 12px;
+}
+
+      
   .search-box input::placeholder { font-size: 12px; }
 
   .album-grid { grid-template-columns: 1fr; gap: 10px; }
