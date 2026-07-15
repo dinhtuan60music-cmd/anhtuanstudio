@@ -181,21 +181,23 @@
       gap: 18px;
     }
 
-    .album-card {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.075);
-      border-radius: 22px;
+.album-card{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;
       background:
-        linear-gradient(145deg, rgba(255, 134, 20, 0.09), transparent 55%),
-        var(--panel);
+      linear-gradient(145deg,rgba(255,134,20,.08),transparent 55%),
+      var(--panel);
       box-shadow:
-        0 24px 55px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      transition: 0.25s ease;
-    }
+      0 14px 32px rgba(0,0,0,.22),
+      inset 0 1px 0 rgba(255,255,255,.03);
+      transition:.22s ease;
+}
+
+    
 
     .album-card:hover {
       border-color: rgba(255, 134, 20, 0.45);
