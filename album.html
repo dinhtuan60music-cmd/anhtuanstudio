@@ -1199,8 +1199,12 @@ let currentTrackPage = 1;
         return;
       }
 
-      currentSongIndex = index;
-      audioPlayer.src = song.listenLink;
+     currentSongIndex = index;
+
+currentTrackPage =
+  Math.floor(index / tracksPerPage) + 1;
+
+audioPlayer.src = song.listenLink;
       currentTitle.textContent = song.title || "Chưa đặt tên bài hát";
       currentArtist.textContent = `${customer.name} · Anh Tuấn Studio`;
 
