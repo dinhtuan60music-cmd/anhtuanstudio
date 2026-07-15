@@ -488,28 +488,40 @@ drop-shadow(0 0 40px rgba(255,165,40,.18));
 /* CHÂN TRANG */
 
 footer {
-  padding: 40px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 134, 20, 0.14);
   background: #040302;
 }
 
 .footer-content {
+  min-height: 112px;
+  padding: 18px 0 14px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  text-align: left;
+  gap: 7px;
   color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
 }
 
-.footer-content img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+.footer-content p {
+  margin: 0;
+  font-size: 12px;
 }
 
 .footer-content strong {
-  color: var(--orange);
+  display: block;
+  margin-bottom: 2px;
+  color: #f2e8df;
+  font-size: 16px;
+}
+
+.footer-content img {
+  order: 2;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
 }
 
 /* DÙNG CHUNG */
@@ -1337,6 +1349,43 @@ footer {
   display: none;
 }
 
+footer {
+  border-top: 1px solid rgba(255, 134, 20, 0.14);
+  background: #040302;
+}
+
+.footer-content {
+  min-height: 112px;
+  padding: 18px 0 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.footer-content strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #f2e8df;
+  font-size: 16px;
+}
+
+.footer-content img {
+  order: 2;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
 @media (max-width: 700px) {
   .song-actions {
     width: 100%;
@@ -1353,8 +1402,29 @@ footer {
   .song-player {
     padding-top: 10px;
   }
-}
 
+  .footer-content {
+    min-height: 96px;
+    padding: 15px 0 11px;
+    gap: 6px;
+  }
+
+  .footer-content p {
+    margin: 0;
+    font-size: 10.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .footer-content strong {
+    font-size: 14px;
+  }
+
+  .footer-content img {
+    width: 30px;
+    height: 30px;
+  }
+}
 
 
 /* =========================================================
