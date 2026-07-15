@@ -218,10 +218,12 @@
 
 .album-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 16px;
   align-items: start;
 }
+
+    
 
 .track-panel,
 .player-panel {
@@ -379,13 +381,19 @@
 }
 
 .now-playing h2 {
-  margin-top: 8px;
-  font-size: 22px;
-  line-height: 1.1;
+  margin-top: 7px;
+  max-width: 100%;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
 }
+
+  
 
 .now-playing p {
   margin-top: 5px;
@@ -797,10 +805,12 @@
 
           <p>Chọn một bài để nghe trực tuyến.</p>
 
-          <div
-            id="albumTrackList"
-            class="album-track-list"
-          ></div>
+          <div id="albumTrackList" class="album-track-list"></div>
+
+<div id="albumPagination" class="album-pagination"></div>
+
+
+          
         </section>
 
         <aside class="player-panel">
