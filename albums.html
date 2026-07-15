@@ -398,7 +398,14 @@ footer {
 
   .hero { padding: 28px 0 16px; }
   .hero span { margin-bottom: 9px; font-size: 10px; letter-spacing: 3px; }
-  .hero h1 { font-size: 34px; line-height: 1.06; letter-spacing: -1px; }
+    
+.hero h1{
+    font-size: clamp(18px,5vw,24px);
+    line-height:1.2;
+    font-weight:800;
+}
+
+    
   .hero p { margin-top: 10px; font-size: 12px; line-height: 1.5; }
 
   .search-panel{
