@@ -432,11 +432,14 @@ footer {
           <span class="search-icon">⌕</span>
 
           <input
-            id="albumSearch"
-            type="search"
-            placeholder="Nhập tên khách hàng..."
-            autocomplete="off"
-          />
+  id="albumSearch"
+  type="search"
+  placeholder="Nhập tên khách hàng..."
+  autocomplete="off"
+  autofocus
+/>
+
+          
         </label>
       </div>
     </section>
@@ -573,6 +576,11 @@ footer {
   });
 
   renderAlbums("");
+  setTimeout(() => {
+  albumSearch.focus();
+}, 200);
+
+  
 </script>
 
 </body>
