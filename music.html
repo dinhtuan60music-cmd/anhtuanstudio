@@ -12,7 +12,26 @@
     button,input,a{font:inherit;-webkit-tap-highlight-color:transparent}button{border:none}.hidden{display:none!important}.container{width:min(1220px,calc(100% - 36px));margin:0 auto}
     .topbar{position:sticky;top:0;z-index:100;background:rgba(5,4,3,.92);border-bottom:1px solid rgba(255,134,20,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
     .nav-wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-weight:900;letter-spacing:1px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{display:flex;align-items:center;gap:24px}.main-nav a{position:relative;color:#eee3d8;text-decoration:none;font-size:15px;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
-    .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:var(--orange);font-size:12px;font-weight:900;letter-spacing:3px}.music-hero h1{max-width:760px;margin:0 auto;font-size:clamp(30px,5vw,50px);line-height:1.08;letter-spacing:.5px;font-weight:900}.music-hero p{max-width:650px;margin:10px auto 0;color:var(--muted);line-height:1.5;font-size:15px}
+    .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:var(--orange);font-size:12px;font-weight:900;letter-spacing:3px}
+    .music-hero h1{
+    max-width:760px;
+    margin:0 auto;
+    font-size:clamp(24px,3.8vw,46px); /* CHỈNH SỬA KÍCH THƯỚC TIÊU ĐỀ*/
+    line-height:1.08;
+    letter-spacing:.3px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.music-hero p{
+    max-width:650px;
+    margin:8px auto 0;
+    color:var(--muted);
+    line-height:1.45;
+    font-size:13px;
+}
+
+    
     .music-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:22px;padding-bottom:60px}.player-panel,.playlist-panel{border:1px solid var(--border);border-radius:30px;background:linear-gradient(145deg,rgba(255,134,20,.08),transparent 34%),var(--panel);box-shadow:0 30px 85px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.03)}
     .player-panel{position:sticky;top:98px;align-self:start;overflow:hidden}.cover-area{position:relative;min-height:420px;padding:28px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;background:linear-gradient(180deg,rgba(4,3,2,.05) 0%,rgba(4,3,2,.2) 42%,rgba(4,3,2,.96) 100%),radial-gradient(circle at 50% 31%,rgba(255,134,20,.45),transparent 29%),linear-gradient(135deg,#3a1807,#100b07 60%,#060504)}.ambient-orb{position:absolute;top:25px;left:50%;width:330px;height:330px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,134,20,.17),transparent 66%);filter:blur(8px);pointer-events:none}
     .vinyl{position:absolute;top:35px;left:50%;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(255,134,20,.3);background:repeating-radial-gradient(circle,rgba(255,255,255,.045) 0 2px,transparent 2px 8px),radial-gradient(circle at center,rgba(255,134,20,.18) 0 17%,#0a0806 18% 100%);box-shadow:0 0 80px rgba(255,134,20,.17),inset 0 0 50px rgba(255,134,20,.08);animation:spinVinyl 12s linear infinite;animation-play-state:paused}.vinyl.playing{animation-play-state:running}@keyframes spinVinyl{to{transform:translateX(-50%) rotate(360deg)}}
@@ -629,7 +648,7 @@
     <section class="music-hero">
       <div class="container">
         <span class="music-hero-label">♫ ANH TUẤN STUDIO MUSIC</span>
-        <h1>NGHE NHẠC ONLINE</h1>
+        <h1>NGHE NHẠC TRỰC TUYẾN</h1>
         <p>Tuyển chọn những ca khúc nổi bật được thực hiện tại Anh Tuấn Studio.</p>
       </div>
     </section>
