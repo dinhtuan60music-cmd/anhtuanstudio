@@ -13,14 +13,29 @@
     .topbar{position:sticky;top:0;z-index:100;background:rgba(5,4,3,.92);border-bottom:1px solid rgba(255,134,20,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
     .nav-wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-weight:900;letter-spacing:1px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{display:flex;align-items:center;gap:24px}.main-nav a{position:relative;color:#eee3d8;text-decoration:none;font-size:15px;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
     .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:var(--orange);font-size:12px;font-weight:900;letter-spacing:3px}
-    .music-hero h1{
+    
+   /* TIÊU ĐỀ TRANG NGHE NHẠC */
+.music-hero h1{
     max-width:760px;
     margin:0 auto;
-    font-size:clamp(24px,3.8vw,46px); /* CHỈNH SỬA KÍCH THƯỚC TIÊU ĐỀ*/
-    line-height:1.08;
-    letter-spacing:.3px;
-    font-weight:900;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    font-size:clamp(25px,3.8vw,38px);
+
+    font-weight:700;
+
+    line-height:1.15;
+
+    letter-spacing:.8px;
+
     text-transform:uppercase;
+
+    text-align:center;
+
+    color:#fff7f0;
+
+    text-shadow:none;
 }
 
 .music-hero p{
@@ -648,7 +663,7 @@
     <section class="music-hero">
       <div class="container">
         <span class="music-hero-label">♫ ANH TUẤN STUDIO MUSIC</span>
-        <h1>NGHE NHẠC TRỰC TUYẾN</h1>
+        <h1>NHẠC TRỰC TUYẾN</h1>
         <p>Tuyển chọn những ca khúc nổi bật được thực hiện tại Anh Tuấn Studio.</p>
       </div>
     </section>
