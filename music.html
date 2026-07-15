@@ -375,47 +375,116 @@
 
       .music-layout{gap:16px;padding-bottom:50px}
 
-      .cover-area{min-height:330px;padding:20px 22px}
-      .vinyl{top:18px;width:220px;height:220px}
-
-
-      
-      .cover-logo{
-  top:50%;
-  left:50%;
-  width:86px;
-  height:86px;
-  padding:16px;
-  transform:translate(-50%,-50%);
+ .cover-area{
+  min-height:315px;
+  padding:18px;
 }
 
-      
-
-      
-
-      
-.equalizer{
-  top:278px;
+.vinyl{
+  top:18px;
   left:50%;
-  width:126px;
-  height:36px;
-  padding:5px 9px;
+  width:200px;
+  height:200px;
   transform:translateX(-50%);
 }
 
-      
+.cover-logo{
+  top:118px;
+  left:50%;
+  width:76px;
+  height:76px;
+  padding:14px;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  z-index:3;
+}
+
+.equalizer{
+  top:200px;
+  left:50%;
+  width:118px;
+  height:34px;
+  padding:5px 9px;
+  transform:translateX(-50%);
+  z-index:4;
+}
+
+.now-label{
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.now-playing h2{
+  margin-top:5px;
+  max-width:100%;
+  font-size:23px;
+  line-height:1.08;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  overflow-wrap:anywhere;
+}
+
+.now-playing p{
+  margin-top:5px;
+  font-size:11px;
+}
+
+.player-controls{
+  padding:12px 14px 14px;
+}
+
+.time-row{
+  grid-template-columns:38px minmax(0,1fr) 38px;
+  gap:7px;
+}
+
+.time-row span{
+  font-size:10px;
+}
+
+.main-controls{
+  margin-top:10px;
+  gap:8px;
+}
+
+.control-button{
+  width:32px;
+  height:32px;
+  font-size:11px;
+}
+
+.play-button{
+  width:48px;
+  height:48px;
+  font-size:17px;
+}
+
+.player-bottom{
+  margin-top:10px;
+  gap:10px;
+  flex-direction:column;
+  align-items:stretch;
+}
+
+.download-current{
+  min-width:0;
+}
+
+.download-current a{
+  width:100%;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+}
+
 
       
-      .equalizer span{width:3px;height:17px;flex-basis:3px}
-
-      .now-playing{padding-top:4px}
-      .now-label{font-size:10px;letter-spacing:3px}
-      .now-playing h2{margin-top:9px;font-size:32px}
-      .now-playing p{margin-top:7px;font-size:14px}
-
-      .player-controls{padding:20px 18px 24px}
-      .main-controls{margin-top:20px;gap:13px}
-      .player-bottom{margin-top:20px;flex-direction:column;align-items:stretch}
       .download-current a{width:100%}
 
    .playlist-panel{
