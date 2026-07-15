@@ -407,36 +407,40 @@
       .music-layout{gap:16px;padding-bottom:50px}
 
  .cover-area{
-  min-height:315px;
-  padding:18px;
+  min-height:315px !important;
+  padding:18px !important;
 }
 
 .vinyl{
-  top:18px;
-  left:50%;
-  width:200px;
-  height:200px;
-  transform:translateX(-50%);
+  position:absolute;
+  top:18px !important;
+  left:50% !important;
+  width:200px !important;
+  height:200px !important;
+  transform:translateX(-50%) !important;
 }
 
 .cover-logo{
-  top:118px;
-  left:50%;
-  width:76px;
-  height:76px;
-  padding:14px;
-  transform:translate(-50%,-50%);
+  position:absolute;
+  top:118px !important;
+  left:50% !important;
+  width:76px !important;
+  height:76px !important;
+  padding:14px !important;
+  transform:translate(-50%,-50%) !important;
   object-fit:contain;
+  border-radius:50%;
   z-index:3;
 }
 
 .equalizer{
-  top:200px;
-  left:50%;
-  width:118px;
-  height:34px;
-  padding:5px 9px;
-  transform:translateX(-50%);
+  position:absolute;
+  top:200px !important;
+  left:50% !important;
+  width:118px !important;
+  height:34px !important;
+  padding:5px 9px !important;
+  transform:translateX(-50%) !important;
   z-index:4;
 }
 
@@ -448,15 +452,13 @@
 .now-playing h2{
   margin-top:5px;
   max-width:100%;
-  font-size:23px;
+  font-size:23px !important;
   line-height:1.08;
   font-weight:800;
   letter-spacing:-0.5px;
-  display:-webkit-box;
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2;
   overflow:hidden;
-  overflow-wrap:anywhere;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 
 .now-playing p{
@@ -465,7 +467,7 @@
 }
 
 .player-controls{
-  padding:12px 14px 14px;
+  padding:12px 14px 14px !important;
 }
 
 .time-row{
@@ -478,45 +480,67 @@
 }
 
 .main-controls{
-  margin-top:10px;
-  gap:8px;
+  margin-top:10px !important;
+  gap:8px !important;
 }
 
 .control-button{
-  width:32px;
-  height:32px;
-  font-size:11px;
+  width:32px !important;
+  height:32px !important;
+  font-size:11px !important;
 }
 
 .play-button{
-  width:48px;
-  height:48px;
-  font-size:17px;
+  width:48px !important;
+  height:48px !important;
+  font-size:17px !important;
 }
 
 .player-bottom{
-  margin-top:10px;
-  gap:10px;
-  flex-direction:column;
-  align-items:stretch;
+  margin-top:10px !important;
+  display:flex;
+  flex-direction:row !important;
+  align-items:center !important;
+  gap:10px !important;
 }
 
-.download-current{
+.volume-wrap{
+  flex:1;
   min-width:0;
 }
 
-.download-current a{
-  width:100%;
-  min-height:40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
+.download-current{
+  flex:0 0 auto;
+  min-width:0 !important;
 }
 
+.download-current a{
+  width:auto !important;
+  min-width:118px !important;
+  min-height:38px !important;
+  padding:0 16px !important;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#06210e;
+  text-decoration:none;
+  border-radius:999px;
+
+  background:linear-gradient(
+    135deg,
+    #57ef8d,
+    #19cf61
+  );
+
+  box-shadow:0 9px 22px rgba(25,207,97,.24);
+
+  font-size:10px !important;
+  font-weight:900;
+}
 
       
-      .download-current a{width:100%}
 
    .playlist-panel{
   padding:18px 12px;
