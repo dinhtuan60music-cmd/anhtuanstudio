@@ -112,6 +112,7 @@ input {
 .hero {
   position: relative;
    overflow:hidden;
+  filter: saturate(1.06) contrast(1.04);
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -144,6 +145,31 @@ input {
 
   backdrop-filter: brightness(1.08) saturate(1.12);
 }
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      circle at 50% 23%,
+      rgba(255,170,55,.18),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 32% 48%,
+      rgba(255,160,40,.08),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 68% 48%,
+      rgba(255,160,40,.08),
+      transparent 24%
+    );
+  mix-blend-mode:screen;
+}
+
 
 
 
