@@ -1039,48 +1039,158 @@ let currentTrackPage = 1;
       `;
     }
 
-    function renderTracks() {
-      albumTrackList.innerHTML = "";
+   function renderTracks() {
+  albumTrackList.innerHTML = "";
+  albumPagination.innerHTML = "";
 
-      playableSongs.forEach((song, index) => {
-        const trackButton = document.createElement("button");
-        trackButton.type = "button";
-        trackButton.className =
-          index === currentSongIndex
-            ? "album-track active"
-            : "album-track";
+  const totalPages = Math.max(
+    1,
+    Math.ceil(playableSongs.length / tracksPerPage)
+  );
 
-        const isPlaying =
-          index === currentSongIndex &&
-          !audioPlayer.paused;
+  if (currentTrackPage > totalPages) {
+    currentTrackPage = totalPages;
+  }
 
-        trackButton.innerHTML = `
-          <span class="track-number">
-            ${String(index + 1).padStart(2, "0")}
-          </span>
+  const startIndex =
+    (currentTrackPage - 1) * tracksPerPage;
 
-          <span class="track-info">
-            <strong>${song.title || "Chưa đặt tên bài hát"}</strong>
-            <small>${customer.name} · Anh Tuấn Studio</small>
-          </span>
+  const endIndex = Math.min(
+    startIndex + tracksPerPage,
+    playableSongs.length
+  );
 
-          <span class="track-play">
-            ${isPlaying ? "❚❚" : "▶"}
-          </span>
-        `;
+  const songsOnCurrentPage =
+    playableSongs.slice(startIndex, endIndex);
 
-        trackButton.addEventListener("click", () => {
-          if (index === currentSongIndex) {
-            togglePlayback();
-            return;
-          }
+  songsOnCurrentPage.forEach((song, pageIndex) => {
+    const realIndex = startIndex + pageIndex;
 
-          loadSong(index, true);
-        });
+    const trackButton =
+      document.createElement("button");
 
-        albumTrackList.appendChild(trackButton);
-      });
+    trackButton.type = "button";
+
+    trackButton.className =
+      realIndex === currentSongIndex
+        ? "album-track active"
+        : "album-track";
+
+    const isPlaying =
+      realIndex === currentSongIndex &&
+      !audioPlayer.paused;
+
+    trackButton.innerHTML = `
+      <span class="track-number">
+        ${String(realIndex + 1).padStart(2, "0")}
+      </span>
+
+      <span class="track-info">
+        <strong>
+          ${song.title || "Chưa đặt tên bài hát"}
+        </strong>
+
+        <small>
+          ${customer.name} · Anh Tuấn Studio
+        </small>
+      </span>
+
+      <span class="track-play">
+        ${isPlaying ? "❚❚" : "▶"}
+      </span>
+    `;
+
+    trackButton.addEventListener("click", () => {
+      if (realIndex === currentSongIndex) {
+        togglePlayback();
+        return;
+      }
+
+      loadSong(realIndex, true);
+    });
+
+    albumTrackList.appendChild(trackButton);
+  });
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+  const previousPageButton =
+    document.createElement("button");
+
+  previousPageButton.type = "button";
+  previousPageButton.className =
+    "album-page-button";
+
+  previousPageButton.textContent = "‹";
+  previousPageButton.disabled =
+    currentTrackPage === 1;
+
+  previousPageButton.addEventListener("click", () => {
+    if (currentTrackPage <= 1) {
+      return;
     }
+
+    currentTrackPage -= 1;
+    renderTracks();
+  });
+
+  albumPagination.appendChild(
+    previousPageButton
+  );
+
+  for (
+    let pageNumber = 1;
+    pageNumber <= totalPages;
+    pageNumber += 1
+  ) {
+    const pageButton =
+      document.createElement("button");
+
+    pageButton.type = "button";
+
+    pageButton.className =
+      pageNumber === currentTrackPage
+        ? "album-page-button active"
+        : "album-page-button";
+
+    pageButton.textContent = pageNumber;
+
+    pageButton.addEventListener("click", () => {
+      currentTrackPage = pageNumber;
+      renderTracks();
+    });
+
+    albumPagination.appendChild(pageButton);
+  }
+
+  const nextPageButton =
+    document.createElement("button");
+
+  nextPageButton.type = "button";
+  nextPageButton.className =
+    "album-page-button";
+
+  nextPageButton.textContent = "›";
+  nextPageButton.disabled =
+    currentTrackPage === totalPages;
+
+  nextPageButton.addEventListener("click", () => {
+    if (currentTrackPage >= totalPages) {
+      return;
+    }
+
+    currentTrackPage += 1;
+    renderTracks();
+  });
+
+  albumPagination.appendChild(
+    nextPageButton
+  );
+}
+
+    
 
     function loadSong(index, shouldPlay = false) {
       const song = playableSongs[index];
