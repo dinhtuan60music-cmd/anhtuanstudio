@@ -18,6 +18,8 @@ priority: 99,
     ]
   },
 
+
+  
   {
     id: "hoanguyen",
     name: "Hoàng Uyên",
@@ -33,7 +35,7 @@ priority: 1,
           "https://drive.google.com/file/d/1eLSSLI6Ee0yx413nwXHpj3ccQfyy7EqD/view?usp=sharing"
       }
     ]
-  }
+  },
 
   {
     id: "laudamus2025",
@@ -50,7 +52,7 @@ priority: 2,
           "https://github.com/dinhtuan60music-cmd/anhtuanstudio/blob/3ffd1e6ddecc65d51df8c812701802a1ae12a622/files/TRAI%20TIM%20KHAT%20MONG%20-%20MASTER%202.mp3"
       }
     ]
-  }
+  },
 
 
   
