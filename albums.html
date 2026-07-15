@@ -296,22 +296,41 @@ footer{
 }
     
 
-    .footer-content {
-      min-height: 112px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.6;
-    }
+    footer {
+  border-top: 1px solid rgba(255, 134, 20, 0.14);
+  background: #040302;
+}
 
-    .footer-content img {
-      width: 46px;
-      height: 46px;
-      object-fit: contain;
-    }
+.footer-content {
+  min-height: 96px;
+  padding: 16px 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.footer-content strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.footer-content img {
+  order: 2;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
 
     @media (max-width: 900px) {
       .album-grid {
@@ -320,34 +339,56 @@ footer{
     }
 
     @media (max-width: 700px) {
-      .container {
-        width: min(100% - 24px, 1180px);
-      }
+  .container {
+    width: min(100% - 24px, 1180px);
+  }
 
-      .main-nav {
-        gap: 14px;
-      }
+  .main-nav {
+    gap: 14px;
+  }
 
-      .main-nav a {
-        font-size: 13px;
-      }
+  .main-nav a {
+    font-size: 13px;
+  }
 
-      .main-nav a:nth-child(2) {
-        display: none;
-      }
+  .main-nav a:nth-child(2) {
+    display: none;
+  }
 
-      .hero {
-        padding-top: 48px;
-      }
+  .hero {
+    padding-top: 48px;
+  }
 
-      .album-grid {
-        grid-template-columns: 1fr;
-      }
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
 
-      .album-card {
-        padding: 18px;
-      }
-    }
+  .album-card {
+    padding: 18px;
+  }
+
+  .footer-content {
+    min-height: 88px;
+    padding: 14px 0 10px;
+    gap: 5px;
+  }
+
+  .footer-content p {
+    margin: 0;
+    font-size: 10.5px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .footer-content strong {
+    font-size: 13px;
+  }
+
+  .footer-content img {
+    width: 24px;
+    height: 24px;
+  }
+}
   </style>
 </head>
 
