@@ -339,11 +339,53 @@
   font-size: 9px;
 }
 
-.player-panel {
-  position: sticky;
-  top: 82px;
-  overflow: hidden;
+.album-pagination {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
 }
+
+.album-page-button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 9px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.album-page-button:hover:not(:disabled) {
+  color: white;
+  border-color: var(--orange);
+}
+
+.album-page-button.active {
+  color: #160902;
+  border-color: var(--orange-light);
+  background: linear-gradient(
+    135deg,
+    var(--orange-light),
+    var(--orange-dark)
+  );
+}
+
+.album-page-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+    
 
 .player-visual {
   min-height: 230px;
