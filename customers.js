@@ -51,10 +51,10 @@ const customers = [
         priority: 2,
 
         listenLink:
-          "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/3ffd1e6ddecc65d51df8c812701802a1ae12a622/files/TRAI%20TIM%20KHAT%20MONG%20-%20MASTER%202.mp3",
+          "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/blob/15094aa04b794d2915498b435eb899966aced548/files/Trai%20Tim%20Khat%20Mong%20-%20Master%20fix%202026.mp3",
 
         downloadLink:
-          "https://github.com/dinhtuan60music-cmd/anhtuanstudio/raw/3ffd1e6ddecc65d51df8c812701802a1ae12a622/files/TRAI%20TIM%20KHAT%20MONG%20-%20MASTER%202.mp3"
+          "https://github.com/dinhtuan60music-cmd/anhtuanstudio/blob/15094aa04b794d2915498b435eb899966aced548/files/Trai%20Tim%20Khat%20Mong%20-%20Master%20fix%202026.mp3"
       }
     ]
   },
