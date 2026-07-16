@@ -3,72 +3,296 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tìm Album - Anh Tuấn Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <title>Album khách hàng - Anh Tuấn Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    :root{--orange:#e11d25;--orange-light:#ff5b62;--orange-dark:#79070b;--text:#fff;--muted:#bdbdbd;--panel:rgba(7,7,7,.96);--border:rgba(225,29,37,.38)}
-    html{scroll-behavior:smooth}
-    body{min-height:100vh;overflow-x:hidden;color:var(--text);font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,rgba(225,29,37,.12),transparent 34%),linear-gradient(180deg,#080808 0%,#030303 52%,#020202 100%)}
-    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button,input{font:inherit}
-    .container{width:min(1180px,calc(100% - 36px));margin:0 auto}
-    .topbar{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(225,29,37,.16);background:rgba(3,3,3,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-    .nav-wrap{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:flex;align-items:center;gap:11px;color:var(--orange);font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}
-    .brand img{width:38px;height:38px;object-fit:contain}
-    .main-nav{display:flex;align-items:center;gap:24px}.main-nav a{color:#f4f4f4;font-size:14px;transition:.2s ease}.main-nav a:hover,.main-nav a.active{color:var(--orange)}
-    .hero{padding:78px 0 28px;text-align:center;background:radial-gradient(circle at 50% 24%,rgba(225,29,37,.15),transparent 28%),linear-gradient(180deg,rgba(225,29,37,.035),transparent)}
-    .hero span{display:block;margin-bottom:14px;color:var(--orange);font-size:12px;font-weight:900;letter-spacing:5px}
-    .hero h1{max-width:920px;margin:0 auto;font-size:clamp(48px,6vw,76px);line-height:1.02;font-weight:900;letter-spacing:-2px;text-shadow:0 14px 36px rgba(0,0,0,.5)}
-    .hero p{max-width:760px;margin:22px auto 0;color:var(--muted);font-size:16px;line-height:1.7}
-    .search-section{padding:10px 0 16px}.search-panel{padding:16px;border:1px solid rgba(255,72,78,.72);border-radius:20px;box-shadow:0 0 24px rgba(225,29,37,.12),inset 0 1px 0 rgba(255,255,255,.06);background:linear-gradient(145deg,rgba(225,29,37,.07),transparent 34%),rgba(12,8,5,.88);box-shadow:0 24px 60px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.03)}
-    .search-box{min-height:58px;padding:0 18px;display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:rgba(255,255,255,.035)}
-    .search-icon{color:var(--orange);font-size:22px}.search-box input{width:100%;border:0;outline:0;color:var(--text);background:transparent;font-size:16px}.search-box input::placeholder{color:#a99787}
-    .album-section{padding:16px 0 58px}.album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    .album-card{padding:22px;border:1px solid rgba(255,72,78,.72);border-radius:20px;box-shadow:0 18px 46px rgba(0,0,0,.35),0 0 20px rgba(225,29,37,.08),inset 0 1px 0 rgba(255,255,255,.05);background:linear-gradient(145deg,rgba(225,29,37,.07),transparent 34%),var(--panel);box-shadow:0 18px 46px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.03)}
-    .album-card-top{display:grid;grid-template-columns:78px minmax(0,1fr);align-items:center;gap:14px}.album-avatar{width:78px;height:78px;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(255,72,78,.66);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(225,29,37,.02)),rgba(7,7,7,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
-    .album-avatar img{width:100%;height:100%;object-fit:cover}.album-avatar img.logo-fallback{width:58%;height:58%;object-fit:contain}
-    .album-card h2{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:24px;line-height:1.15}.album-card small{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5}
-    .album-link{min-height:40px;margin-top:16px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;color:#ffffff;border:1px solid var(--orange-light);border-radius:999px;background:linear-gradient(145deg,#ff5a61,#c70d14 56%,#70070b);font-size:10px;font-weight:900}
-    .empty-message{grid-column:1/-1;padding:34px 20px;color:var(--muted);text-align:center;border:1px dashed rgba(225,29,37,.28);border-radius:18px;background:rgba(255,255,255,.025);font-size:14px;line-height:1.6}
-    footer{border-top:1px solid rgba(225,29,37,.14);background:#020202}.footer-content{min-height:96px;padding:16px 0 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);text-align:center;line-height:1.4}.footer-content p{margin:0;font-size:11px}.footer-content strong{display:block;margin-bottom:2px;color:#ff4c53;font-size:14px}.footer-content img{order:2;width:30px;height:30px;object-fit:contain}
-    @media(max-width:900px){.album-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:700px){
-      .container{width:min(100% - 24px,1180px)}.nav-wrap{min-height:66px;gap:10px}.brand{gap:8px}.brand img{width:32px;height:32px}.brand span{max-width:90px;font-size:12px;line-height:1.15}.main-nav{gap:10px}.main-nav a{font-size:12px}.main-nav a:nth-child(2){display:none}
-      .hero{padding:24px 0 10px}.hero span{margin-bottom:7px;font-size:9px;letter-spacing:3px}.hero h1{max-width:100%;margin:0 auto;font-size:20px;line-height:1.15;letter-spacing:0}.hero p{display:none}
-      .search-section{padding:4px 0 8px}.search-panel{padding:8px;border-radius:15px}.search-box{min-height:44px;padding:0 12px;gap:9px;border-radius:12px}.search-icon{font-size:18px}.search-box input{font-size:14px}.search-box input::placeholder{font-size:12px}
-      .album-section{padding:8px 0 42px}.album-grid{grid-template-columns:1fr;gap:12px}.album-card{padding:16px}.album-card-top{grid-template-columns:66px minmax(0,1fr);gap:12px}.album-avatar{width:66px;height:66px;border-radius:15px}.album-card h2{font-size:20px}.album-card small{font-size:10px}.album-link{min-height:36px;padding:0 14px;font-size:9px}.empty-message{padding:26px 16px;font-size:12px}
-      .footer-content{min-height:88px;padding:14px 0 10px}.footer-content p{font-size:10.5px;white-space:nowrap}.footer-content strong{font-size:13px}.footer-content img{width:27px;height:27px}
-    }
+    :root{--orange:#e11d25;--orange-light:#ff555c;--orange-dark:#79070b;--text:#ffffff;--muted:#bdbdbd;--panel:rgba(7,7,7,.96);--border:rgba(225,29,37,.38)}
+    body{min-height:100vh;overflow-x:hidden;color:var(--text);font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,rgba(225,29,37,.14),transparent 34%),linear-gradient(180deg,#080808 0%,#030303 52%,#000000 100%)}
+    button,input,a{font:inherit;-webkit-tap-highlight-color:transparent}.hidden{display:none!important}.container{width:min(1220px,calc(100% - 36px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(225,29,37,.16);background:rgba(4,3,2,.94);backdrop-filter:blur(16px)}
+    .nav-wrap{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:38px;height:38px;object-fit:contain}.main-nav{display:flex;align-items:center;gap:24px}.main-nav a{color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:14px;font-weight:600}.main-nav a:hover,.main-nav a.active{color:var(--orange)}
+    .album-hero{position:relative;border-bottom:1px solid rgba(255,72,78,.34);background:radial-gradient(circle at 20% 50%,rgba(225,29,37,.18),transparent 27%),linear-gradient(90deg,#120304 0%,#070707 50%,#020202 100%);box-shadow:0 18px 40px rgba(0,0,0,.26),inset 0 -1px 0 rgba(255,255,255,.03)}.album-hero::after{content:"";position:absolute;left:12%;right:12%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.62),rgba(255,70,76,.95),rgba(255,255,255,.62),transparent);box-shadow:0 0 16px rgba(225,29,37,.52)}
+    .album-hero-inner{min-height:250px;padding:34px 0;display:flex;align-items:center}.album-profile{width:100%;display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:22px}.album-avatar{width:118px;height:118px;overflow:hidden;display:grid;place-items:center;border:1px solid rgba(255,76,82,.66);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(225,29,37,.025)),rgba(7,7,7,.88);box-shadow:0 20px 42px rgba(0,0,0,.42),0 0 30px rgba(225,29,37,.13),inset 0 1px 0 rgba(255,255,255,.08)}.album-avatar img{width:100%;height:100%;object-fit:cover}.album-avatar img.logo-fallback{width:56%;height:56%;object-fit:contain}.album-kicker{color:var(--orange);font-size:10px;font-weight:900;letter-spacing:4px}.album-profile h1{margin-top:8px;font-size:clamp(38px,5.5vw,64px);line-height:1;letter-spacing:-2px}.album-meta{margin-top:10px;color:var(--muted);font-size:13px}.album-actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:9px}.album-action{min-height:38px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;color:#ffffff;text-decoration:none;border:1px solid var(--orange-light);border-radius:999px;background:linear-gradient(145deg,#ff5a61,#c70d14 56%,#70070b);font-size:10px;font-weight:900;cursor:pointer}.album-action.secondary{color:var(--text);border-color:rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+    .album-main{padding:24px 0 60px}.music-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:20px;align-items:start}.player-panel,.playlist-panel{position:relative;border:1px solid rgba(255,72,78,.72);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(225,29,37,.018) 34%,transparent 60%),var(--panel);box-shadow:0 22px 60px rgba(0,0,0,.46),0 0 28px rgba(225,29,37,.10),inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 0 1px rgba(255,255,255,.018)}.player-panel::before,.playlist-panel::before{content:"";position:absolute;inset:1px;z-index:1;pointer-events:none;border:1px solid rgba(255,255,255,.035);border-radius:23px}.player-panel::after,.playlist-panel::after{content:"";position:absolute;left:8%;right:8%;top:-1px;height:1px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),rgba(255,70,76,.95),rgba(255,255,255,.72),transparent);box-shadow:0 0 16px rgba(225,29,37,.56)}.player-panel{overflow:hidden}.player-panel>*{position:relative;z-index:3}.playlist-panel>*{position:relative;z-index:3}
+    
+    .cover-area{position:relative;min-height:420px;padding:26px;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.95)),radial-gradient(circle at 50% 34%,rgba(225,29,37,.30),transparent 31%),linear-gradient(135deg,#150304,#070707 60%,#020202)}
+    .vinyl{position:absolute;top:24px;left:50%;width:300px;height:300px;transform:translateX(-50%);border:1px solid rgba(255,80,86,.30);border-radius:50%;background:repeating-radial-gradient(circle,rgba(255,255,255,.04) 0 2px,transparent 2px 8px),repeating-conic-gradient(from 0deg,rgba(255,255,255,.022) 0deg 2deg,transparent 2deg 9deg),radial-gradient(circle at center,rgba(225,29,37,.22) 0 17%,#050505 18% 100%);box-shadow:0 0 0 1px rgba(255,90,96,.26),0 24px 48px rgba(0,0,0,.46),0 0 42px rgba(225,29,37,.18),inset 0 0 48px rgba(225,29,37,.08);animation:spinVinyl 12s linear infinite;animation-play-state:paused}.vinyl.playing{animation-play-state:running}@keyframes spinVinyl{to{transform:translateX(-50%) rotate(360deg)}}
+    
+.cover-logo{
+  position:absolute;
+  top:174px;
+  left:50%;
+  width:180px;
+  height:180px;
+  transform:translate(-50%,-50%);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:3px solid rgba(255,85,92,.78);
+  border-radius:50%;
+  background:#090909;
+  box-shadow:
+    0 0 0 5px rgba(0,0,0,.72),
+    0 0 30px rgba(225,29,37,.38),
+    inset 0 0 16px rgba(255,255,255,.08);
+  z-index:3;
+  animation:spinCoverLogo 12s linear infinite;
+  animation-play-state:paused;
+}
+
+.cover-logo.playing{
+  animation-play-state:running;
+}
+
+.cover-logo.logo-fallback{
+  background:
+    radial-gradient(
+      circle,
+      #050505 0 28%,
+      #181818 29% 47%,
+      #70070b 48% 68%,
+      #090909 69%
+    );
+}
+
+@keyframes spinCoverLogo{
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+  box-shadow:
+    0 0 28px rgba(225,29,37,.32),
+    inset 0 0 14px rgba(255,255,255,.08),
+    inset 0 -4px 10px rgba(0,0,0,.55);
+
+  z-index:3;
+}
+     
+    
+    .cover-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.cover-logo.logo-fallback img{
+  width:62%;
+  height:62%;
+  object-fit:contain;
+  margin:auto;
+  filter:drop-shadow(0 0 10px rgba(225,29,37,.42));
+}
+
+    
+    .equalizer{position:absolute;top:290px;left:50%;width:150px;height:44px;padding:7px 12px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(225,29,37,.26);border-radius:999px;background:linear-gradient(180deg,#171717,#050505);box-shadow:0 0 28px rgba(225,29,37,.20),inset 0 1px 0 rgba(255,255,255,.07)}.equalizer span{width:4px;height:18px;border-radius:99px;background:linear-gradient(180deg,var(--orange-light),var(--orange));animation:eq .9s ease-in-out infinite alternate}.equalizer span:nth-child(2n){animation-delay:.15s;height:26px}.equalizer span:nth-child(3n){animation-delay:.3s;height:12px}@keyframes eq{from{transform:scaleY(.45);opacity:.65}to{transform:scaleY(1);opacity:1}}
+    .now-playing{position:relative;z-index:2;width:100%}.now-label{color:#43ffd8;font-size:10px;font-weight:900;letter-spacing:3px}
+    
+  .now-playing h2{
+    margin-top:6px;
+    font-size:30px;
+    line-height:1.05;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+    
+    
+    
+    
+    .now-playing p{margin-top:8px;color:#43ffd8;font-size:14px}
+    .player-controls{padding:18px 26px 18px}.time-row{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:10px}.time-row span{color:var(--muted);text-align:center;font-size:11px}.progress,.volume-range{width:100%;appearance:none;-webkit-appearance:none;border-radius:999px;outline:none;cursor:pointer}.progress{height:6px;background:linear-gradient(to right,var(--orange) 0%,var(--orange) 0%,rgba(255,255,255,.13) 0%,rgba(255,255,255,.13) 100%)}.progress::-webkit-slider-thumb{width:16px;height:16px;appearance:none;-webkit-appearance:none;border:3px solid var(--orange);border-radius:50%;background:white}
+    
+    .main-controls{
+    margin-top:16px;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+}
+
+    
+    
+    
+    .control-button{width:46px;height:46px;display:grid;place-items:center;color:white;border:1px solid rgba(255,255,255,.11);border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.28);cursor:pointer}.play-button{width:72px;height:72px;color:#ffffff;border:0;background:linear-gradient(145deg,#ff5a61,#c70d14 56%,#70070b);box-shadow:0 12px 28px rgba(225,29,37,.42),inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(0,0,0,.55);font-size:25px}
+    
+    
+    .player-bottom{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+}
+
+    
+    
+    
+    .volume-row{flex:1;display:flex;align-items:center;gap:9px}.volume-range{height:5px;background:rgba(255,255,255,.13)}.volume-range::-webkit-slider-thumb{width:14px;height:14px;appearance:none;-webkit-appearance:none;border-radius:50%;background:var(--orange)}.download-current{min-width:150px}.download-current a{min-height:46px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;color:#ffffff;text-decoration:none;border-radius:999px;background:linear-gradient(145deg,#ff5a61,#c70d14 56%,#70070b);box-shadow:0 10px 24px rgba(225,29,37,.36),inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(0,0,0,.55);font-size:11px;font-weight:900}
+    .playlist-panel{padding:24px;min-height:100%}.playlist-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.playlist-heading-text span{color:#43ffd8;font-size:10px;font-weight:900;letter-spacing:4px}.playlist-heading-text h2{margin-top:7px;font-size:22px}.playlist-heading-text p{margin-top:5px;color:var(--muted);font-size:11px}.page-status{color:var(--muted);white-space:nowrap;font-size:11px}.page-status strong{color:var(--orange)}.album-track-list{margin-top:18px;display:grid;gap:8px}.album-track{width:100%;padding:8px 10px;display:grid;grid-template-columns:32px minmax(0,1fr) 28px;align-items:center;gap:9px;color:var(--text);text-align:left;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035);cursor:pointer}.album-track:hover{border-color:rgba(225,29,37,.44);background:linear-gradient(90deg,rgba(225,29,37,.15),rgba(255,255,255,.025))}.album-track.active{border-color:var(--orange);background:linear-gradient(90deg,rgba(225,29,37,.24),rgba(225,29,37,.04));box-shadow:inset 3px 0 0 var(--orange)}.track-number{width:32px;height:32px;display:grid;place-items:center;color:var(--orange);border:1px solid rgba(225,29,37,.14);border-radius:9px;background:rgba(225,29,37,.08);font-size:10px;font-weight:900}.track-info{min-width:0}.track-info strong,.track-info small{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.track-info strong{font-size:12px}.track-info small{margin-top:2px;color:var(--muted);font-size:9px}.track-play{width:26px;height:26px;display:grid;place-items:center;color:var(--orange);border-radius:50%;background:rgba(255,255,255,.055);font-size:9px}.album-pagination{margin-top:16px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}.album-page-button{min-width:30px;height:30px;padding:0 9px;display:inline-grid;place-items:center;color:var(--muted);border:1px solid rgba(255,255,255,.09);border-radius:9px;background:rgba(255,255,255,.04);cursor:pointer;font-size:10px;font-weight:800}.album-page-button.active{color:#ffffff;border-color:var(--orange-light);background:linear-gradient(145deg,#ff5a61,#c70d14 56%,#70070b)}.album-page-button:disabled{opacity:.35;cursor:not-allowed}
+    .album-not-found{padding:80px 0;text-align:center}.album-not-found h1{font-size:38px}.album-not-found p{margin:12px 0 22px;color:var(--muted)}footer{border-top:1px solid rgba(255,72,78,.38);background:linear-gradient(180deg,#050505,#020202);box-shadow:0 -12px 30px rgba(225,29,37,.05)}.footer-content{min-height:96px;padding:16px 0 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);text-align:center}.footer-content p{font-size:11px}.footer-content strong{display:block;color:#ff4c53;font-size:14px}.footer-content img{order:2;width:30px;height:30px;object-fit:contain}
+    @media(max-width:960px){.music-layout{grid-template-columns:1fr}.player-panel{order:1}.playlist-panel{order:2}}
+    
+    @media(max-width:700px){.container{width:min(100% - 24px,1220px)}.nav-wrap{min-height:66px;gap:10px}.brand{gap:8px}.brand img{width:32px;height:32px}.brand span{max-width:90px;font-size:12px;line-height:1.15}.main-nav{gap:10px}.main-nav a{font-size:12px}.main-nav a:nth-child(2){display:none}.album-hero-inner{min-height:190px;padding:18px 0}.album-profile{grid-template-columns:74px minmax(0,1fr);gap:12px}.album-avatar{width:74px;height:74px;border-radius:16px}.album-kicker{font-size:8px;letter-spacing:2px}.album-profile h1{margin-top:4px;font-size:27px;letter-spacing:-1px}.album-meta{margin-top:5px;font-size:10px}.album-actions{margin-top:8px;gap:6px}.album-action{min-height:30px;padding:0 11px;font-size:8.5px}.album-main{padding:14px 0 42px}.music-layout{gap:14px}
+                            
+                            
+/* PLAYER ALBUM TRÊN ĐIỆN THOẠI */
+
+.cover-area {
+  position: relative;
+  min-height: 315px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Thu nhỏ đĩa than */
+.vinyl {
+  top: 18px;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translateX(-50%);
+}
+
+/* Logo luôn nằm đúng tâm đĩa */
+.cover-logo {
+  top: 118px;
+  left: 50%;
+  width: 76px;
+  height: 76px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.cover-logo img {
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+}
+
+/* Sóng nhạc nằm ngay mép dưới đĩa than */
+.equalizer {
+  top: 200px;
+  left: 50%;
+  width: 118px;
+  height: 34px;
+  padding: 5px 9px;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+/* Thu nhỏ tên bài hát */
+.now-playing h2 {
+  margin-top: 5px;
+  max-width: 100%;
+  font-size: 23px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.now-playing p {
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+/* Thu gọn và đẩy bộ điều khiển lên cao */
+.player-controls {
+  padding: 12px 14px 14px;
+}
+
+.time-row {
+  grid-template-columns: 38px minmax(0, 1fr) 38px;
+  gap: 7px;
+}
+
+.time-row span {
+  font-size: 10px;
+}
+
+.main-controls {
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.control-button {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+}
+
+.play-button {
+  width: 48px;
+  height: 48px;
+  font-size: 17px;
+}
+
+.player-bottom {
+  margin-top: 10px;
+  gap: 10px;
+}
+
+                            
+                            
+                            
+                            
+                   
+  .download-current{min-width:0}.download-current a{width:100%;min-height:42px}
+  .playlist-panel{padding:18px 12px}.playlist-heading{align-items:flex-start;flex-direction:column;gap:5px}
+  .playlist-heading-text h2{font-size:18px}
+  .album-track-list{margin-top:12px;gap:6px}
+                            .album-track{grid-template-columns:28px minmax(0,1fr) 24px;padding:6px 7px}
+                            .track-number{width:28px;height:28px;font-size:9px}
+                            .track-info strong{font-size:11px}
+                            .track-info small{font-size:8px}
+                            .track-play{width:22px;height:22px;font-size:8px}
+                            .footer-content{min-height:88px;padding:14px 0 10px}
+                            .footer-content p{font-size:10.5px;white-space:nowrap}
+                            .footer-content strong{font-size:13px}
+                            .footer-content img{width:27px;height:27px}}
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="container nav-wrap"><a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio" /><span>ANH TUẤN STUDIO</span></a><nav class="main-nav"><a href="index.html">Trang chủ</a><a href="index.html#customers">Khách hàng</a><a href="music.html">Nghe nhạc</a><a class="active" href="albums.html">Tìm Album</a><a href="tel:0868930933">Liên hệ</a></nav></div></header>
-  <main>
-    <section class="hero"><div class="container"><span>ALBUM KHÁCH HÀNG</span><h1>Tìm album theo tên khách hàng</h1><p>Nhập tên khách hàng để mở album riêng và nghe toàn bộ bài hát trực tuyến được thực hiện tại Anh Tuấn Studio.</p></div></section>
-    <section class="container search-section"><div class="search-panel"><label class="search-box"><span class="search-icon">⌕</span><input id="albumSearch" type="search" placeholder="Nhập tên khách hàng..." autocomplete="off" /></label></div></section>
-    <section class="container album-section"><div id="albumGrid" class="album-grid"></div></section>
+  <header class="topbar"><div class="container nav-wrap"><a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio"><span>ANH TUẤN STUDIO</span></a><nav class="main-nav"><a href="index.html">Trang chủ</a><a href="index.html#customers">Khách hàng</a><a href="music.html">Nghe nhạc</a><a class="active" href="albums.html">Tìm Album</a></nav></div></header>
+  <main id="albumContent">
+    <section class="album-hero"><div class="container album-hero-inner"><div class="album-profile"><div class="album-avatar"><img id="albumAvatar" src="logo.png" alt="Album khách hàng"></div><div><span class="album-kicker">ALBUM KHÁCH HÀNG</span><h1 id="albumName">Khách hàng</h1><p id="albumMeta" class="album-meta"></p><div class="album-actions"><button id="shareAlbumButton" class="album-action" type="button">SAO CHÉP LINK</button><a class="album-action secondary" href="music.html">TRANG NGHE NHẠC</a></div></div></div></div></section>
+    <section class="container album-main"><div class="music-layout">
+      <section class="player-panel"><div class="cover-area"><div id="vinyl" class="vinyl"></div><div id="coverLogo" class="cover-logo logo-fallback"><img id="coverLogoImage" src="logo.png" alt="Anh Tuấn Studio"></div><div class="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="now-playing"><span class="now-label">● ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div><div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0"><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button">⏮</button><button id="playButton" class="control-button play-button" type="button">▶</button><button id="nextButton" class="control-button" type="button">⏭</button></div><div class="player-bottom"><div class="volume-row"><span>🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85"></div><div class="download-current"><a id="downloadCurrent" href="#" target="_self">TẢI FILE WAV</a></div></div></div></section>
+      <section class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Danh sách bài hát</h2><p>Chọn một bài để nghe trực tuyến.</p></div><div class="page-status">Trang <strong id="currentPageStatus">1</strong> / <span id="totalPageStatus">1</span></div></div><div id="albumTrackList" class="album-track-list"></div><div id="albumPagination" class="album-pagination"></div></section>
+    </div></section>
   </main>
-  <footer><div class="container footer-content"><img src="logo.png" alt="Anh Tuấn Studio" /><p><strong>ANH TUẤN STUDIO</strong>Trảng Bom · Đồng Nai · 0868 930 933</p></div></footer>
+  <section id="albumNotFound" class="album-not-found hidden"><div class="container"><h1>Không tìm thấy album</h1><p>Album không tồn tại hoặc chưa có bài hát trực tuyến.</p><a class="album-action" href="albums.html">TÌM ALBUM KHÁC</a></div></section>
+  <footer><div class="container footer-content"><img src="logo.png" alt="Anh Tuấn Studio"><p><strong>ANH TUẤN STUDIO</strong>Trảng Bom · Đồng Nai · 0868 930 933</p></div></footer>
   <script src="customers.js"></script>
   <script>
-    const albumSearch=document.getElementById('albumSearch');
-    const albumGrid=document.getElementById('albumGrid');
-    function normalizeText(text){return String(text||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d')}
-    function getPlayableSongs(customer){return (customer.songs||[]).filter(song=>typeof song.listenLink==='string'&&song.listenLink.trim()!=='')}
-    function renderAlbums(keyword=''){
-      const searchText=keyword.trim();
-      const normalizedKeyword=normalizeText(searchText);
-      albumGrid.innerHTML='';
-      if(!searchText){albumGrid.innerHTML='<div class="empty-message">Nhập tên khách hàng, mã khách hoặc tên bài hát để tìm album.</div>';return}
-      const matchingCustomers=customers.filter(customer=>{const playableSongs=getPlayableSongs(customer);const customerName=normalizeText(customer.name);const customerId=normalizeText(customer.id);const hasMatchingSong=playableSongs.some(song=>normalizeText(song.title).includes(normalizedKeyword));return playableSongs.length>0&&(customerName.includes(normalizedKeyword)||customerId.includes(normalizedKeyword)||hasMatchingSong)});
-      if(matchingCustomers.length===0){albumGrid.innerHTML='<div class="empty-message">Không tìm thấy album phù hợp.<br />Anh chị vui lòng kiểm tra lại tên khách hàng, mã khách hoặc tên bài hát.</div>';return}
-      matchingCustomers.forEach(customer=>{const playableSongs=getPlayableSongs(customer);const card=document.createElement('article');card.className='album-card';const avatarPath=customer.avatar||'logo.png';const fallbackClass=customer.avatar?'':'logo-fallback';card.innerHTML=`<div class="album-card-top"><div class="album-avatar"><img class="${fallbackClass}" src="${avatarPath}" alt="${customer.name}" /></div><div><h2>${customer.name}</h2><small>${playableSongs.length} bài hát trực tuyến<br />Thực hiện tại Anh Tuấn Studio</small></div></div><a class="album-link" href="album.html?id=${encodeURIComponent(customer.id)}">XEM ALBUM</a>`;albumGrid.appendChild(card)});
-    }
-    albumSearch.addEventListener('input',()=>renderAlbums(albumSearch.value));
-    renderAlbums('');
+    const params=new URLSearchParams(window.location.search);const customerId=params.get("id");const customer=customers.find(item=>String(item.id)===String(customerId));
+    const albumContent=document.getElementById("albumContent"),albumNotFound=document.getElementById("albumNotFound"),albumAvatar=document.getElementById("albumAvatar"),albumName=document.getElementById("albumName"),albumMeta=document.getElementById("albumMeta"),shareAlbumButton=document.getElementById("shareAlbumButton"),albumTrackList=document.getElementById("albumTrackList"),albumPagination=document.getElementById("albumPagination"),currentPageStatus=document.getElementById("currentPageStatus"),totalPageStatus=document.getElementById("totalPageStatus"),audioPlayer=document.getElementById("audioPlayer"),currentTitle=document.getElementById("currentTitle"),currentArtist=document.getElementById("currentArtist"),currentTimeElement=document.getElementById("currentTime"),durationElement=document.getElementById("duration"),progressBar=document.getElementById("progressBar"),previousButton=document.getElementById("previousButton"),playButton=document.getElementById("playButton"),nextButton=document.getElementById("nextButton"),volumeRange=document.getElementById("volumeRange"),downloadCurrent=document.getElementById("downloadCurrent"),vinyl=document.getElementById("vinyl"),coverLogo=document.getElementById("coverLogo"),coverLogoImage=document.getElementById("coverLogoImage");
+    const tracksPerPage=10;let currentTrackPage=1,currentSongIndex=0;const playableSongs=customer?(customer.songs||[]).filter(song=>typeof song.listenLink==="string"&&song.listenLink.trim()!==""):[];
+    function formatTime(seconds){if(!Number.isFinite(seconds))return"0:00";const m=Math.floor(seconds/60),s=Math.floor(seconds%60);return`${m}:${String(s).padStart(2,"0")}`}
+    function updateProgressBackground(value){progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${value}%,rgba(255,255,255,.13) ${value}%,rgba(255,255,255,.13) 100%)`}
+    function getDownloadLink(song){return song.downloadLink||song.wavLink||song.listenLink||"#"}
+    function renderTracks(){albumTrackList.innerHTML="";albumPagination.innerHTML="";const totalPages=Math.max(1,Math.ceil(playableSongs.length/tracksPerPage));if(currentTrackPage>totalPages)currentTrackPage=totalPages;currentPageStatus.textContent=currentTrackPage;totalPageStatus.textContent=totalPages;const start=(currentTrackPage-1)*tracksPerPage,end=Math.min(start+tracksPerPage,playableSongs.length);playableSongs.slice(start,end).forEach((song,pageIndex)=>{const realIndex=start+pageIndex,button=document.createElement("button");button.type="button";button.className=realIndex===currentSongIndex?"album-track active":"album-track";const isPlaying=realIndex===currentSongIndex&&!audioPlayer.paused;button.innerHTML=`<span class="track-number">${String(realIndex+1).padStart(2,"0")}</span><span class="track-info"><strong>${song.title||"Chưa đặt tên bài hát"}</strong><small>${customer.name} · Anh Tuấn Studio</small></span><span class="track-play">${isPlaying?"❚❚":"▶"}</span>`;button.addEventListener("click",()=>{if(realIndex===currentSongIndex){togglePlayback();return}loadSong(realIndex,true)});albumTrackList.appendChild(button)});if(totalPages<=1)return;const mk=(text,page,active=false)=>{const b=document.createElement("button");b.type="button";b.className=active?"album-page-button active":"album-page-button";b.textContent=text;b.addEventListener("click",()=>{currentTrackPage=page;renderTracks()});return b};const prev=mk("‹",Math.max(1,currentTrackPage-1));prev.disabled=currentTrackPage===1;albumPagination.appendChild(prev);for(let p=1;p<=totalPages;p++)albumPagination.appendChild(mk(String(p),p,p===currentTrackPage));const next=mk("›",Math.min(totalPages,currentTrackPage+1));next.disabled=currentTrackPage===totalPages;albumPagination.appendChild(next)}
+    function loadSong(index,shouldPlay=false){const song=playableSongs[index];if(!song)return;currentSongIndex=index;currentTrackPage=Math.floor(index/tracksPerPage)+1;audioPlayer.src=song.listenLink;currentTitle.textContent=song.title||"Chưa đặt tên bài hát";currentArtist.textContent=`${customer.name} · Anh Tuấn Studio`;downloadCurrent.href=getDownloadLink(song);progressBar.value=0;currentTimeElement.textContent="0:00";durationElement.textContent="0:00";updateProgressBackground(0);renderTracks();if(shouldPlay)audioPlayer.play().catch(()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing")})}
+    function togglePlayback(){if(!playableSongs.length)return;if(!audioPlayer.src){loadSong(currentSongIndex,true);return}audioPlayer.paused?audioPlayer.play().catch(()=>{}):audioPlayer.pause()}
+    function playPreviousSong(){if(!playableSongs.length)return;loadSong(currentSongIndex<=0?playableSongs.length-1:currentSongIndex-1,true)}
+    function playNextSong(){if(!playableSongs.length)return;loadSong((currentSongIndex+1)%playableSongs.length,true)}
+    async function copyAlbumLink(){const original=shareAlbumButton.textContent;try{await navigator.clipboard.writeText(window.location.href);shareAlbumButton.textContent="ĐÃ SAO CHÉP"}catch(e){window.prompt("Sao chép đường dẫn album:",window.location.href)}setTimeout(()=>shareAlbumButton.textContent=original,2200)}
+    if(!customer||!playableSongs.length){albumContent.classList.add("hidden");albumNotFound.classList.remove("hidden")}else{document.title=`${customer.name} - Album Anh Tuấn Studio`;albumAvatar.src=customer.avatar||"logo.png";albumAvatar.alt=customer.name;if(!customer.avatar)albumAvatar.classList.add("logo-fallback");coverLogoImage.src=customer.avatar||"logo.png";coverLogoImage.alt=customer.avatar?customer.name:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!customer.avatar);albumName.textContent=customer.name;albumMeta.textContent=`${playableSongs.length} bài hát trực tuyến · Thực hiện tại Anh Tuấn Studio`;shareAlbumButton.addEventListener("click",copyAlbumLink);playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);progressBar.addEventListener("input",()=>{if(!Number.isFinite(audioPlayer.duration))return;audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";vinyl.classList.add("playing");coverLogo.classList.add("playing");renderTracks()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderTracks()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=(audioPlayer.currentTime/audioPlayer.duration)*100;progressBar.value=progress||0;updateProgressBackground(progress||0)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});audioPlayer.volume=Number(volumeRange.value);loadSong(0,false)}
   </script>
 </body>
 </html>
