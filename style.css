@@ -161,3 +161,63 @@ footer{position:relative;border-top:1px solid rgba(225,29,37,.24);background:rad
   .footer-content img{width:30px;height:30px}
   .footer-address{display:block;white-space:nowrap;font-size:11px}
 }
+
+
+
+
+/* =======================================================
+   HIỆU ỨNG ÁNH KIM CHO 4 NÚT TRANG CHỦ
+   ======================================================= */
+
+.hero-actions .btn{
+    position:relative;
+    overflow:hidden;
+}
+
+/* Ánh sáng chạy */
+.hero-actions .btn::before{
+    content:"";
+    position:absolute;
+    top:-60%;
+    left:-45%;
+
+    width:38%;
+    height:220%;
+
+    transform:rotate(25deg);
+
+    background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.10) 20%,
+        rgba(255,255,255,.95) 50%,
+        rgba(255,255,255,.10) 80%,
+        transparent 100%
+    );
+
+    animation:heroButtonShine 2.8s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes heroButtonShine{
+
+    0%{
+        left:-45%;
+    }
+
+    100%{
+        left:145%;
+    }
+
+}
+
+/* Hover sáng hơn một chút */
+.hero-actions .btn:hover{
+    transform:translateY(-2px);
+    transition:.25s;
+}
+
+
+
+
