@@ -26,6 +26,7 @@ button,input{font:inherit}
 .nav-wrap{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:12px;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.5px}
 .brand img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(225,29,37,.40)) drop-shadow(0 0 22px rgba(225,29,37,.20))}
+
 .brand span{font-size:18px;color:#ffffff;background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:#ffffff;text-shadow:none}
 .main-nav{display:flex;align-items:center;gap:26px}
 .main-nav a{position:relative;color:#f5f5f5;font-family:"Manrope",sans-serif;font-size:14px;font-weight:700;transition:.25s}
@@ -96,7 +97,25 @@ button,input{font:inherit}
 .customer-hero{position:relative;min-height:430px;padding:130px 0 60px;display:flex;align-items:flex-end;background:linear-gradient(90deg,rgba(0,0,0,.56),rgba(0,0,0,.18),rgba(0,0,0,.56)),url("background.png") center/cover no-repeat}
 .customer-page-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(225,29,37,.10),transparent 35%),linear-gradient(to bottom,rgba(0,0,0,.12),var(--black))}
 .customer-page-content{position:relative;z-index:2}
-.back-link{display:inline-flex;align-items:center;margin-bottom:28px;color:#43ffd8;font-size:20px;font-weight:800;line-height:1.35;text-shadow:0 0 12px rgba(67,255,216,.22);transition:color .25s ease,transform .25s ease,text-shadow .25s ease}.back-link:hover{color:#8ffff0;transform:translateX(-4px);text-shadow:0 0 10px rgba(67,255,216,.55),0 0 22px rgba(67,255,216,.25)}
+.back-link{
+    display:inline-block;
+    margin-bottom:28px;
+
+    color:#43FFD8;
+
+    font-size:21px;
+    font-weight:800;
+
+    transition:.25s;
+}
+
+.back-link:hover{
+    color:#8FFFF2;
+    text-shadow:0 0 15px rgba(67,255,216,.5);
+}
+
+
+
 .customer-profile{display:flex;align-items:center;gap:24px}
 .customer-profile img{width:110px;height:110px;object-fit:contain}
 .customer-page-code{margin-bottom:8px;color:#43ffd8;font-size:13px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-shadow:0 0 12px rgba(67,255,216,.20)}
