@@ -160,17 +160,9 @@
 
     
 
-    /* CHỈNH ĐỘ CAO THẤP TIÊU ĐỀ MEDIA */
+    
 
-  .now-playing{
-    position:relative;
-    z-index:2;
-    width:100%;
-    top:32px;
-}
-    
-    
-    .now-label{display:inline-flex;align-items:center;gap:8px;color:#43ffd8;font-size:11px;font-weight:900;letter-spacing:4px}.now-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#43ffd8;box-shadow:0 0 14px rgba(67,255,216,.85)}
+    .now-playing{position:relative;z-index:8;width:100%;padding-top:12px}.now-label{display:inline-flex;align-items:center;gap:8px;color:#43ffd8;font-size:11px;font-weight:900;letter-spacing:4px}.now-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#43ffd8;box-shadow:0 0 14px rgba(67,255,216,.85)}
   
     
 .now-playing h2{
@@ -180,7 +172,7 @@
     font-weight:800;
     letter-spacing:-0.5px;
 }
-    /* CHỈNH ĐỘ CAO THẤP TIÊU ĐỀ MEDIA TRÊN ĐIỆN THOẠI */
+    
     
     
     .now-playing p{margin-top:12px;color:#43ffd8;font-size:16px}
@@ -525,13 +517,6 @@
   text-overflow:ellipsis;
 }
 
-
- /* CHỈNH ĐỘ CAO THẤP MEDIA */
-  
-.now-playing{
-    margin-top:24px;
-}
-      
 .now-playing p{
   margin-top:5px;
   font-size:11px;
@@ -697,12 +682,12 @@
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio" /><span>ANH TUẤN STUDIO</span></a>
       <nav class="main-nav">
-  <a href="index.html">Trang chủ</a>
-  <a href="index.html#customers">Khách hàng</a>
-  <a class="active" href="music.html">Nghe nhạc</a>
-  <a href="albums.html">Tìm album</a>
-  <a href="tel:0868930933">Liên hệ</a>
-</nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="shop.html">Shop</a>
+        <a class="active" href="music.html">Nghe nhạc</a>
+        <a href="albums.html">Tìm kiếm nhạc</a>
+        <a href="tel:0868930933">Liên hệ</a>
+      </nav>
     </div>
   </header>
   <main>
@@ -715,9 +700,7 @@
     </section>
     <section class="container music-layout">
       <div class="player-panel">
-        <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
-          
-          <div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
+        <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div><div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
         <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current"><a id="downloadButton" href="#" target="_self">TẢI FILE WAV</a></div></div></div>
       </div>
       <aside class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Giai điệu được yêu thích</h2><p>Mỗi trang hiển thị 10 bài hát.</p></div><div class="page-status">Trang <strong id="currentPageText">1</strong> / <span id="totalPageText">1</span></div></div><div id="playlist" class="playlist"></div><div id="pagination" class="pagination"></div></aside>
