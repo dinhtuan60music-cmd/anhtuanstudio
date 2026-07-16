@@ -17,7 +17,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+
   <style>
+    /* Đồng bộ tên thương hiệu ở góc trái */
     .brand,
     .brand span{
       color:#ffffff !important;
@@ -28,6 +30,7 @@
       text-shadow:none !important;
     }
   </style>
+
 </head>
 
 <body>
@@ -39,12 +42,13 @@
       </a>
 
       <nav class="main-nav">
-        <a class="active" href="index.html">Trang chủ</a>
-        <a href="shop.html">Shop</a>
-        <a href="music.html">Nghe nhạc</a>
-        <a href="albums.html">Tìm kiếm nhạc</a>
-        <a href="tel:0868930933">Liên hệ</a>
-      </nav>
+    <a class="active" href="index.html">Trang chủ</a>
+    <a href="#customers">Khách hàng</a>
+    <a href="music.html">Nghe nhạc</a>
+    <a href="albums.html">Tìm Album</a>
+    <a href="tel:0868930933">Liên hệ</a>
+</nav>
+      
     </div>
   </header>
 
@@ -54,10 +58,19 @@
 
       <div class="container hero-content hero-content-clean">
         <div class="hero-actions">
-          <a class="btn btn-music" href="music.html">NGHE NHẠC</a>
-          <a class="btn btn-secondary" href="shop.html">SHOP</a>
-          <a class="btn btn-search-music" href="albums.html">TÌM KIẾM NHẠC</a>
-          <a class="btn btn-outline" href="tel:0868930933">LIÊN HỆ STUDIO</a>
+          <a class="btn btn-primary" href="#customers">
+            TÌM KIẾM
+          </a>
+          
+<a class="btn btn-music" href="music.html">
+  NGHE NHẠC
+</a>
+            <a href="albums.html" class="btn btn-secondary">
+    TÌM ALBUM
+  </a>
+          <a class="btn btn-outline" href="tel:0868930933">
+            LIÊN HỆ STUDIO
+          </a>
         </div>
       </div>
     </section>
@@ -65,32 +78,25 @@
     <section class="section customer-section" id="customers">
       <div class="container">
         <div class="section-heading">
-          <span>FILE KHÁCH HÀNG</span>
-          <h2>Tìm và tải file</h2>
-          <p>Nhập mã khách, tên khách hoặc tên bài hát rồi nhấn Enter.</p>
-        </div>
+  <span>FILE KHÁCH HÀNG</span>
+  <h2>Tìm và tải file</h2>
+  <p>Nhập mã khách, tên khách hoặc tên bài hát.</p>
+</div>
 
-        <div class="search-area">
-          <div class="search-box">
-            <input
-              id="customerSearch"
-              type="search"
-              placeholder="Nhập mã khách, tên khách hoặc tên bài hát..."
-              autocomplete="off"
-              aria-label="Tìm khách hàng hoặc bài hát"
-              aria-controls="searchSuggestions"
-              aria-expanded="false"
-            />
-          </div>
-
-          <div id="searchSuggestions" class="search-suggestions hidden" role="listbox"></div>
-        </div>
+     <div class="search-box">
+  <input
+    id="customerSearch"
+    type="search"
+    placeholder="Nhập mã khách, tên khách hoặc tên bài hát..."
+    autocomplete="off"
+  />
+</div>
 
         <div id="customerList" class="customer-grid"></div>
 
-        <p id="emptyMessage" class="empty-message hidden">
-          Không tìm thấy khách hàng hoặc bài hát phù hợp.
-        </p>
+      <p id="emptyMessage" class="empty-message hidden">
+  Không tìm thấy khách hàng hoặc bài hát phù hợp.
+</p>
       </div>
     </section>
 
