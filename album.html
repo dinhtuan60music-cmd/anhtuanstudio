@@ -83,7 +83,7 @@
 
     
     .equalizer{position:absolute;top:290px;left:50%;width:150px;height:44px;padding:7px 12px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(225,29,37,.26);border-radius:999px;background:linear-gradient(180deg,#171717,#050505);box-shadow:0 0 28px rgba(225,29,37,.20),inset 0 1px 0 rgba(255,255,255,.07)}.equalizer span{width:4px;height:18px;border-radius:99px;background:linear-gradient(180deg,var(--orange-light),var(--orange));animation:eq .9s ease-in-out infinite alternate}.equalizer span:nth-child(2n){animation-delay:.15s;height:26px}.equalizer span:nth-child(3n){animation-delay:.3s;height:12px}@keyframes eq{from{transform:scaleY(.45);opacity:.65}to{transform:scaleY(1);opacity:1}}
-    .now-playing{position:relative;z-index:2;width:100%}.now-label{color:#43ffd8;font-size:10px;font-weight:900;letter-spacing:3px}
+    .now-playing{position:relative;z-index:2;width:100%;top:32px}.now-label{color:#43ffd8;font-size:10px;font-weight:900;letter-spacing:3px}
     
   .now-playing h2{
     margin-top:6px;
@@ -189,6 +189,10 @@
 }
 
 /* Thu nhỏ tên bài hát */
+.now-playing {
+  margin-top: 24px;
+}
+
 .now-playing h2 {
   margin-top: 5px;
   max-width: 100%;
@@ -266,17 +270,7 @@
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="container nav-wrap"><a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio"><span>ANH TUẤN STUDIO</span></a>
-    
-<nav class="main-nav">
-  <a href="index.html">Trang chủ</a>
-  <a href="shop.html">Shop</a>
-  <a href="music.html">Nghe nhạc</a>
-  <a class="active" href="albums.html">Tìm kiếm nhạc</a>
-  <a href="tel:0868930933">Liên hệ</a>
-</nav>
-  
-  </div></header>
+  <header class="topbar"><div class="container nav-wrap"><a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio"><span>ANH TUẤN STUDIO</span></a><nav class="main-nav"><a href="index.html">Trang chủ</a><a href="index.html#customers">Khách hàng</a><a href="music.html">Nghe nhạc</a><a class="active" href="albums.html">Tìm Album</a></nav></div></header>
   <main id="albumContent">
     <section class="album-hero"><div class="container album-hero-inner"><div class="album-profile"><div class="album-avatar"><img id="albumAvatar" src="logo.png" alt="Album khách hàng"></div><div><span class="album-kicker">ALBUM KHÁCH HÀNG</span><h1 id="albumName">Khách hàng</h1><p id="albumMeta" class="album-meta"></p><div class="album-actions"><button id="shareAlbumButton" class="album-action" type="button">SAO CHÉP LINK</button><a class="album-action secondary" href="music.html">TRANG NGHE NHẠC</a></div></div></div></div></section>
     <section class="container album-main"><div class="music-layout">
