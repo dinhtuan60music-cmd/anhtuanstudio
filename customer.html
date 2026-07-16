@@ -7,13 +7,501 @@
   <title>Khách hàng - Anh Tuấn Studio</title>
 
   <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* GIAO DIỆN CUSTOMER ĐỎ - ĐEN - TRẮNG ÁNH KIM
+       Chỉ thay skin, giữ nguyên toàn bộ kích thước từ style.css */
+    body{
+      color:#fff;
+      font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(225,29,37,.12),transparent 34%),
+        linear-gradient(180deg,#080808 0%,#030303 52%,#000 100%);
+    }
+
+    .topbar{
+      border-bottom-color:rgba(225,29,37,.28);
+      background:rgba(2,2,2,.94);
+      box-shadow:0 10px 34px rgba(0,0,0,.32);
+    }
+
+    .brand{
+      color:#ff4c53;
+      font-family:"Manrope",sans-serif;
+      font-weight:800;
+      letter-spacing:.7px;
+    }
+
+    .brand img{
+      filter:
+        drop-shadow(0 0 10px rgba(225,29,37,.38))
+        drop-shadow(0 0 20px rgba(225,29,37,.18));
+    }
+
+    .main-nav a{
+      color:#f4f4f4;
+      font-family:"Manrope",sans-serif;
+      font-weight:600;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active{
+      color:#ff4c53;
+    }
+
+    .customer-page{
+      background:#030303;
+    }
+
+    .customer-hero{
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.18),rgba(0,0,0,.62)),
+        url("background.png") center/cover no-repeat;
+      border-bottom:1px solid rgba(255,72,78,.34);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.30),
+        inset 0 -1px 0 rgba(255,255,255,.03);
+    }
+
+    .customer-page-overlay{
+      background:
+        radial-gradient(circle at 50% 30%,rgba(225,29,37,.15),transparent 35%),
+        linear-gradient(to bottom,rgba(0,0,0,.10),#030303);
+    }
+
+    .back-link,
+    .customer-page-code,
+    .section-heading span{
+      color:#ff4c53;
+    }
+
+    .customer-profile img{
+      filter:
+        drop-shadow(0 0 12px rgba(225,29,37,.26))
+        drop-shadow(0 0 24px rgba(225,29,37,.12));
+    }
+
+    .customer-profile h1,
+    .section-heading h2,
+    .song-info h3,
+    .not-found h2{
+      color:#fff;
+    }
+
+    .customer-profile p:last-child,
+    .section-heading p,
+    .song-info p,
+    .not-found p{
+      color:#bdbdbd;
+    }
+
+    .song-section{
+      background:
+        radial-gradient(circle at 50% 0%,rgba(225,29,37,.09),transparent 34%),
+        #030303;
+    }
+
+    .song-card,
+    .not-found{
+      position:relative;
+      overflow:hidden;
+      border-color:rgba(255,72,78,.68);
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.035),rgba(225,29,37,.018) 34%,transparent 60%),
+        rgba(7,7,7,.94);
+      box-shadow:
+        0 22px 60px rgba(0,0,0,.42),
+        0 0 24px rgba(225,29,37,.09),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .song-card::before,
+    .not-found::before{
+      content:"";
+      position:absolute;
+      left:8%;
+      right:8%;
+      top:-1px;
+      height:1px;
+      pointer-events:none;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.72),
+          rgba(255,70,76,.95),
+          rgba(255,255,255,.72),
+          transparent
+        );
+      box-shadow:0 0 16px rgba(225,29,37,.50);
+    }
+
+    .song-number{
+      color:#ff4c53;
+      border-color:rgba(225,29,37,.50);
+      background:rgba(225,29,37,.10);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .song-actions{
+      position:relative;
+      z-index:2;
+    }
+
+    .song-listen,
+    .song-download,
+    .btn,
+    .btn-primary{
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      border-color:rgba(255,95,100,.72);
+      background:
+        linear-gradient(145deg,#ff5a61 0%,#c70d14 56%,#70070b 100%);
+      box-shadow:
+        0 10px 24px rgba(225,29,37,.34),
+        inset 0 1px 0 rgba(255,255,255,.30),
+        inset 0 -1px 0 rgba(0,0,0,.55);
+      transition:.24s ease;
+    }
+
+    .song-listen::before,
+    .song-download::before,
+    .btn::before,
+    .btn-primary::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(
+          115deg,
+          transparent 18%,
+          rgba(255,255,255,.22) 42%,
+          transparent 62%
+        );
+      transform:translateX(-120%);
+      transition:transform .55s ease;
+    }
+
+    .song-listen:hover,
+    .song-download:hover,
+    .btn:hover,
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,170,173,.94);
+      background:
+        linear-gradient(145deg,#ff7177 0%,#dc1118 56%,#85080d 100%);
+      box-shadow:
+        0 15px 32px rgba(225,29,37,.44),
+        0 0 22px rgba(225,29,37,.22),
+        inset 0 1px 0 rgba(255,255,255,.36);
+    }
+
+    .song-listen:hover::before,
+    .song-download:hover::before,
+    .btn:hover::before,
+    .btn-primary:hover::before{
+      transform:translateX(120%);
+    }
+
+    .song-player{
+      position:relative;
+      z-index:2;
+      border-top-color:rgba(225,29,37,.22);
+    }
+
+    footer{
+      border-top-color:rgba(255,72,78,.38);
+      background:
+        radial-gradient(circle at 50% 0%,rgba(225,29,37,.09),transparent 48%),
+        linear-gradient(180deg,#050505,#020202);
+      box-shadow:0 -12px 30px rgba(225,29,37,.05);
+    }
+
+    .footer-content{
+      color:#bdbdbd;
+    }
+
+    .footer-content strong{
+      color:#ff4c53;
+    }
+
+    .footer-content img{
+      filter:drop-shadow(0 0 8px rgba(225,29,37,.24));
+    }
+  
+    /* =========================================================
+       CUSTOMER PAGE - ĐỎ ĐEN ÁNH BẠC CAO CẤP
+       Không dùng ảnh nền, bố cục gọn và cân đối hơn
+    ========================================================= */
+
+    .brand,
+    .brand span{
+      color:#ffffff !important;
+      background:none !important;
+      -webkit-text-fill-color:#ffffff !important;
+      text-shadow:none !important;
+    }
+
+    .customer-hero{
+      position:relative;
+      min-height:410px;
+      padding:128px 0 52px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,76,82,.48);
+      background:
+        radial-gradient(circle at 18% 28%,rgba(225,29,37,.18),transparent 28%),
+        radial-gradient(circle at 78% 16%,rgba(255,255,255,.075),transparent 22%),
+        linear-gradient(125deg,#020202 0%,#0b0b0b 34%,#170305 57%,#060606 78%,#010101 100%);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.055),
+        inset 0 -1px 0 rgba(255,72,78,.14);
+    }
+
+    .customer-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.52;
+      background:
+        repeating-linear-gradient(
+          115deg,
+          transparent 0 22px,
+          rgba(255,255,255,.018) 23px,
+          transparent 24px 48px
+        );
+      mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
+    }
+
+    .customer-hero::after{
+      content:"";
+      position:absolute;
+      left:8%;
+      right:8%;
+      bottom:0;
+      height:1px;
+      pointer-events:none;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.68),
+          rgba(255,70,76,.95),
+          rgba(255,255,255,.68),
+          transparent
+        );
+      box-shadow:0 0 18px rgba(225,29,37,.55);
+    }
+
+    .customer-page-overlay{
+      background:
+        radial-gradient(circle at 50% 0%,rgba(255,255,255,.045),transparent 25%),
+        linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.20) 60%,rgba(0,0,0,.48));
+    }
+
+    .customer-page-content{
+      width:min(980px,100%);
+    }
+
+    .back-link{
+      min-height:42px;
+      padding:0 16px;
+      display:inline-flex;
+      align-items:center;
+      margin-bottom:24px;
+      color:#43ffd8 !important;
+      border:1px solid rgba(67,255,216,.26);
+      border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+      box-shadow:
+        0 10px 26px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.07);
+      font-size:17px;
+      font-weight:800;
+      text-shadow:0 0 12px rgba(67,255,216,.25);
+      transition:.24s ease;
+    }
+
+    .back-link:hover{
+      color:#a4fff1 !important;
+      transform:translateX(-4px);
+      border-color:rgba(67,255,216,.58);
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.34),
+        0 0 22px rgba(67,255,216,.15),
+        inset 0 1px 0 rgba(255,255,255,.09);
+    }
+
+    .customer-profile{
+      max-width:760px;
+      padding:22px 26px;
+      display:grid;
+      grid-template-columns:120px minmax(0,1fr);
+      align-items:center;
+      gap:24px;
+      border:1px solid rgba(255,76,82,.45);
+      border-radius:24px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(225,29,37,.018) 42%,transparent 68%),
+        rgba(5,5,5,.72);
+      box-shadow:
+        0 24px 58px rgba(0,0,0,.46),
+        0 0 28px rgba(225,29,37,.10),
+        inset 0 1px 0 rgba(255,255,255,.075);
+      backdrop-filter:blur(12px);
+    }
+
+    .customer-profile img{
+      width:120px;
+      height:120px;
+      padding:8px;
+      object-fit:cover;
+      border:2px solid rgba(255,83,89,.68);
+      border-radius:50%;
+      background:#080808;
+      box-shadow:
+        0 0 0 5px rgba(0,0,0,.58),
+        0 0 26px rgba(225,29,37,.30),
+        inset 0 0 12px rgba(255,255,255,.06);
+      filter:none;
+    }
+
+    .customer-page-code{
+      margin-bottom:9px;
+      color:#43ffd8 !important;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      text-shadow:0 0 12px rgba(67,255,216,.20);
+    }
+
+    .customer-profile h1{
+      margin:0;
+      color:#ffffff;
+      font-size:clamp(38px,5vw,62px);
+      line-height:1.02;
+      letter-spacing:-1.8px;
+      text-shadow:0 8px 24px rgba(0,0,0,.58);
+    }
+
+    .song-section{
+      padding-top:70px;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(225,29,37,.11),transparent 32%),
+        radial-gradient(circle at 18% 45%,rgba(255,255,255,.025),transparent 26%),
+        linear-gradient(180deg,#030303,#000000);
+    }
+
+    .section-heading{
+      margin-bottom:32px;
+    }
+
+    .section-heading span{
+      color:#43ffd8 !important;
+      text-shadow:0 0 12px rgba(67,255,216,.18);
+    }
+
+    .section-heading h2{
+      font-size:clamp(30px,4vw,48px);
+      letter-spacing:-1px;
+    }
+
+    .song-list{
+      max-width:980px;
+    }
+
+    .song-card{
+      border-color:rgba(255,76,82,.52);
+      border-radius:20px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.042),rgba(225,29,37,.018) 38%,transparent 64%),
+        rgba(6,6,6,.94);
+      box-shadow:
+        0 20px 52px rgba(0,0,0,.42),
+        0 0 22px rgba(225,29,37,.075),
+        inset 0 1px 0 rgba(255,255,255,.055);
+    }
+
+    .song-card::after{
+      content:"";
+      position:absolute;
+      left:7%;
+      right:7%;
+      top:-1px;
+      height:1px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.70),
+          rgba(255,70,76,.92),
+          rgba(255,255,255,.70),
+          transparent
+        );
+      box-shadow:0 0 14px rgba(225,29,37,.44);
+      pointer-events:none;
+    }
+
+    @media(max-width:768px){
+      .customer-hero{
+        min-height:390px;
+        padding:100px 0 38px;
+      }
+
+      .back-link{
+        min-height:38px;
+        padding:0 13px;
+        margin-bottom:18px;
+        font-size:14px;
+      }
+
+      .customer-profile{
+        padding:18px;
+        grid-template-columns:82px minmax(0,1fr);
+        gap:16px;
+        border-radius:20px;
+      }
+
+      .customer-profile img{
+        width:82px;
+        height:82px;
+        padding:5px;
+      }
+
+      .customer-profile h1{
+        font-size:30px;
+        letter-spacing:-.8px;
+      }
+
+      .customer-page-code{
+        font-size:10px;
+        letter-spacing:3px;
+      }
+
+      .song-section{
+        padding-top:52px;
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
   <header class="topbar">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">
-        <img src="logo.png" alt="Anh Tuấn Studio" />
+        <img id="customerAvatar" src="logo.png" alt="Anh Tuấn Studio" />
         <span>ANH TUẤN STUDIO</span>
       </a>
 
@@ -98,6 +586,9 @@
 
     const customerName =
       document.getElementById("customerName");
+
+    const customerAvatar =
+      document.getElementById("customerAvatar");
 
     const customerNote =
       document.getElementById("customerNote");
@@ -248,6 +739,9 @@
     } else {
       document.title =
         `${customer.name} - Anh Tuấn Studio`;
+
+      customerAvatar.src = customer.avatar || "logo.png";
+      customerAvatar.alt = customer.name || "Anh Tuấn Studio";
 
       customerCode.textContent =
         customer.id || "";
