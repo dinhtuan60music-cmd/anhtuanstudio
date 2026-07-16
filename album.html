@@ -277,35 +277,39 @@
     position:relative;
     overflow:hidden;
 
-    min-height:42px;
-    padding:0 22px;
+    /* Giữ nguyên kích thước của .album-action */
+    min-height:38px;
+    padding:0 16px;
 
-    color:#ffffff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    color:#fff;
     text-decoration:none;
-    font-weight:800;
-    font-size:12px;
-    letter-spacing:.4px;
+    font-size:10px;
+    font-weight:900;
 
     border-radius:999px;
-
     border:1px solid #35f6ff;
 
-    background:linear-gradient(180deg,#13d8df,#00a7b2);
+    background:linear-gradient(180deg,#15dbe2,#009eaa);
 
     box-shadow:
-        0 0 10px rgba(53,246,255,.45),
-        0 0 22px rgba(53,246,255,.18),
-        inset 0 1px 0 rgba(255,255,255,.35);
+        0 0 8px rgba(53,246,255,.45),
+        0 0 18px rgba(53,246,255,.18),
+        inset 0 1px 0 rgba(255,255,255,.30);
 
     transition:.25s;
 }
 
 .album-action.search-btn:hover{
-    transform:translateY(-2px);
+    transform:translateY(-1px);
     box-shadow:
-        0 0 18px rgba(53,246,255,.75),
-        0 0 36px rgba(53,246,255,.45),
-        inset 0 1px 0 rgba(255,255,255,.45);
+        0 0 14px rgba(53,246,255,.75),
+        0 0 28px rgba(53,246,255,.35),
+        inset 0 1px 0 rgba(255,255,255,.40);
 }
 
 .album-action.search-btn::before{
@@ -313,32 +317,24 @@
     position:absolute;
     top:-60%;
     left:-45%;
-
-    width:40%;
+    width:35%;
     height:220%;
-
     transform:rotate(25deg);
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.95),
-            transparent
-        );
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.95),
+        transparent
+    );
 
-    animation:shineSearch 2.8s linear infinite;
+    animation:shineSearch 2.6s linear infinite;
 }
 
 @keyframes shineSearch{
-    from{
-        left:-45%;
-    }
-    to{
-        left:130%;
-    }
+    from{left:-45%;}
+    to{left:130%;}
 }
-  
   
   
   </style>
