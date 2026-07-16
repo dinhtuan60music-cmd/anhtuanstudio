@@ -161,3 +161,33 @@ footer{position:relative;border-top:1px solid rgba(225,29,37,.24);background:rad
   .footer-content img{width:30px;height:30px}
   .footer-address{display:block;white-space:nowrap;font-size:11px}
 }
+
+/* ===== BỔ SUNG: 4 NÚT HERO + TÌM KIẾM NHANH ===== */
+.hero-actions .btn-search-music{min-width:210px}
+.search-area{position:relative;max-width:650px;margin:0 auto 18px}
+.search-area .search-box{max-width:none;margin:-8px auto 0}
+.search-suggestions{position:absolute;z-index:30;top:calc(100% + 8px);left:0;right:0;overflow:hidden;border:1px solid rgba(225,29,37,.48);border-radius:15px;background:rgba(7,7,7,.97);box-shadow:0 22px 55px rgba(0,0,0,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.search-suggestion{width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;border-bottom:1px solid rgba(225,29,37,.18);color:#fff;background:transparent;text-align:left;cursor:pointer;transition:.2s}
+.search-suggestion:last-child{border-bottom:0}
+.search-suggestion:hover,.search-suggestion.is-active{background:linear-gradient(90deg,rgba(225,29,37,.19),rgba(255,255,255,.035))}
+.suggestion-main{min-width:0;display:flex;flex-direction:column;gap:4px}
+.suggestion-title{overflow:hidden;color:#fff;font-size:14px;font-weight:800;white-space:nowrap;text-overflow:ellipsis}
+.suggestion-subtitle{overflow:hidden;color:#aaa;font-size:11px;white-space:nowrap;text-overflow:ellipsis}
+.suggestion-type{flex:0 0 auto;color:var(--red-light);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.customer-grid:empty{display:none}
+
+@media(max-width:1100px) and (min-width:901px){
+  .hero-actions,.hero-buttons{gap:12px;padding:12px}
+  .btn,.hero-buttons .btn,.hero-actions .btn{min-width:155px;padding:0 15px;font-size:13px}
+  .hero-actions .btn-search-music{min-width:185px}
+}
+
+@media(max-width:900px){
+  .hero-actions .btn-search-music{min-width:170px}
+}
+
+@media(max-width:768px){
+  .hero-actions .btn-search-music{min-width:0}
+  .search-suggestion{padding:12px 13px}
+  .suggestion-title{font-size:13px}
+}
