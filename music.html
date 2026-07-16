@@ -690,6 +690,108 @@
       .footer-content strong{font-size:15px}
       .footer-content img{width:28px;height:28px}
     }
+
+
+
+/*====================================================
+  NÚT TÌM KIẾM NHẠC - GÓC PHẢI
+====================================================*/
+
+.playlist-search-top{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:18px;
+}
+
+.search-music-btn{
+
+    position:relative;
+    overflow:hidden;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    height:48px;
+    padding:0 24px;
+
+    border-radius:999px;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:800;
+    color:#fff;
+
+    border:2px solid #35f6ff;
+
+    background:linear-gradient(
+        180deg,
+        #17dce5,
+        #00a5b0
+    );
+
+    box-shadow:
+        0 0 10px rgba(53,246,255,.45),
+        0 0 24px rgba(53,246,255,.20),
+        inset 0 1px 0 rgba(255,255,255,.45);
+
+    transition:.25s;
+}
+
+.search-music-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 18px rgba(53,246,255,.8),
+        0 0 35px rgba(53,246,255,.45);
+
+}
+
+/* ánh sáng chạy */
+
+.search-music-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-60%;
+    left:-45%;
+
+    width:38%;
+    height:220%;
+
+    transform:rotate(25deg);
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.95),
+        transparent
+    );
+
+    animation:searchGlow 2.6s linear infinite;
+
+}
+
+@keyframes searchGlow{
+
+    from{
+        left:-45%;
+    }
+
+    to{
+        left:135%;
+    }
+
+}
+
+
+
+    
   </style>
 </head>
 <body>
@@ -714,6 +816,19 @@
       </div>
     </section>
     <section class="container music-layout">
+
+
+      
+
+<div class="playlist-search-top">
+    <a href="albums.html" class="search-music-btn">
+        🔍 TÌM KIẾM NHẠC
+    </a>
+</div>
+
+
+
+      
       <div class="player-panel">
         <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
           
