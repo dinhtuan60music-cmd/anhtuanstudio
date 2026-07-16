@@ -62,3 +62,5 @@ const customers = [
 
   
 ];
+
+window.customers = customers;
