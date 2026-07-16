@@ -692,77 +692,69 @@
     }
 
 
+/* NÚT TÌM KIẾM NHẠC Ở GÓC PHẢI, NGOÀI KHUNG PLAYLIST */
 
-/*====================================================
-  NÚT TÌM KIẾM NHẠC - GÓC PHẢI
-====================================================*/
-
-.playlist-search-top{
-    display:flex;
-    justify-content:flex-end;
-    margin-bottom:18px;
+.playlist-panel{
+    position:relative;
 }
 
 .search-music-btn{
+    position:absolute;
+    top:-66px;
+    right:0;
+    z-index:20;
 
-    position:relative;
-    overflow:hidden;
+    height:46px;
+    padding:0 22px;
 
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
+    gap:7px;
 
-    height:48px;
-    padding:0 24px;
+    overflow:hidden;
 
-    border-radius:999px;
-
+    color:#ffffff;
     text-decoration:none;
-
-    font-size:15px;
-    font-weight:800;
-    color:#fff;
+    font-size:13px;
+    font-weight:900;
 
     border:2px solid #35f6ff;
+    border-radius:999px;
 
     background:linear-gradient(
         180deg,
-        #17dce5,
-        #00a5b0
+        #18dce5 0%,
+        #009eaa 100%
     );
 
     box-shadow:
-        0 0 10px rgba(53,246,255,.45),
-        0 0 24px rgba(53,246,255,.20),
+        0 0 10px rgba(53,246,255,.65),
+        0 0 24px rgba(53,246,255,.30),
         inset 0 1px 0 rgba(255,255,255,.45);
 
     transition:.25s;
 }
 
 .search-music-btn:hover{
-
     transform:translateY(-2px);
 
     box-shadow:
-        0 0 18px rgba(53,246,255,.8),
-        0 0 35px rgba(53,246,255,.45);
-
+        0 0 16px rgba(53,246,255,.90),
+        0 0 34px rgba(53,246,255,.50),
+        inset 0 1px 0 rgba(255,255,255,.55);
 }
 
-/* ánh sáng chạy */
+/* Ánh kim trắng lướt qua */
 
 .search-music-btn::before{
-
     content:"";
-
     position:absolute;
-
-    top:-60%;
-    left:-45%;
+    top:-70%;
+    left:-50%;
 
     width:38%;
-    height:220%;
+    height:240%;
 
     transform:rotate(25deg);
 
@@ -773,21 +765,20 @@
         transparent
     );
 
-    animation:searchGlow 2.6s linear infinite;
-
+    animation:searchButtonShine 2.6s linear infinite;
+    pointer-events:none;
 }
 
-@keyframes searchGlow{
-
+@keyframes searchButtonShine{
     from{
-        left:-45%;
+        left:-50%;
     }
 
     to{
-        left:135%;
+        left:140%;
     }
-
 }
+
 
 
 
@@ -819,15 +810,6 @@
 
 
       
-
-<div class="playlist-search-top">
-    <a href="albums.html" class="search-music-btn">
-        🔍 TÌM KIẾM NHẠC
-    </a>
-</div>
-
-
-
       
       <div class="player-panel">
         <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
@@ -835,7 +817,16 @@
           <div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
         <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current"><a id="downloadButton" href="#" target="_self">TẢI FILE WAV</a></div></div></div>
       </div>
-      <aside class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Giai điệu được yêu thích</h2><p>Mỗi trang hiển thị 10 bài hát.</p></div><div class="page-status">Trang <strong id="currentPageText">1</strong> / <span id="totalPageText">1</span></div></div><div id="playlist" class="playlist"></div><div id="pagination" class="pagination"></div></aside>
+
+
+      
+      <aside class="playlist-panel">
+    <a href="albums.html" class="search-music-btn">
+        🔍 TÌM KIẾM NHẠC
+    </a>
+        
+        
+        <div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Giai điệu được yêu thích</h2><p>Mỗi trang hiển thị 10 bài hát.</p></div><div class="page-status">Trang <strong id="currentPageText">1</strong> / <span id="totalPageText">1</span></div></div><div id="playlist" class="playlist"></div><div id="pagination" class="pagination"></div></aside>
     </section>
   </main>
   <footer><div class="container footer-content"><p><strong>ANH TUẤN STUDIO</strong><span class="footer-address">Trảng Bom · Đồng Nai · 0868 930 933</span></p><img src="logo.png" alt="Anh Tuấn Studio" /></div></footer>
