@@ -611,7 +611,8 @@
 
   filter:
     drop-shadow(0 0 12px rgba(225,29,37,.30));
-}   
+}
+
 /* Nhãn nhỏ dưới avatar */
 .artist-status{
   position:absolute;
@@ -656,9 +657,137 @@
   font-size:10px;
   font-weight:900;
   letter-spacing:4px;
-  
-   text-shadow:
+
+  text-shadow:
     0 0 14px rgba(67,255,216,.25);
+}
+
+.customer-page-code{
+  margin-bottom:5px;
+
+  color:#ff555c !important;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.customer-profile h1{
+  margin:0;
+
+  color:#ffffff;
+
+  font-size:clamp(38px,5vw,58px);
+  line-height:1.05;
+  letter-spacing:-2px;
+
+  text-shadow:
+    0 8px 28px rgba(0,0,0,.48);
+}
+
+#customerNote{
+  margin-top:8px;
+  color:#bdbdbd;
+  font-size:13px;
+}
+
+.customer-meta{
+  margin-top:18px;
+
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.customer-meta span{
+  min-height:30px;
+  padding:0 12px;
+
+  display:inline-flex;
+  align-items:center;
+
+  color:#d7d7d7;
+
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.025)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07);
+
+  font-size:10px;
+  font-weight:700;
+}
+
+/* Hiệu ứng khi rê chuột */
+.customer-profile{
+  transition:
+    transform .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+.customer-profile:hover{
+  transform:translateY(-4px);
+
+  border-color:rgba(255,115,120,.90);
+
+  box-shadow:
+    0 34px 78px rgba(0,0,0,.54),
+    0 0 38px rgba(225,29,37,.15),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* Điện thoại */
+@media(max-width:768px){
+  .customer-profile{
+    width:100%;
+    padding:24px 18px 26px;
+
+    grid-template-columns:1fr;
+    justify-items:center;
+    gap:24px;
+
+    text-align:center;
+    border-radius:22px;
+  }
+
+  .customer-avatar-wrap{
+    width:118px;
+    height:118px;
+  }
+
+  .customer-avatar-wrap img{
+    width:98px;
+    height:98px;
+  }
+
+  .profile-kicker{
+    font-size:8px;
+    letter-spacing:2.5px;
+  }
+
+  .customer-page-code{
+    font-size:10px;
+    letter-spacing:3px;
+  }
+
+  .customer-profile h1{
+    font-size:36px;
+    letter-spacing:-1px;
+  }
+
+  .customer-meta{
+    justify-content:center;
+  }
 }
   
   
@@ -935,6 +1064,16 @@
       customerCode.textContent =
         customer.id || "";
 
+      const customerAvatar =
+  document.getElementById("customerAvatar");
+
+customerAvatar.src =
+  customer.avatar || "logo.png";
+
+customerAvatar.alt =
+  customer.name || "Anh Tuấn Studio";
+
+      
       customerName.textContent =
         customer.name || "Khách hàng";
 
