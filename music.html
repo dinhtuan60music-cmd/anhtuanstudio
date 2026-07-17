@@ -810,98 +810,203 @@
     
   
 
-/* ===== NÚT SAO CHÉP LINK BÀI ĐANG CHỌN ===== */
-.download-current{
-  display:grid;
-  gap:7px;
-}
+/* ===== ĐỒNG BỘ MUSIC THEO TRANG ALBUM ===== */
 
-.copy-current-track{
-  position:relative;
-  overflow:hidden;
-
-  width:100%;
-  min-height:34px;
-  padding:0 11px;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-
-  color:#ffffff;
-  border:1px solid #f1a7ff;
-  border-radius:999px;
-
-  background:linear-gradient(
-    145deg,
-    #ff9ee9 0%,
-    #d85bd0 46%,
-    #9b3fbd 74%,
-    #6d248f 100%
-  );
-
+/* Nút tìm kiếm nhạc: đen - viền đỏ - ánh kim */
+.search-music-btn{
+  border:1px solid rgba(255,70,70,.88) !important;
+  background:linear-gradient(180deg,rgba(28,28,28,.96),rgba(7,7,7,.98)) !important;
   box-shadow:
-    0 0 9px rgba(255,158,233,.42),
-    0 0 20px rgba(216,91,208,.22),
-    inset 0 1px 0 rgba(255,255,255,.46);
-
-  font-size:8px;
-  font-weight:900;
-  white-space:nowrap;
-  cursor:pointer;
-  transition:.24s ease;
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 16px rgba(255,40,40,.18) !important;
 }
 
-.copy-current-track:hover{
-  transform:translateY(-1px);
+.search-music-btn:hover{
   box-shadow:
-    0 0 15px rgba(255,173,239,.72),
-    0 0 30px rgba(216,91,208,.36),
-    inset 0 1px 0 rgba(255,255,255,.56);
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 20px rgba(255,40,40,.24) !important;
 }
 
-.copy-current-track::before{
+.search-music-btn::before,
+.copy-current-track::before,
+.download-current a::before{
   content:"";
   position:absolute;
   top:-65%;
   left:-48%;
-  width:38%;
-  height:230%;
+  width:32%;
+  height:240%;
   transform:rotate(25deg);
-
   background:linear-gradient(
     90deg,
     transparent,
-    rgba(255,255,255,.98),
-    rgba(232,232,240,.96),
+    rgba(255,255,255,.96),
+    rgba(236,236,236,.94),
     transparent
   );
-
-  animation:musicCopyTrackShine 2.8s linear infinite;
+  animation:musicMetalShine 2.8s linear infinite;
   pointer-events:none;
 }
 
-@keyframes musicCopyTrackShine{
+@keyframes musicMetalShine{
   from{left:-48%;}
   to{left:138%;}
 }
 
+/* Giữ nguyên vị trí cụm ĐANG PHÁT / tên bài / tên ca sĩ */
+
+/* Hai thanh mỏng như sợi chỉ */
+.progress,
+.volume-range{
+  height:2px !important;
+  border-radius:999px;
+  background:linear-gradient(
+    to right,
+    var(--orange) 0%,
+    var(--orange) 0%,
+    rgba(255,255,255,.17) 0%,
+    rgba(255,255,255,.17) 100%
+  ) !important;
+}
+
+.progress::-webkit-slider-thumb,
+.volume-range::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:4px;
+  height:18px;
+  border-radius:999px;
+  border:0;
+  background:#ff4a4a;
+  box-shadow:0 0 10px rgba(255,60,60,.35);
+}
+
+.progress::-moz-range-thumb,
+.volume-range::-moz-range-thumb{
+  width:4px;
+  height:18px;
+  border:none;
+  border-radius:999px;
+  background:#ff4a4a;
+  box-shadow:0 0 10px rgba(255,60,60,.35);
+}
+
+/* Nút play đen trong suốt, viền đỏ */
+.play-button{
+  border:1px solid rgba(255,70,70,.88) !important;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 38%),
+    linear-gradient(180deg, rgba(20,20,20,.92), rgba(3,3,3,.96)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.05) inset,
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 18px rgba(255,40,40,.20) !important;
+  color:#ffffff !important;
+}
+
+/* Khu vực volume + 2 nút dưới */
+.player-bottom{
+  align-items:flex-end !important;
+  gap:12px !important;
+  flex-wrap:wrap;
+}
+
+.volume-wrap{
+  flex:1 1 100% !important;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.download-current{
+  width:100%;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.copy-current-track,
+.download-current a{
+  position:relative;
+  overflow:hidden;
+  flex:1 1 0;
+  min-height:40px;
+  padding:0 12px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+
+  color:#ffffff;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:9px;
+  font-weight:900;
+
+  border:1px solid rgba(255,70,70,.88);
+  border-radius:999px;
+
+  background:linear-gradient(180deg,rgba(28,28,28,.96),rgba(7,7,7,.98));
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 16px rgba(255,40,40,.18);
+
+  transition:.24s ease;
+  cursor:pointer;
+}
+
+.copy-current-track:hover,
+.download-current a:hover{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 20px rgba(255,40,40,.24);
+}
+
 @media(max-width:720px){
-  .download-current{
-    gap:5px;
+  .search-music-btn{
+    height:38px !important;
+    padding:0 14px !important;
+    font-size:10px !important;
   }
 
-  .copy-current-track{
-    width:auto;
-    min-width:118px;
-    min-height:30px;
+  .player-bottom{
+    gap:10px !important;
+  }
+
+  .download-current{
+    gap:8px;
+  }
+
+  .copy-current-track,
+  .download-current a{
+    min-height:36px;
     padding:0 8px;
-    font-size:6.8px;
+    font-size:7px;
+  }
+
+  .progress::-webkit-slider-thumb,
+  .volume-range::-webkit-slider-thumb{
+    width:3px;
+    height:16px;
+  }
+
+  .progress::-moz-range-thumb,
+  .volume-range::-moz-range-thumb{
+    width:3px;
+    height:16px;
   }
 }
 
-  </style>
+</style>
 </head>
 <body>
   <header class="topbar">
@@ -933,10 +1038,7 @@
         <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
           
           <div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
-        <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current">
-  <button id="copyCurrentTrackButton" class="copy-current-track" type="button">🔗 SAO CHÉP LINK BÀI NÀY</button>
-  <a id="downloadButton" href="#" target="_self">TẢI FILE WAV</a>
-</div></div></div>
+        <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current"><button id="copyCurrentTrackButton" class="copy-current-track" type="button">🔗 SAO CHÉP LINK BÀI NÀY</button><a id="downloadButton" href="#" target="_self">TẢI XUỐNG</a></div></div></div>
       </div>
 
 
@@ -953,7 +1055,7 @@
   <footer><div class="container footer-content"><p><strong>ANH TUẤN STUDIO</strong><span class="footer-address">Trảng Bom · Đồng Nai · 0868 930 933</span></p><img src="logo.png" alt="Anh Tuấn Studio" /></div></footer>
   <script src="customers.js"></script>
   <script>
-    const songsPerPage=10;
+    const songsPerPage=10;const pageParams=new URLSearchParams(window.location.search);const requestedTrackIndex=Number.parseInt(pageParams.get("track"),10);
     const featuredSongs=customers.flatMap((customer,customerIndex)=>customer.songs.filter(song=>song.featured===true&&typeof song.listenLink==="string"&&song.listenLink.trim()!=="").map((song,songIndex)=>({title:song.title||"Chưa đặt tên bài hát",artist:customer.name||"Khách hàng",avatar:customer.avatar||"",listenLink:song.listenLink,downloadLink:song.downloadLink||song.listenLink,priority:Number.isFinite(Number(song.priority))?Number(song.priority):Number.POSITIVE_INFINITY,originalOrder:customerIndex*100000+songIndex}))).sort((a,b)=>a.priority!==b.priority?a.priority-b.priority:a.originalOrder-b.originalOrder);
     const audioPlayer=document.getElementById("audioPlayer"),playButton=document.getElementById("playButton"),previousButton=document.getElementById("previousButton"),nextButton=document.getElementById("nextButton"),backwardButton=document.getElementById("backwardButton"),forwardButton=document.getElementById("forwardButton"),progressBar=document.getElementById("progressBar"),volumeRange=document.getElementById("volumeRange"),currentTimeElement=document.getElementById("currentTime"),durationElement=document.getElementById("duration"),currentTitle=document.getElementById("currentTitle"),currentArtist=document.getElementById("currentArtist"),downloadButton=document.getElementById("downloadButton"),copyCurrentTrackButton=document.getElementById("copyCurrentTrackButton"),equalizer=document.getElementById("equalizer"),vinyl=document.getElementById("vinyl"),coverLogo=document.getElementById("coverLogo"),playlist=document.getElementById("playlist"),pagination=document.getElementById("pagination"),currentPageText=document.getElementById("currentPageText"),totalPageText=document.getElementById("totalPageText");
     let currentSongIndex=0,currentPage=1,filteredSongs=[...featuredSongs];
@@ -976,7 +1078,7 @@
     function updateProgressBackground(progress){const safe=Math.max(0,Math.min(100,progress||0));progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${safe}%,rgba(255,255,255,.13) ${safe}%,rgba(255,255,255,.13) 100%)`}
     playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);
     audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";equalizer.classList.add("playing");vinyl.classList.add("playing");coverLogo.classList.add("playing");renderPlaylist()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderPlaylist()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=audioPlayer.currentTime/audioPlayer.duration*100;progressBar.value=progress||0;updateProgressBackground(progress)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});
-    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0)loadSong(0,false);else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
+    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
   </script>
 </body>
 </html>
