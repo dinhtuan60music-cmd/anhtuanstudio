@@ -440,6 +440,112 @@
       }
     }
 
+  
+
+    /* ===== CHỈNH ĐÚNG CÁC NÚT THEO YÊU CẦU ===== */
+
+    /* Nút sao chép link album: tím hồng mộng mơ, ánh bạc */
+    .album-action.album-share-btn{
+      position:relative;
+      overflow:hidden;
+      color:#ffffff;
+      border-color:#f4a7ff;
+      background:linear-gradient(
+        145deg,
+        #ff9ee9 0%,
+        #d85bd0 46%,
+        #9b3fbd 72%,
+        #6d248f 100%
+      );
+      box-shadow:
+        0 0 10px rgba(255,158,233,.46),
+        0 0 24px rgba(216,91,208,.24),
+        inset 0 1px 0 rgba(255,255,255,.48),
+        inset 0 -1px 0 rgba(80,15,100,.55);
+      transition:.24s ease;
+    }
+
+    .album-action.album-share-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:
+        0 0 16px rgba(255,173,239,.72),
+        0 0 32px rgba(216,91,208,.38),
+        inset 0 1px 0 rgba(255,255,255,.58);
+    }
+
+    .album-action.album-share-btn::before{
+      content:"";
+      position:absolute;
+      top:-65%;
+      left:-48%;
+      width:38%;
+      height:230%;
+      transform:rotate(25deg);
+      background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.98),
+        rgba(229,229,239,.96),
+        transparent
+      );
+      animation:albumDreamShine 2.8s linear infinite;
+      pointer-events:none;
+    }
+
+    @keyframes albumDreamShine{
+      from{left:-48%;}
+      to{left:138%;}
+    }
+
+    /* Giữ volume và nút tải WAV nằm ngang cùng một hàng */
+    .player-bottom{
+      align-items:center;
+    }
+
+    .download-current{
+      min-width:0;
+      width:158px;
+      gap:7px;
+      transform:translateY(-8px);
+    }
+
+    .copy-current-track{
+      width:158px;
+      min-height:34px;
+      padding:0 11px;
+      font-size:8px;
+    }
+
+    .download-current a{
+      width:138px;
+      min-height:38px;
+      padding:0 13px;
+      justify-self:end;
+      font-size:9.5px;
+    }
+
+    @media(max-width:700px){
+      .download-current{
+        width:124px;
+        transform:translateY(-5px);
+        gap:5px;
+      }
+
+      .copy-current-track{
+        width:124px;
+        min-height:31px;
+        padding:0 8px;
+        font-size:7px;
+      }
+
+      .download-current a{
+        width:110px;
+        min-height:34px;
+        padding:0 9px;
+        font-size:8px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -459,7 +565,7 @@
   <main id="albumContent">
     <section class="album-hero"><div class="container album-hero-inner"><div class="album-profile"><div class="album-avatar"><img id="albumAvatar" src="logo.png" alt="Album khách hàng"></div><div><span class="album-kicker">ALBUM KHÁCH HÀNG</span><h1 id="albumName">Khách hàng</h1><p id="albumMeta" class="album-meta"></p>
       
-      <div class="album-actions"><button id="shareAlbumButton" class="album-action" type="button">SAO CHÉP LINK</button>
+      <div class="album-actions"><button id="shareAlbumButton" class="album-action album-share-btn" type="button">SAO CHÉP LINK ALBUM</button>
       
         <a class="album-action search-btn" href="albums.html">🔍 TÌM KIẾM NHẠC</a>
       
