@@ -110,10 +110,95 @@
       const searchText=keyword.trim();
       const normalizedKeyword=normalizeText(searchText);
       albumGrid.innerHTML='';
-      if(!searchText){albumGrid.innerHTML='<div class="empty-message">Nhập tên khách hàng, mã khách hoặc tên bài hát để tìm album.</div>';return}
-      const matchingCustomers=customers.filter(customer=>{const playableSongs=getPlayableSongs(customer);const customerName=normalizeText(customer.name);const customerId=normalizeText(customer.id);const hasMatchingSong=playableSongs.some(song=>normalizeText(song.title).includes(normalizedKeyword));return playableSongs.length>0&&(customerName.includes(normalizedKeyword)||customerId.includes(normalizedKeyword)||hasMatchingSong)});
-      if(matchingCustomers.length===0){albumGrid.innerHTML='<div class="empty-message">Không tìm thấy album phù hợp.<br />Anh chị vui lòng kiểm tra lại tên khách hàng, mã khách hoặc tên bài hát.</div>';return}
-      matchingCustomers.forEach(customer=>{const playableSongs=getPlayableSongs(customer);const card=document.createElement('article');card.className='album-card';const avatarPath=customer.avatar||'logo.png';const fallbackClass=customer.avatar?'':'logo-fallback';card.innerHTML=`<div class="album-card-top"><div class="album-avatar"><img class="${fallbackClass}" src="${avatarPath}" alt="${customer.name}" /></div><div><h2>${customer.name}</h2><small>${playableSongs.length} bài hát trực tuyến<br />Thực hiện tại Anh Tuấn Studio</small></div></div><a class="album-link" href="album.html?id=${encodeURIComponent(customer.id)}">XEM ALBUM</a>`;albumGrid.appendChild(card)});
+
+      if(!searchText){
+        albumGrid.innerHTML='<div class="empty-message">Nhập tên khách hàng, mã khách hoặc tên bài hát để tìm album.</div>';
+        return;
+      }
+
+      const uniqueCustomers=new Map();
+
+      customers.forEach(customer=>{
+        const playableSongs=getPlayableSongs(customer);
+        if(playableSongs.length===0)return;
+
+        const customerName=normalizeText(customer.name);
+        const customerId=normalizeText(customer.id);
+        const matchedSongIndex=playableSongs.findIndex(song=>normalizeText(song.title).includes(normalizedKeyword));
+        const matchedByCustomer=customerName.includes(normalizedKeyword)||customerId.includes(normalizedKeyword);
+        const isMatch=matchedByCustomer||matchedSongIndex!==-1;
+
+        if(!isMatch)return;
+
+        const existing=uniqueCustomers.get(String(customer.id));
+
+        if(!existing){
+          uniqueCustomers.set(String(customer.id),{
+            ...customer,
+            songs:[...playableSongs],
+            matchedSongIndex:matchedSongIndex
+          });
+          return;
+        }
+
+        const existingTitles=new Set(existing.songs.map(song=>normalizeText(song.title)));
+        playableSongs.forEach(song=>{
+          const titleKey=normalizeText(song.title);
+          if(!existingTitles.has(titleKey)){
+            existing.songs.push(song);
+            existingTitles.add(titleKey);
+          }
+        });
+
+        if(existing.matchedSongIndex===-1&&matchedSongIndex!==-1){
+          const matchedTitle=normalizeText(playableSongs[matchedSongIndex].title);
+          existing.matchedSongIndex=existing.songs.findIndex(song=>normalizeText(song.title)===matchedTitle);
+        }
+      });
+
+      const matchingCustomers=[...uniqueCustomers.values()];
+
+      if(matchingCustomers.length===0){
+        albumGrid.innerHTML='<div class="empty-message">Không tìm thấy album phù hợp.<br />Anh chị vui lòng kiểm tra lại tên khách hàng, mã khách hoặc tên bài hát.</div>';
+        return;
+      }
+
+      matchingCustomers.forEach(customer=>{
+        const playableSongs=customer.songs;
+        const card=document.createElement('article');
+        card.className='album-card';
+
+        const avatarPath=customer.avatar||'logo.png';
+        const fallbackClass=customer.avatar?'':'logo-fallback';
+
+        const trackParam=customer.matchedSongIndex>=0
+          ? `&track=${customer.matchedSongIndex}`
+          : '';
+
+        const matchedSongText=customer.matchedSongIndex>=0
+          ? `<br />Đúng bài: ${playableSongs[customer.matchedSongIndex].title}`
+          : '';
+
+        card.innerHTML=`
+          <div class="album-card-top">
+            <div class="album-avatar">
+              <img class="${fallbackClass}" src="${avatarPath}" alt="${customer.name}" />
+            </div>
+            <div>
+              <h2>${customer.name}</h2>
+              <small>
+                ${playableSongs.length} bài hát trực tuyến
+                ${matchedSongText}
+                <br />Thực hiện tại Anh Tuấn Studio
+              </small>
+            </div>
+          </div>
+          <a class="album-link" href="album.html?id=${encodeURIComponent(customer.id)}${trackParam}">
+            XEM ALBUM
+          </a>`;
+
+        albumGrid.appendChild(card);
+      });
     }
     albumSearch.addEventListener('input',()=>renderAlbums(albumSearch.value));
     renderAlbums('');
