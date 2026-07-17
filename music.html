@@ -160,9 +160,17 @@
 
     
 
-    
+    /* CHỈNH ĐỘ CAO THẤP TIÊU ĐỀ MEDIA */
 
-    .now-playing{position:relative;z-index:8;width:100%;padding-top:12px}.now-label{display:inline-flex;align-items:center;gap:8px;color:#43ffd8;font-size:11px;font-weight:900;letter-spacing:4px}.now-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#43ffd8;box-shadow:0 0 14px rgba(67,255,216,.85)}
+  .now-playing{
+    position:relative;
+    z-index:2;
+    width:100%;
+    top:32px;
+}
+    
+    
+    .now-label{display:inline-flex;align-items:center;gap:8px;color:#43ffd8;font-size:11px;font-weight:900;letter-spacing:4px}.now-label::before{content:"";width:8px;height:8px;border-radius:50%;background:#43ffd8;box-shadow:0 0 14px rgba(67,255,216,.85)}
   
     
 .now-playing h2{
@@ -172,7 +180,7 @@
     font-weight:800;
     letter-spacing:-0.5px;
 }
-    
+    /* CHỈNH ĐỘ CAO THẤP TIÊU ĐỀ MEDIA TRÊN ĐIỆN THOẠI */
     
     
     .now-playing p{margin-top:12px;color:#43ffd8;font-size:16px}
@@ -517,6 +525,13 @@
   text-overflow:ellipsis;
 }
 
+
+ /* CHỈNH ĐỘ CAO THẤP MEDIA */
+  
+.now-playing{
+    margin-top:24px;
+}
+      
 .now-playing p{
   margin-top:5px;
   font-size:11px;
@@ -675,84 +690,216 @@
       .footer-content strong{font-size:15px}
       .footer-content img{width:28px;height:28px}
     }
-  
 
-    /* ===== NÚT SAO CHÉP LINK BÀI ĐANG PHÁT ===== */
-    .download-current{
-      min-width:168px;
-      display:grid;
-      gap:8px;
-    }
 
-    .copy-current-track{
-      position:relative;
-      overflow:hidden;
-      width:100%;
-      min-height:36px;
-      padding:0 12px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      color:#ffffff;
-      border:1px solid #b57aff;
-      border-radius:999px;
-      background:linear-gradient(145deg,#ff9ee9 0%,#d85bd0 46%,#9b3fbd 74%,#6d248f 100%);
-      box-shadow:
-        0 0 9px rgba(255,158,233,.40),
-        0 0 20px rgba(216,91,208,.20),
-        inset 0 1px 0 rgba(255,255,255,.44);
-      font-size:8.5px;
-      font-weight:900;
-      white-space:nowrap;
-      cursor:pointer;
-      transition:.24s ease;
-    }
+/* NÚT TÌM KIẾM NHẠC Ở GÓC PHẢI, NGOÀI KHUNG PLAYLIST */
 
-    .copy-current-track:hover{
-      transform:translateY(-1px);
-      box-shadow:
-        0 0 15px rgba(255,173,239,.70),
-        0 0 30px rgba(216,91,208,.34),
-        inset 0 1px 0 rgba(255,255,255,.56);
-    }
+.playlist-panel{
+    position:relative;
+}
 
-    .copy-current-track::before{
-      content:"";
-      position:absolute;
-      top:-65%;
-      left:-48%;
-      width:38%;
-      height:230%;
-      transform:rotate(25deg);
-      background:linear-gradient(
+.search-music-btn{
+    position:absolute;
+    top:-66px;
+    right:0;
+    z-index:20;
+
+    height:46px;
+    padding:0 22px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    overflow:hidden;
+
+    color:#ffffff;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:900;
+
+    border:2px solid #35f6ff;
+    border-radius:999px;
+
+    background:linear-gradient(
+        180deg,
+        #18dce5 0%,
+        #009eaa 100%
+    );
+
+    box-shadow:
+        0 0 10px rgba(53,246,255,.65),
+        0 0 24px rgba(53,246,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.45);
+
+    transition:.25s;
+}
+
+.search-music-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 16px rgba(53,246,255,.90),
+        0 0 34px rgba(53,246,255,.50),
+        inset 0 1px 0 rgba(255,255,255,.55);
+}
+
+/* Ánh kim trắng lướt qua */
+
+.search-music-btn::before{
+    content:"";
+    position:absolute;
+    top:-70%;
+    left:-50%;
+
+    width:38%;
+    height:240%;
+
+    transform:rotate(25deg);
+
+    background:linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,.98),
-        rgba(232,232,240,.96),
+        rgba(255,255,255,.95),
         transparent
-      );
-      animation:copyTrackShine 2.8s linear infinite;
-      pointer-events:none;
+    );
+
+    animation:searchButtonShine 2.6s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes searchButtonShine{
+    from{
+        left:-50%;
     }
 
-    @keyframes copyTrackShine{
-      from{left:-48%;}
-      to{left:138%;}
+    to{
+        left:140%;
     }
+}
 
-    @media(max-width:720px){
-      .download-current{
-        min-width:132px;
-        gap:6px;
-      }
 
-      .copy-current-track{
-        min-height:32px;
-        padding:0 10px;
-        font-size:7px;
-      }
-    }
+
+
+
+    /* NÚT TÌM KIẾM NHẠC TRÊN ĐIỆN THOẠI */
+@media (max-width:720px){
+
+  .playlist-panel .search-music-btn{
+    position:relative;
+    top:auto;
+    right:auto;
+
+    width:max-content;
+    height:34px;
+    min-height:34px;
+    padding:0 14px;
+    margin:0 0 12px auto;
+
+    display:flex;
+    font-size:9px;
+    white-space:nowrap;
+  }
+}
+
+
+
+    
+
+    
+  
+
+/* ===== NÚT SAO CHÉP LINK BÀI ĐANG CHỌN ===== */
+.download-current{
+  display:grid;
+  gap:7px;
+}
+
+.copy-current-track{
+  position:relative;
+  overflow:hidden;
+
+  width:100%;
+  min-height:34px;
+  padding:0 11px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+
+  color:#ffffff;
+  border:1px solid #f1a7ff;
+  border-radius:999px;
+
+  background:linear-gradient(
+    145deg,
+    #ff9ee9 0%,
+    #d85bd0 46%,
+    #9b3fbd 74%,
+    #6d248f 100%
+  );
+
+  box-shadow:
+    0 0 9px rgba(255,158,233,.42),
+    0 0 20px rgba(216,91,208,.22),
+    inset 0 1px 0 rgba(255,255,255,.46);
+
+  font-size:8px;
+  font-weight:900;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:.24s ease;
+}
+
+.copy-current-track:hover{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 15px rgba(255,173,239,.72),
+    0 0 30px rgba(216,91,208,.36),
+    inset 0 1px 0 rgba(255,255,255,.56);
+}
+
+.copy-current-track::before{
+  content:"";
+  position:absolute;
+  top:-65%;
+  left:-48%;
+  width:38%;
+  height:230%;
+  transform:rotate(25deg);
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.98),
+    rgba(232,232,240,.96),
+    transparent
+  );
+
+  animation:musicCopyTrackShine 2.8s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes musicCopyTrackShine{
+  from{left:-48%;}
+  to{left:138%;}
+}
+
+@media(max-width:720px){
+  .download-current{
+    gap:5px;
+  }
+
+  .copy-current-track{
+    width:auto;
+    min-width:118px;
+    min-height:30px;
+    padding:0 8px;
+    font-size:6.8px;
+  }
+}
 
   </style>
 </head>
@@ -760,13 +907,13 @@
   <header class="topbar">
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio" /><span>ANH TUẤN STUDIO</span></a>
-      <nav class="main-nav">
-        <a href="index.html">Trang chủ</a>
-        <a href="shop.html">Shop</a>
-        <a class="active" href="music.html">Nghe nhạc</a>
-        <a href="albums.html">Tìm kiếm nhạc</a>
-        <a href="tel:0868930933">Liên hệ</a>
-      </nav>
+    <nav class="main-nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="shop.html">Shop</a>
+    <a class="active" href="music.html">Nghe nhạc</a>
+    <a href="albums.html">Tìm kiếm nhạc</a>
+    <a href="tel:0868930933">Liên hệ</a>
+</nav>
     </div>
   </header>
   <main>
@@ -778,24 +925,42 @@
       </div>
     </section>
     <section class="container music-layout">
+
+
+      
+      
       <div class="player-panel">
-        <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div><div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
-        <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current"><button id="copyCurrentTrackButton" class="copy-current-track" type="button">🔗 SAO CHÉP LINK BÀI NÀY</button><a id="downloadButton" href="#" target="_self">TẢI VỀ MÁY</a></div></div></div>
+        <div class="cover-area"><div class="ambient-orb"></div><div id="vinyl" class="vinyl"></div><img id="coverLogo" class="cover-logo logo-fallback" src="logo.png" alt="Anh Tuấn Studio" /><div id="equalizer" class="equalizer" aria-hidden="true"><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span></div>
+          
+          <div class="now-playing"><span class="now-label">ĐANG PHÁT</span><h2 id="currentTitle">Chọn một bài hát</h2><p id="currentArtist">Anh Tuấn Studio</p></div></div>
+        <div class="player-controls"><audio id="audioPlayer" preload="metadata"></audio><div class="time-row"><span id="currentTime">0:00</span><input id="progressBar" class="progress" type="range" min="0" max="100" step="0.1" value="0" /><span id="duration">0:00</span></div><div class="main-controls"><button id="previousButton" class="control-button" type="button" title="Bài trước">⏮</button><button id="backwardButton" class="control-button" type="button" title="Lùi 10 giây">↶</button><button id="playButton" class="control-button play-button" type="button" title="Phát hoặc tạm dừng">▶</button><button id="forwardButton" class="control-button" type="button" title="Tiến 10 giây">↷</button><button id="nextButton" class="control-button" type="button" title="Bài tiếp theo">⏭</button></div><div class="player-bottom"><div class="volume-wrap"><span class="volume-icon">🔊</span><input id="volumeRange" class="volume-range" type="range" min="0" max="1" step="0.01" value="0.85" /></div><div class="download-current">
+  <button id="copyCurrentTrackButton" class="copy-current-track" type="button">🔗 SAO CHÉP LINK BÀI NÀY</button>
+  <a id="downloadButton" href="#" target="_self">TẢI FILE WAV</a>
+</div></div></div>
       </div>
-      <aside class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Giai điệu được yêu thích</h2><p>Mỗi trang hiển thị 10 bài hát.</p></div><div class="page-status">Trang <strong id="currentPageText">1</strong> / <span id="totalPageText">1</span></div></div><div id="playlist" class="playlist"></div><div id="pagination" class="pagination"></div></aside>
+
+
+      
+      <aside class="playlist-panel">
+    <a href="albums.html" class="search-music-btn">
+        🔍 TÌM KIẾM NHẠC
+    </a>
+        
+        
+        <div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Giai điệu được yêu thích</h2><p>Mỗi trang hiển thị 10 bài hát.</p></div><div class="page-status">Trang <strong id="currentPageText">1</strong> / <span id="totalPageText">1</span></div></div><div id="playlist" class="playlist"></div><div id="pagination" class="pagination"></div></aside>
     </section>
   </main>
   <footer><div class="container footer-content"><p><strong>ANH TUẤN STUDIO</strong><span class="footer-address">Trảng Bom · Đồng Nai · 0868 930 933</span></p><img src="logo.png" alt="Anh Tuấn Studio" /></div></footer>
   <script src="customers.js"></script>
   <script>
-    const songsPerPage=10;const pageParams=new URLSearchParams(window.location.search);const requestedTrackIndex=Number.parseInt(pageParams.get("track"),10);
+    const songsPerPage=10;
     const featuredSongs=customers.flatMap((customer,customerIndex)=>customer.songs.filter(song=>song.featured===true&&typeof song.listenLink==="string"&&song.listenLink.trim()!=="").map((song,songIndex)=>({title:song.title||"Chưa đặt tên bài hát",artist:customer.name||"Khách hàng",avatar:customer.avatar||"",listenLink:song.listenLink,downloadLink:song.downloadLink||song.listenLink,priority:Number.isFinite(Number(song.priority))?Number(song.priority):Number.POSITIVE_INFINITY,originalOrder:customerIndex*100000+songIndex}))).sort((a,b)=>a.priority!==b.priority?a.priority-b.priority:a.originalOrder-b.originalOrder);
     const audioPlayer=document.getElementById("audioPlayer"),playButton=document.getElementById("playButton"),previousButton=document.getElementById("previousButton"),nextButton=document.getElementById("nextButton"),backwardButton=document.getElementById("backwardButton"),forwardButton=document.getElementById("forwardButton"),progressBar=document.getElementById("progressBar"),volumeRange=document.getElementById("volumeRange"),currentTimeElement=document.getElementById("currentTime"),durationElement=document.getElementById("duration"),currentTitle=document.getElementById("currentTitle"),currentArtist=document.getElementById("currentArtist"),downloadButton=document.getElementById("downloadButton"),copyCurrentTrackButton=document.getElementById("copyCurrentTrackButton"),equalizer=document.getElementById("equalizer"),vinyl=document.getElementById("vinyl"),coverLogo=document.getElementById("coverLogo"),playlist=document.getElementById("playlist"),pagination=document.getElementById("pagination"),currentPageText=document.getElementById("currentPageText"),totalPageText=document.getElementById("totalPageText");
     let currentSongIndex=0,currentPage=1,filteredSongs=[...featuredSongs];
     function normalizeText(text){return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d")}
     function formatTime(seconds){if(!Number.isFinite(seconds))return"0:00";const minutes=Math.floor(seconds/60),remainingSeconds=Math.floor(seconds%60);return`${minutes}:${String(remainingSeconds).padStart(2,"0")}`}
     function getCurrentTrackShareLink(){const url=new URL(window.location.href);url.searchParams.set("track",String(currentSongIndex));return url.toString()}
-    async function copyCurrentTrackLink(){const originalText=copyCurrentTrackButton.textContent;const shareLink=getCurrentTrackShareLink();try{await navigator.clipboard.writeText(shareLink);copyCurrentTrackButton.textContent="ĐÃ SAO CHÉP LINK BÀI NÀY"}catch(error){window.prompt("Sao chép đường dẫn bài hát:",shareLink)}setTimeout(()=>copyCurrentTrackButton.textContent=originalText,1800)}
+    async function copyCurrentTrackLink(){const originalText=copyCurrentTrackButton.textContent;const shareLink=getCurrentTrackShareLink();try{await navigator.clipboard.writeText(shareLink);copyCurrentTrackButton.textContent="ĐÃ SAO CHÉP"}catch(error){window.prompt("Sao chép đường dẫn bài hát:",shareLink)}setTimeout(()=>copyCurrentTrackButton.textContent=originalText,1800)}
     function getTotalPages(){return Math.max(1,Math.ceil(filteredSongs.length/songsPerPage))}
     function getSongsForCurrentPage(){const start=(currentPage-1)*songsPerPage;return filteredSongs.slice(start,start+songsPerPage)}
     function getOriginalSongIndex(song){return featuredSongs.findIndex(item=>item.listenLink===song.listenLink&&item.title===song.title&&item.artist===song.artist)}
@@ -811,7 +976,7 @@
     function updateProgressBackground(progress){const safe=Math.max(0,Math.min(100,progress||0));progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${safe}%,rgba(255,255,255,.13) ${safe}%,rgba(255,255,255,.13) 100%)`}
     playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);
     audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";equalizer.classList.add("playing");vinyl.classList.add("playing");coverLogo.classList.add("playing");renderPlaylist()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderPlaylist()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=audioPlayer.currentTime/audioPlayer.duration*100;progressBar.value=progress||0;updateProgressBackground(progress)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});
-    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
+    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0)loadSong(0,false);else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
   </script>
 </body>
 </html>
