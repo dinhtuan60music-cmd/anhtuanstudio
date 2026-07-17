@@ -1,10 +1,14 @@
 const customers = [
+  
+ /* ALBUM KHÁCH HÀNG MỚI */
   {
     id: "thanhsang",
     name: "Thanh Sáng",
     avatar: "avatar/thanhsang.png",
 
     songs: [
+      
+ /* Bài hát lẻ */
       {
         title: "50 NĂM VỀ SAU",
         featured: true,
@@ -15,21 +19,15 @@ const customers = [
 
         downloadLink:
           "https://ol.ithcm.vn/@s/50namvesau"
-      }
-    ]
-  },
+      },
 
-  {
-    id: "thanhsang",
-    name: "Thanh Sáng",
-    avatar: "avatar/thanhsang.png",
-
-    songs: [
+/* Bài hát lẻ */
       {
         title: "1000 NĂM SAU",
         featured: true,
         priority: 98,
 
+ 
         listenLink:
           "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
 
@@ -40,12 +38,15 @@ const customers = [
   },
 
   
+/* ALBUM KHÁCH HÀNG MỚI */
   {
     id: "hoanguyen",
     name: "Hoàng Uyên",
     avatar: "logo.png",
 
     songs: [
+
+/* Bài hát lẻ */
       {
         title: "MÀU HOA BÍ",
         featured: true,
@@ -60,12 +61,16 @@ const customers = [
     ]
   },
 
+
+/* ALBUM KHÁCH HÀNG MỚI */
   {
     id: "laudamus2025",
     name: "Nhóm Laudamus 2025",
     avatar: "logo.png",
 
     songs: [
+      
+/* Bài hát lẻ */
       {
         title: "TRÁI TIM KHÁT MONG",
         featured: true,
@@ -78,10 +83,7 @@ const customers = [
           ""
       }
     ]
-  },
-
-
-  
+  }
 ];
 
 window.customers = customers;
