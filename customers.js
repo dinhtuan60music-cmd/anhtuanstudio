@@ -31,10 +31,10 @@ const customers = [
         priority: 99,
 
         listenLink:
-          "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
+          "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/blob/15094aa04b794d2915498b435eb899966aced548/files/Trai%20Tim%20Khat%20Mong%20-%20Master%20fix%202026.mp3",
 
         downloadLink:
-          "https://ol.ithcm.vn/@s/50namvesau"
+          ""
       }
     ]
   },
@@ -72,10 +72,10 @@ const customers = [
         priority: 2,
 
         listenLink:
-          "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/blob/15094aa04b794d2915498b435eb899966aced548/files/Trai%20Tim%20Khat%20Mong%20-%20Master%20fix%202026.mp3",
+          "",
 
         downloadLink:
-          "https://github.com/dinhtuan60music-cmd/anhtuanstudio/blob/15094aa04b794d2915498b435eb899966aced548/files/Trai%20Tim%20Khat%20Mong%20-%20Master%20fix%202026.mp3"
+          ""
       }
     ]
   },
