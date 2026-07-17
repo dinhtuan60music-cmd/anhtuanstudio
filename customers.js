@@ -20,6 +20,27 @@ const customers = [
   },
 
   {
+    id: "thanhsang",
+    name: "Thanh Sáng",
+    avatar: "avatar/thanhsang.png",
+
+    songs: [
+      {
+        title: "1000 NĂM SAU",
+        featured: true,
+        priority: 99,
+
+        listenLink:
+          "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
+
+        downloadLink:
+          "https://ol.ithcm.vn/@s/50namvesau"
+      }
+    ]
+  },
+
+  
+  {
     id: "hoanguyen",
     name: "Hoàng Uyên",
     avatar: "logo.png",
