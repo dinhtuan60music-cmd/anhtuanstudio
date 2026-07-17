@@ -546,6 +546,75 @@
       }
     }
 
+  
+
+    /* ===== CHỈNH VỊ TRÍ NÚT LINK ALBUM TRONG PLAYLIST ===== */
+    .playlist-heading-side{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:8px;
+    }
+
+    .playlist-share-album{
+      min-height:30px !important;
+      padding:0 11px !important;
+      font-size:8px !important;
+      white-space:nowrap;
+    }
+
+    /* ===== NÚT SAO CHÉP LINK BÀI NÀY: TÍM HỒNG MỘNG MƠ ===== */
+    .copy-current-track{
+      color:#ffffff;
+      border-color:#f1a7ff;
+      background:linear-gradient(
+        145deg,
+        #ff9ee9 0%,
+        #d85bd0 46%,
+        #9b3fbd 74%,
+        #6d248f 100%
+      );
+      box-shadow:
+        0 0 9px rgba(255,158,233,.48),
+        0 0 20px rgba(216,91,208,.24),
+        inset 0 1px 0 rgba(255,255,255,.46);
+    }
+
+    .copy-current-track:hover{
+      box-shadow:
+        0 0 16px rgba(255,173,239,.74),
+        0 0 30px rgba(216,91,208,.38),
+        inset 0 1px 0 rgba(255,255,255,.56);
+    }
+
+    .copy-current-track::before{
+      background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.98),
+        rgba(232,232,240,.96),
+        transparent
+      );
+    }
+
+    @media(max-width:700px){
+      .playlist-heading{
+        width:100%;
+      }
+
+      .playlist-heading-side{
+        width:100%;
+        align-items:flex-end;
+        gap:6px;
+      }
+
+      .playlist-share-album{
+        min-height:27px !important;
+        padding:0 9px !important;
+        font-size:7px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -565,7 +634,7 @@
   <main id="albumContent">
     <section class="album-hero"><div class="container album-hero-inner"><div class="album-profile"><div class="album-avatar"><img id="albumAvatar" src="logo.png" alt="Album khách hàng"></div><div><span class="album-kicker">ALBUM KHÁCH HÀNG</span><h1 id="albumName">Khách hàng</h1><p id="albumMeta" class="album-meta"></p>
       
-      <div class="album-actions"><button id="shareAlbumButton" class="album-action album-share-btn" type="button">SAO CHÉP LINK ALBUM</button>
+      <div class="album-actions">
       
         <a class="album-action search-btn" href="albums.html">🔍 TÌM KIẾM NHẠC</a>
       
@@ -575,7 +644,7 @@
   <button id="copyCurrentTrackButton" class="copy-current-track" type="button">🔗 SAO CHÉP LINK BÀI NÀY</button>
   <a id="downloadCurrent" href="#" target="_self">TẢI FILE WAV</a>
 </div></div></div></section>
-      <section class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Danh sách bài hát</h2><p>Chọn một bài để nghe trực tuyến.</p></div><div class="page-status">Trang <strong id="currentPageStatus">1</strong> / <span id="totalPageStatus">1</span></div></div><div id="albumTrackList" class="album-track-list"></div><div id="albumPagination" class="album-pagination"></div></section>
+      <section class="playlist-panel"><div class="playlist-heading"><div class="playlist-heading-text"><span>PLAYLIST</span><h2>Danh sách bài hát</h2><p>Chọn một bài để nghe trực tuyến.</p></div><div class="playlist-heading-side"><button id="shareAlbumButton" class="album-action album-share-btn playlist-share-album" type="button">🔗 SAO CHÉP LINK ALBUM</button><div class="page-status">Trang <strong id="currentPageStatus">1</strong> / <span id="totalPageStatus">1</span></div></div></div><div id="albumTrackList" class="album-track-list"></div><div id="albumPagination" class="album-pagination"></div></section>
     </div></section>
   </main>
   <section id="albumNotFound" class="album-not-found hidden"><div class="container"><h1>Không tìm thấy album</h1><p>Album không tồn tại hoặc chưa có bài hát trực tuyến.</p><a class="album-action" href="albums.html">TÌM ALBUM KHÁC</a></div></section>
