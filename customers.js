@@ -10,7 +10,7 @@ const customers = [
       
  /* Bài hát lẻ */
       {
-        title: "50 NĂM VỀ SAU",
+        title: "50 Năm về sau",
         featured: true,
         priority: 99,
 
@@ -34,7 +34,7 @@ const customers = [
 
 /* Bài hát lẻ */
       {
-        title: "MÀU HOA BÍ",
+        title: "Màu hoa bí",
         featured: true,
         priority: 1,
 
