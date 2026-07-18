@@ -23,7 +23,7 @@ const customers = [
 
 /* Bài hát lẻ */
       {
-        title: "1000 NĂM SAU",
+        title: "1000 NỮA ĐÓ",
         featured: true,
         priority: 98,
 
@@ -42,7 +42,7 @@ const customers = [
   {
     id: "hoanguyen",
     name: "Hoàng Uyên",
-    avatar: "logo.png",
+    avatar: "hoanguyen.jpg",
 
     songs: [
 
