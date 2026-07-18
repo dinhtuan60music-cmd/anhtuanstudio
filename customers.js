@@ -21,14 +21,28 @@ const customers = [
           "https://ol.ithcm.vn/@s/50namvesau"
       },
 
+/* Bài hát lẻ */
+      {
+        title: "Một triệu năm",
+        featured: true,
+        priority: 98,
 
+ 
+        listenLink:
+          "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
+
+        downloadLink:
+          ""
+      }
+    ]
+  },
 
   
 /* ALBUM KHÁCH HÀNG MỚI */
   {
     id: "hoanguyen",
     name: "Hoàng Uyên",
-    avatar: "avatar/hoanguyen.jpg",
+    avatar: "logo.png",
 
     songs: [
 
@@ -58,7 +72,7 @@ const customers = [
       
 /* Bài hát lẻ */
       {
-        title: "TRÁI TIM KHÁT MONG",
+        title: "Trái tim khát mong",
         featured: true,
         priority: 2,
 
