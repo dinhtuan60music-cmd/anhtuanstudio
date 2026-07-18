@@ -42,7 +42,7 @@ const customers = [
   {
     id: "hoanguyen",
     name: "Hoàng Uyên",
-    avatar: "hoanguyen.jpg",
+    avatar: "avatar/hoanguyen.jpg",
 
     songs: [
 
