@@ -1177,6 +1177,45 @@
   transform:translateY(-3px);
 }
 
+
+/* ===== CHỈNH RIÊNG CỤM ĐANG PHÁT TRÊN ĐIỆN THOẠI ===== */
+/* Nhích toàn bộ: ĐANG PHÁT + tên bài + tên ca sĩ lên nhẹ, desktop giữ nguyên */
+@media (max-width:720px){
+  .now-playing{
+    transform:translateY(-12px);
+  }
+}
+
+
+/* ===== FIX AVATAR TRÊN ĐIỆN THOẠI GIỐNG TRANG ALBUM ===== */
+/* Chỉ sửa cách ảnh nằm trong vòng tròn trên điện thoại, không đổi vị trí/kích thước khác */
+@media (max-width:720px){
+  .cover-logo{
+    object-fit:cover !important;
+    object-position:center center !important;
+    padding:0 !important;
+    background:#090909 !important;
+  }
+
+  .cover-logo.logo-fallback{
+    object-fit:contain !important;
+    padding:28px !important;
+  }
+}
+
+@media (max-width:470px){
+  .cover-logo{
+    object-fit:cover !important;
+    object-position:center center !important;
+    padding:0 !important;
+  }
+
+  .cover-logo.logo-fallback{
+    object-fit:contain !important;
+    padding:30px !important;
+  }
+}
+
 </style>
 </head>
 <body>
