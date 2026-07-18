@@ -21,21 +21,7 @@ const customers = [
           "https://ol.ithcm.vn/@s/50namvesau"
       },
 
-/* Bài hát lẻ */
-      {
-        title: "1000 NỮA ĐÓ",
-        featured: true,
-        priority: 98,
 
- 
-        listenLink:
-          "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
-
-        downloadLink:
-          ""
-      }
-    ]
-  },
 
   
 /* ALBUM KHÁCH HÀNG MỚI */
