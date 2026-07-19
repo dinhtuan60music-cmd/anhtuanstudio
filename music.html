@@ -1317,6 +1317,75 @@
   return cleanUrl;
 }
 
+
+async function forceDownloadCurrentSong(event,song,button){
+  const downloadUrl=getDownloadLink(song);
+
+  if(!downloadUrl || downloadUrl==="#"){
+    event.preventDefault();
+    return;
+  }
+
+  let parsedUrl;
+
+  try{
+    parsedUrl=new URL(downloadUrl,window.location.href);
+  }catch(error){
+    return;
+  }
+
+  const host=parsedUrl.hostname.toLowerCase();
+  const isGitHubRaw=
+    host==="raw.githubusercontent.com" ||
+    host==="githubusercontent.com" ||
+    host.endsWith(".githubusercontent.com");
+
+  if(!isGitHubRaw){
+    button.href=downloadUrl;
+    return;
+  }
+
+  event.preventDefault();
+
+  const originalText=button.textContent;
+  button.textContent="ĐANG TẢI...";
+
+  try{
+    const response=await fetch(downloadUrl,{mode:"cors"});
+
+    if(!response.ok){
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const blob=await response.blob();
+    const objectUrl=URL.createObjectURL(blob);
+    const fileName=decodeURIComponent(parsedUrl.pathname.split("/").pop()||"tai-xuong");
+
+    const tempLink=document.createElement("a");
+    tempLink.href=objectUrl;
+    tempLink.download=fileName;
+    tempLink.style.display="none";
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
+
+    setTimeout(()=>URL.revokeObjectURL(objectUrl),1500);
+  }catch(error){
+    const tempLink=document.createElement("a");
+    tempLink.href=downloadUrl;
+    tempLink.download=decodeURIComponent(parsedUrl.pathname.split("/").pop()||"tai-xuong");
+    tempLink.target="_self";
+    tempLink.style.display="none";
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
+  }finally{
+    button.textContent=originalText;
+  }
+}
+
 function getDownloadLink(song){
   if(typeof song.downloadLink==="string" && song.downloadLink.trim()!==""){
     return convertGoogleDriveDownloadLink(song.downloadLink);
@@ -1364,7 +1433,7 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
     function playNextSong(){if(featuredSongs.length===0)return;const nextIndex=(currentSongIndex+1)%featuredSongs.length;loadSong(nextIndex,true);showCurrentSongPage()}
     function showCurrentSongPage(){const currentSong=featuredSongs[currentSongIndex],filteredIndex=filteredSongs.findIndex(song=>song.listenLink===currentSong.listenLink);if(filteredIndex===-1)return;currentPage=Math.floor(filteredIndex/songsPerPage)+1;renderPlaylist()}
     function updateProgressBackground(progress){const safe=Math.max(0,Math.min(100,progress||0));progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${safe}%,rgba(255,255,255,.13) ${safe}%,rgba(255,255,255,.13) 100%)`}
-    playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);
+    playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);downloadButton.addEventListener("click",(event)=>forceDownloadCurrentSong(event,featuredSongs[currentSongIndex],downloadButton));
     audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";equalizer.classList.add("playing");vinyl.classList.add("playing");coverLogo.classList.add("playing");renderPlaylist()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderPlaylist()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=audioPlayer.currentTime/audioPlayer.duration*100;progressBar.value=progress||0;updateProgressBackground(progress)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});
     audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
   </script>
