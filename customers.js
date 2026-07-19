@@ -29,10 +29,10 @@ const customers = [
 
  
         listenLink:
-          "https://anhtuan.i234.me/music/test.mp3",
+          "https://music.anhtuanstudio.com/music/test.mp3",
 
         downloadLink:
-          ""
+          "https://music.anhtuanstudio.com/download.php?file=test.mp3"
       },
 
 /* Chèn thêm bài ở đây*/
