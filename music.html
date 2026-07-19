@@ -1283,24 +1283,61 @@
     
     /* TỰ SHARE LINK TẢI VỀ KHÔNG CẦN DÁN THÊM */
     
-    function getDownloadLink(song){
-  if(
-    typeof song.downloadLink === "string" &&
-    song.downloadLink.trim() !== ""
-  ){
-    return song.downloadLink;
+    function convertGoogleDriveDownloadLink(url){
+  if(typeof url!=="string" || url.trim()===""){
+    return "";
   }
 
-  if(
-    typeof song.listenLink !== "string" ||
-    song.listenLink.trim() === ""
-  ){
+  const cleanUrl=url.trim();
+
+  try{
+    const driveUrl=new URL(cleanUrl);
+    const host=driveUrl.hostname.toLowerCase();
+
+    if(host==="drive.google.com" || host.endsWith(".drive.google.com")){
+      let fileId="";
+
+      const fileMatch=driveUrl.pathname.match(/\/file\/d\/([^/]+)/i);
+      if(fileMatch){
+        fileId=fileMatch[1];
+      }
+
+      if(!fileId){
+        fileId=driveUrl.searchParams.get("id")||"";
+      }
+
+      if(fileId){
+        return `https://drive.google.com/uc?export=download&id=${encodeURIComponent(fileId)}`;
+      }
+    }
+  }catch(error){
+    return cleanUrl;
+  }
+
+  return cleanUrl;
+}
+
+function getDownloadLink(song){
+  if(typeof song.downloadLink==="string" && song.downloadLink.trim()!==""){
+    return convertGoogleDriveDownloadLink(song.downloadLink);
+  }
+
+  if(typeof song.wavLink==="string" && song.wavLink.trim()!==""){
+    return convertGoogleDriveDownloadLink(song.wavLink);
+  }
+
+  if(typeof song.listenLink!=="string" || song.listenLink.trim()===""){
     return "#";
   }
 
   try{
-    const listenUrl = new URL(song.listenLink);
-    const fileName = listenUrl.pathname.split("/").pop();
+    const listenUrl=new URL(song.listenLink);
+    const encodedName=listenUrl.pathname.split("/").pop()||"";
+    const fileName=decodeURIComponent(encodedName);
+
+    if(!fileName){
+      return song.listenLink;
+    }
 
     return `${listenUrl.origin}/download.php?file=${encodeURIComponent(fileName)}`;
   }catch(error){
