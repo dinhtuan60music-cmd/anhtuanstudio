@@ -17,8 +17,6 @@ const customers = [
         listenLink:
           "https://dl.ithcm.vn/TEMP/50%20NAM%20VE%20SAU%20-%20MASTER.wav",
 
-        downloadLink:
-          "https://ol.ithcm.vn/@s/50namvesau"
       },
 
 /* Bài hát lẻ */
@@ -31,8 +29,6 @@ const customers = [
         listenLink:
           "https://music.anhtuanstudio.com/music/test.mp3",
 
-        downloadLink:
-          "https://music.anhtuanstudio.com/download.php?file=test.mp3"
       },
 
 /* Chèn thêm bài ở đây*/
@@ -59,8 +55,6 @@ const customers = [
         listenLink:
           "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/81490acbd7f5e53e5eebed6e0854e2a15870a03f/files/MAU%20HOA%20BI%20-%20HOANG%20UYEN%20-%20MASTER.mp3",
 
-        downloadLink:
-          "https://drive.google.com/file/d/1eLSSLI6Ee0yx413nwXHpj3ccQfyy7EqD/view?usp=sharing"
       },
 
 /* Bài hát lẻ */
@@ -72,11 +66,11 @@ const customers = [
         listenLink:
           "https://raw.githubusercontent.com/dinhtuan60music-cmd/anhtuanstudio/81490acbd7f5e53e5eebed6e0854e2a15870a03f/files/MAU%20HOA%20BI%20-%20HOANG%20UYEN%20-%20MASTER.mp3",
 
-        downloadLink:
-          "https://drive.google.com/file/d/1eLSSLI6Ee0yx413nwXHpj3ccQfyy7EqD/view?usp=sharing"
+
       },
 
-
+/* Chèn thêm bài ở đây*/
+      
       
     ]
   },
@@ -99,8 +93,6 @@ const customers = [
         listenLink:
           "",
 
-        downloadLink:
-          ""
       },
       
       
