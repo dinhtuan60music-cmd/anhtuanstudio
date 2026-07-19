@@ -1105,6 +1105,75 @@
   return cleanUrl;
 }
 
+
+async function forceDownloadCurrentSong(event,song,button){
+  const downloadUrl=getDownloadLink(song);
+
+  if(!downloadUrl || downloadUrl==="#"){
+    event.preventDefault();
+    return;
+  }
+
+  let parsedUrl;
+
+  try{
+    parsedUrl=new URL(downloadUrl,window.location.href);
+  }catch(error){
+    return;
+  }
+
+  const host=parsedUrl.hostname.toLowerCase();
+  const isGitHubRaw=
+    host==="raw.githubusercontent.com" ||
+    host==="githubusercontent.com" ||
+    host.endsWith(".githubusercontent.com");
+
+  if(!isGitHubRaw){
+    button.href=downloadUrl;
+    return;
+  }
+
+  event.preventDefault();
+
+  const originalText=button.textContent;
+  button.textContent="ĐANG TẢI...";
+
+  try{
+    const response=await fetch(downloadUrl,{mode:"cors"});
+
+    if(!response.ok){
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const blob=await response.blob();
+    const objectUrl=URL.createObjectURL(blob);
+    const fileName=decodeURIComponent(parsedUrl.pathname.split("/").pop()||"tai-xuong");
+
+    const tempLink=document.createElement("a");
+    tempLink.href=objectUrl;
+    tempLink.download=fileName;
+    tempLink.style.display="none";
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
+
+    setTimeout(()=>URL.revokeObjectURL(objectUrl),1500);
+  }catch(error){
+    const tempLink=document.createElement("a");
+    tempLink.href=downloadUrl;
+    tempLink.download=decodeURIComponent(parsedUrl.pathname.split("/").pop()||"tai-xuong");
+    tempLink.target="_self";
+    tempLink.style.display="none";
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
+  }finally{
+    button.textContent=originalText;
+  }
+}
+
 function getDownloadLink(song){
   if(typeof song.downloadLink==="string" && song.downloadLink.trim()!==""){
     return convertGoogleDriveDownloadLink(song.downloadLink);
@@ -1152,7 +1221,7 @@ function getDownloadLink(song){
     function playPreviousSong(){if(!playableSongs.length)return;loadSong(currentSongIndex<=0?playableSongs.length-1:currentSongIndex-1,true)}
     function playNextSong(){if(!playableSongs.length)return;loadSong((currentSongIndex+1)%playableSongs.length,true)}
     async function copyAlbumLink(){const original=shareAlbumButton.textContent;try{await navigator.clipboard.writeText(window.location.href);shareAlbumButton.textContent="ĐÃ SAO CHÉP"}catch(e){window.prompt("Sao chép đường dẫn album:",window.location.href)}setTimeout(()=>shareAlbumButton.textContent=original,2200)}
-    if(!customer||!playableSongs.length){albumContent.classList.add("hidden");albumNotFound.classList.remove("hidden")}else{document.title=`${customer.name} - Album Anh Tuấn Studio`;albumAvatar.src=customer.avatar||"logo.png";albumAvatar.alt=customer.name;if(!customer.avatar)albumAvatar.classList.add("logo-fallback");coverLogoImage.src=customer.avatar||"logo.png";coverLogoImage.alt=customer.avatar?customer.name:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!customer.avatar);albumName.textContent=customer.name;albumMeta.textContent=`${playableSongs.length} bài hát trực tuyến · Thực hiện tại Anh Tuấn Studio`;shareAlbumButton.addEventListener("click",copyAlbumLink);copyCurrentTrackButton.addEventListener("click",()=>copyTrackLink(currentSongIndex,copyCurrentTrackButton));playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);progressBar.addEventListener("input",()=>{if(!Number.isFinite(audioPlayer.duration))return;audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";vinyl.classList.add("playing");coverLogo.classList.add("playing");renderTracks()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderTracks()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=(audioPlayer.currentTime/audioPlayer.duration)*100;progressBar.value=progress||0;updateProgressBackground(progress||0)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});audioPlayer.volume=Number(volumeRange.value);const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<playableSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false)}
+    if(!customer||!playableSongs.length){albumContent.classList.add("hidden");albumNotFound.classList.remove("hidden")}else{document.title=`${customer.name} - Album Anh Tuấn Studio`;albumAvatar.src=customer.avatar||"logo.png";albumAvatar.alt=customer.name;if(!customer.avatar)albumAvatar.classList.add("logo-fallback");coverLogoImage.src=customer.avatar||"logo.png";coverLogoImage.alt=customer.avatar?customer.name:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!customer.avatar);albumName.textContent=customer.name;albumMeta.textContent=`${playableSongs.length} bài hát trực tuyến · Thực hiện tại Anh Tuấn Studio`;shareAlbumButton.addEventListener("click",copyAlbumLink);copyCurrentTrackButton.addEventListener("click",()=>copyTrackLink(currentSongIndex,copyCurrentTrackButton));downloadCurrent.addEventListener("click",(event)=>forceDownloadCurrentSong(event,playableSongs[currentSongIndex],downloadCurrent));playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);progressBar.addEventListener("input",()=>{if(!Number.isFinite(audioPlayer.duration))return;audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";vinyl.classList.add("playing");coverLogo.classList.add("playing");renderTracks()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderTracks()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=(audioPlayer.currentTime/audioPlayer.duration)*100;progressBar.value=progress||0;updateProgressBackground(progress||0)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});audioPlayer.volume=Number(volumeRange.value);const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<playableSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false)}
   </script>
 </body>
 </html>
