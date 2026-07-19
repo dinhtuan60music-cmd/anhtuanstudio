@@ -1071,37 +1071,33 @@
     const tracksPerPage=10;let currentTrackPage=1,currentSongIndex=0;const playableSongs=customer?(customer.songs||[]).filter(song=>typeof song.listenLink==="string"&&song.listenLink.trim()!==""):[];
     function formatTime(seconds){if(!Number.isFinite(seconds))return"0:00";const m=Math.floor(seconds/60),s=Math.floor(seconds%60);return`${m}:${String(s).padStart(2,"0")}`}
     function updateProgressBackground(value){progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${value}%,rgba(255,255,255,.13) ${value}%,rgba(255,255,255,.13) 100%)`}
-    
-   /* AUTO TẠO LINK TẢI VỀ MÀ KHÔNG CẦN DÁN LINK */
-    
     function getDownloadLink(song){
-  if(
-    typeof song.downloadLink === "string" &&
-    song.downloadLink.trim() !== ""
-  ){
+  if(typeof song.downloadLink==="string" && song.downloadLink.trim()!==""){
     return song.downloadLink;
   }
 
-  if(
-    typeof song.listenLink !== "string" ||
-    song.listenLink.trim() === ""
-  ){
+  if(typeof song.wavLink==="string" && song.wavLink.trim()!==""){
+    return song.wavLink;
+  }
+
+  if(typeof song.listenLink!=="string" || song.listenLink.trim()===""){
     return "#";
   }
 
   try{
-    const listenUrl = new URL(song.listenLink);
-    const fileName = listenUrl.pathname.split("/").pop();
+    const listenUrl=new URL(song.listenLink);
+    const encodedName=listenUrl.pathname.split("/").pop()||"";
+    const fileName=decodeURIComponent(encodedName);
+
+    if(!fileName){
+      return song.listenLink;
+    }
 
     return `${listenUrl.origin}/download.php?file=${encodeURIComponent(fileName)}`;
   }catch(error){
     return song.listenLink;
   }
 }
-
-
-    
-    
     function getTrackShareLink(index){const url=new URL(window.location.href);url.searchParams.set("id",customer.id);url.searchParams.set("track",String(index));return url.toString()}
     async function copyTrackLink(index,button){const original=button.textContent;const link=getTrackShareLink(index);try{await navigator.clipboard.writeText(link);button.textContent="ĐÃ SAO CHÉP"}catch(e){window.prompt("Sao chép đường dẫn bài hát:",link)}setTimeout(()=>button.textContent=original,1800)}
     function renderTracks(){albumTrackList.innerHTML="";albumPagination.innerHTML="";const totalPages=Math.max(1,Math.ceil(playableSongs.length/tracksPerPage));if(currentTrackPage>totalPages)currentTrackPage=totalPages;currentPageStatus.textContent=currentTrackPage;totalPageStatus.textContent=totalPages;const start=(currentTrackPage-1)*tracksPerPage,end=Math.min(start+tracksPerPage,playableSongs.length);playableSongs.slice(start,end).forEach((song,pageIndex)=>{const realIndex=start+pageIndex,button=document.createElement("button");button.type="button";button.className=realIndex===currentSongIndex?"album-track active":"album-track";const isPlaying=realIndex===currentSongIndex&&!audioPlayer.paused;button.innerHTML=`<span class="track-number">${String(realIndex+1).padStart(2,"0")}</span><span class="track-info"><strong>${song.title||"Chưa đặt tên bài hát"}</strong><small>${customer.name}</small></span><span class="track-play">${isPlaying?"❚❚":"▶"}</span>`;button.addEventListener("click",()=>{if(realIndex===currentSongIndex){togglePlayback();return}loadSong(realIndex,true)});albumTrackList.appendChild(button)});if(totalPages<=1)return;const mk=(text,page,active=false)=>{const b=document.createElement("button");b.type="button";b.className=active?"album-page-button active":"album-page-button";b.textContent=text;b.addEventListener("click",()=>{currentTrackPage=page;renderTracks()});return b};const prev=mk("‹",Math.max(1,currentTrackPage-1));prev.disabled=currentTrackPage===1;albumPagination.appendChild(prev);for(let p=1;p<=totalPages;p++)albumPagination.appendChild(mk(String(p),p,p===currentTrackPage));const next=mk("›",Math.min(totalPages,currentTrackPage+1));next.disabled=currentTrackPage===totalPages;albumPagination.appendChild(next)}
