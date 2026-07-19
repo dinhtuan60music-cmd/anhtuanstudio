@@ -1118,18 +1118,30 @@ function getDownloadLink(song){
     return "#";
   }
 
-  try{
-    const listenUrl=new URL(song.listenLink);
-    const encodedName=listenUrl.pathname.split("/").pop()||"";
-    const fileName=decodeURIComponent(encodedName);
+  const listenLink=song.listenLink.trim();
 
-    if(!fileName){
-      return song.listenLink;
+  try{
+    const listenUrl=new URL(listenLink);
+    const host=listenUrl.hostname.toLowerCase();
+
+    if(host==="drive.google.com" || host.endsWith(".drive.google.com")){
+      return convertGoogleDriveDownloadLink(listenLink);
     }
 
-    return `${listenUrl.origin}/download.php?file=${encodeURIComponent(fileName)}`;
+    if(host==="music.anhtuanstudio.com"){
+      const encodedName=listenUrl.pathname.split("/").pop()||"";
+      const fileName=decodeURIComponent(encodedName);
+
+      if(!fileName){
+        return listenLink;
+      }
+
+      return `${listenUrl.origin}/download.php?file=${encodeURIComponent(fileName)}`;
+    }
+
+    return listenLink;
   }catch(error){
-    return song.listenLink;
+    return listenLink;
   }
 }
     function getTrackShareLink(index){const url=new URL(window.location.href);url.searchParams.set("id",customer.id);url.searchParams.set("track",String(index));return url.toString()}
