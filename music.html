@@ -1308,14 +1308,7 @@
   }
 }
 
-function loadSong(index,shouldPlay=false){
-
-
-  /* HẾT HÀM */
-
-
-  
-    function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!song)return;currentSongIndex=index;audioPlayer.src=song.listenLink;currentTitle.textContent=song.title;currentArtist.textContent=song.artist;coverLogo.src=song.avatar||"logo.png";coverLogo.alt=song.avatar?song.artist:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!song.avatar);
+function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!song)return;currentSongIndex=index;audioPlayer.src=song.listenLink;currentTitle.textContent=song.title;currentArtist.textContent=song.artist;coverLogo.src=song.avatar||"logo.png";coverLogo.alt=song.avatar?song.artist:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!song.avatar);
                                               downloadButton.href=getDownloadLink(song);progressBar.value=0;currentTimeElement.textContent="0:00";durationElement.textContent="0:00";updateProgressBackground(0);renderPlaylist();if(shouldPlay)audioPlayer.play().catch(()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")})}
     function togglePlayback(){if(featuredSongs.length===0)return;if(!audioPlayer.src){loadSong(currentSongIndex,true);return}audioPlayer.paused?audioPlayer.play().catch(()=>{}):audioPlayer.pause()}
     function playPreviousSong(){if(featuredSongs.length===0)return;const previousIndex=currentSongIndex<=0?featuredSongs.length-1:currentSongIndex-1;loadSong(previousIndex,true);showCurrentSongPage()}
