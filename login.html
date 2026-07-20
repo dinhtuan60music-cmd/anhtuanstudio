@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+
+  <title>Đăng nhập khu vực khách hàng | Anh Tuấn Studio</title>
+
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:20px;
+      background:
+        linear-gradient(rgba(8,8,12,.78),rgba(8,8,12,.88)),
+        url("studio-bg.png") center/cover no-repeat fixed;
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+    .login-card{
+      width:min(100%,420px);
+      padding:28px 24px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:20px;
+      background:rgba(20,20,26,.92);
+      box-shadow:0 18px 55px rgba(0,0,0,.42);
+      text-align:center;
+    }
+    .logo{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      margin-bottom:10px;
+    }
+    h1{font-size:24px;margin:8px 0 10px}
+    p{margin:0 0 20px;color:#cfcfd6;line-height:1.6;font-size:14px}
+    label{display:block;text-align:left;font-size:13px;margin-bottom:7px;color:#e9e9ee}
+    input[type="password"]{
+      width:100%;
+      min-height:48px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:12px;
+      padding:0 14px;
+      background:#111117;
+      color:#fff;
+      font-size:16px;
+      outline:none;
+    }
+    input[type="password"]:focus{border-color:#f39a3c}
+    .remember{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      margin:14px 0 18px;
+      text-align:left;
+      font-size:13px;
+      color:#d7d7dd;
+    }
+    .remember input{width:17px;height:17px}
+    button{
+      width:100%;
+      min-height:48px;
+      border:0;
+      border-radius:12px;
+      background:#f08a2b;
+      color:#fff;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    button:hover{filter:brightness(1.06)}
+    .error{
+      display:none;
+      margin:14px 0 0;
+      color:#ff9e9e;
+      font-size:13px;
+    }
+    .back{
+      display:inline-block;
+      margin-top:18px;
+      color:#cfcfd6;
+      text-decoration:none;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-card">
+    <img class="logo" src="logo.png" alt="Anh Tuấn Studio">
+    <h1>Khu vực dành cho khách hàng</h1>
+    <p>Vui lòng nhập mật khẩu để tìm và nghe lại các bản thu cover của khách tại Anh Tuấn Studio.</p>
+
+    <form id="loginForm">
+      <label for="password">Mật khẩu truy cập</label>
+      <input id="password" type="password" required autocomplete="current-password">
+
+      <label class="remember">
+        <input id="rememberDevice" type="checkbox" checked>
+        Ghi nhớ thiết bị này trong 90 ngày
+      </label>
+
+      <button type="submit">ĐĂNG NHẬP</button>
+      <div id="errorMessage" class="error">Mật khẩu chưa đúng.</div>
+    </form>
+
+    <a class="back" href="index.html">← Quay về trang chủ</a>
+  </main>
+
+  <script>
+    /*
+      ĐỔI MẬT KHẨU TẠI DÒNG DƯỚI.
+      Lưu ý: Đây là khóa JavaScript dành cho website tĩnh/GitHub Pages,
+      chỉ giúp giới hạn truy cập thông thường, không phải bảo mật máy chủ.
+    */
+    const SITE_PASSWORD = "DOI_MAT_KHAU_CUA_ANH";
+
+    const ACCESS_KEY = "ats_customer_access";
+    const REMEMBER_DAYS = 90;
+
+    function getSafeNextPage() {
+      const params = new URLSearchParams(window.location.search);
+      const next = params.get("next") || "albums.html";
+
+      if (
+        next.startsWith("http://") ||
+        next.startsWith("https://") ||
+        next.startsWith("//") ||
+        next.includes("\\")
+      ) {
+        return "albums.html";
+      }
+
+      return next;
+    }
+
+    function saveAccess(remember) {
+      const expiresAt = remember
+        ? Date.now() + REMEMBER_DAYS * 24 * 60 * 60 * 1000
+        : Date.now() + 12 * 60 * 60 * 1000;
+
+      localStorage.setItem(
+        ACCESS_KEY,
+        JSON.stringify({ allowed: true, expiresAt })
+      );
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const password = document.getElementById("password").value;
+      const remember = document.getElementById("rememberDevice").checked;
+      const errorMessage = document.getElementById("errorMessage");
+
+      if (password === SITE_PASSWORD) {
+        saveAccess(remember);
+        window.location.replace(getSafeNextPage());
+        return;
+      }
+
+      errorMessage.style.display = "block";
+      document.getElementById("password").select();
+    });
+  </script>
+</body>
+</html>
