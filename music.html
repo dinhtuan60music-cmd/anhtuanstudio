@@ -1226,7 +1226,7 @@
     <a href="index.html">Trang chủ</a>
     <a href="shop.html">Shop</a>
     <a class="active" href="music.html">Demo Khách</a>
-    <a href="albums.html">Khách tìm kiếm</a>
+    <a href="https://music.anhtuanstudio.com/guest.php">Khách tìm kiếm</a>
     <a href="tel:0868930933">Liên hệ</a>
 </nav>
     </div>
@@ -1254,7 +1254,7 @@
 
       
       <aside class="playlist-panel">
-    <a href="albums.html" class="search-music-btn">
+    <a href="https://music.anhtuanstudio.com/guest.php" class="search-music-btn">
         🔍 KHÁCH TÌM KIẾM
     </a>
         
@@ -1263,10 +1263,10 @@
     </section>
   </main>
   <footer><div class="container footer-content"><p><strong>ANH TUẤN STUDIO</strong><span class="footer-address">Trảng Bom · Đồng Nai · 0868 930 933</span></p><img src="logo.png" alt="Anh Tuấn Studio" /></div></footer>
-  <script src="customers.js"></script>
+  <script src="demo.js"></script>
   <script>
     const songsPerPage=10;const pageParams=new URLSearchParams(window.location.search);const requestedTrackIndex=Number.parseInt(pageParams.get("track"),10);
-    const featuredSongs=customers.flatMap((customer,customerIndex)=>customer.songs.filter(song=>song.featured===true&&typeof song.listenLink==="string"&&song.listenLink.trim()!=="").map((song,songIndex)=>({title:song.title||"Chưa đặt tên bài hát",artist:customer.name||"Khách hàng",avatar:customer.avatar||"",listenLink:song.listenLink,downloadLink:song.downloadLink||"",priority:Number.isFinite(Number(song.priority))?Number(song.priority):Number.POSITIVE_INFINITY,originalOrder:customerIndex*100000+songIndex}))).sort((a,b)=>a.priority!==b.priority?a.priority-b.priority:a.originalOrder-b.originalOrder);
+    const featuredSongs=(Array.isArray(window.demoSongs)?window.demoSongs:[]).filter(song=>typeof song.listenLink==="string"&&song.listenLink.trim()!=="").map((song,songIndex)=>({title:song.title||"Chưa đặt tên bài hát",artist:song.artist||"Anh Tuấn Studio",avatar:song.avatar||"",listenLink:song.listenLink,downloadLink:song.downloadLink||"",priority:Number.isFinite(Number(song.priority))?Number(song.priority):Number.POSITIVE_INFINITY,originalOrder:songIndex})).sort((a,b)=>a.priority!==b.priority?a.priority-b.priority:a.originalOrder-b.originalOrder);
     const audioPlayer=document.getElementById("audioPlayer"),playButton=document.getElementById("playButton"),previousButton=document.getElementById("previousButton"),nextButton=document.getElementById("nextButton"),backwardButton=document.getElementById("backwardButton"),forwardButton=document.getElementById("forwardButton"),progressBar=document.getElementById("progressBar"),volumeRange=document.getElementById("volumeRange"),currentTimeElement=document.getElementById("currentTime"),durationElement=document.getElementById("duration"),currentTitle=document.getElementById("currentTitle"),currentArtist=document.getElementById("currentArtist"),downloadButton=document.getElementById("downloadButton"),copyCurrentTrackButton=document.getElementById("copyCurrentTrackButton"),equalizer=document.getElementById("equalizer"),vinyl=document.getElementById("vinyl"),coverLogo=document.getElementById("coverLogo"),playlist=document.getElementById("playlist"),pagination=document.getElementById("pagination"),currentPageText=document.getElementById("currentPageText"),totalPageText=document.getElementById("totalPageText");
     let currentSongIndex=0,currentPage=1,filteredSongs=[...featuredSongs];
     function normalizeText(text){return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d")}
@@ -1435,7 +1435,7 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
     function updateProgressBackground(progress){const safe=Math.max(0,Math.min(100,progress||0));progressBar.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${safe}%,rgba(255,255,255,.13) ${safe}%,rgba(255,255,255,.13) 100%)`}
     playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);downloadButton.addEventListener("click",(event)=>forceDownloadCurrentSong(event,featuredSongs[currentSongIndex],downloadButton));
     audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";equalizer.classList.add("playing");vinyl.classList.add("playing");coverLogo.classList.add("playing");renderPlaylist()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderPlaylist()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=audioPlayer.currentTime/audioPlayer.duration*100;progressBar.value=progress||0;updateProgressBackground(progress)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});
-    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm featured: true và listenLink trong customers.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
+    audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Hãy thêm bài có listenLink trong demo.js";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
   </script>
 </body>
 </html>
