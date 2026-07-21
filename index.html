@@ -29,23 +29,51 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://anhtuanstudio.com/#studio",
-    "name": "Anh Tuấn Studio",
-    "alternateName": "Phòng thu Trảng Bom",
-    "url": "https://anhtuanstudio.com/",
-    "logo": "https://anhtuanstudio.com/logo.png",
-    "image": "https://anhtuanstudio.com/logo.png",
-    "telephone": "+84 868 930 933",
-    "description": "Phòng thu tại Trảng Bom, Đồng Nai chuyên thu âm, hòa âm, phối khí, mixing và mastering.",
-    "areaServed": [
+    "@graph": [
       {
-        "@type": "Place",
-        "name": "Trảng Bom, Đồng Nai"
+        "@type": "WebSite",
+        "@id": "https://anhtuanstudio.com/#website",
+        "url": "https://anhtuanstudio.com/",
+        "name": "Anh Tuấn Studio",
+        "inLanguage": "vi-VN",
+        "publisher": { "@id": "https://anhtuanstudio.com/#studio" }
       },
       {
-        "@type": "AdministrativeArea",
-        "name": "Đồng Nai"
+        "@type": "LocalBusiness",
+        "@id": "https://anhtuanstudio.com/#studio",
+        "name": "Anh Tuấn Studio",
+        "alternateName": "Phòng thu Trảng Bom",
+        "url": "https://anhtuanstudio.com/",
+        "logo": "https://anhtuanstudio.com/logo.png",
+        "image": "https://anhtuanstudio.com/logo.png",
+        "telephone": "+84 868 930 933",
+        "description": "Phòng thu tại Trảng Bom, Đồng Nai chuyên thu âm, hòa âm, phối khí, mixing và mastering.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Trảng Bom",
+          "addressRegion": "Đồng Nai",
+          "addressCountry": "VN"
+        },
+        "areaServed": {
+          "@type": "Place",
+          "name": "Trảng Bom, Đồng Nai"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+84 868 930 933",
+          "contactType": "customer service",
+          "availableLanguage": "Vietnamese"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Dịch vụ phòng thu tại Trảng Bom",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Thu âm" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hòa âm và phối khí" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mix và Master" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sáng tác" } }
+          ]
+        }
       }
     ]
   }
