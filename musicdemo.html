@@ -1217,6 +1217,9 @@
 }
 
 .external-browser-button{display:none}
+.customer-account-label{flex-direction:column;gap:2px;line-height:1.05!important}
+.customer-account-label .account-prefix{display:block;font-size:8px;font-weight:600;letter-spacing:.1px;opacity:.76}
+.customer-account-label .account-name{display:block;font-size:10px;font-weight:800;white-space:nowrap}
 @media(max-width:720px){
   .nav-wrap{min-height:0;padding:10px 0 8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px}
   .brand{min-width:0;flex:1 1 auto}
@@ -1237,7 +1240,7 @@
     <a href="index.html">Trang chủ</a>
     <a href="shop.html">Shop</a>
     <a class="active" href="musicdemo.html">Demo Khách</a>
-    <a href="https://music.anhtuanstudio.com/guest.php">Khách tìm kiếm</a>
+    <a id="customerMenuLink" href="https://music.anhtuanstudio.com/guest.php">Đăng nhập</a>
     <a href="tel:0868930933">Liên hệ</a>
 </nav>
     </div>
@@ -1450,6 +1453,28 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
     audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Chưa có bài nào được bật Demo Khách";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
   </script>
   <script>
+    (async function () {
+      const menuLink = document.getElementById('customerMenuLink');
+      try {
+        const response = await fetch('https://music.anhtuanstudio.com/customer.php?auth_status=1', {
+          credentials: 'include',
+          cache: 'no-store'
+        });
+        if (!response.ok) return;
+        const status = await response.json();
+        if (!status.loggedIn || !status.name) return;
+        const prefix = document.createElement('span');
+        const name = document.createElement('span');
+        prefix.className = 'account-prefix';
+        name.className = 'account-name';
+        prefix.textContent = 'Nhạc của';
+        name.textContent = status.name;
+        menuLink.classList.add('customer-account-label');
+        menuLink.replaceChildren(prefix, name);
+        menuLink.href = status.url;
+      } catch (error) {}
+    }());
+
     document.querySelector('.external-browser-button')?.addEventListener('click', async function () {
       const url = window.location.href;
       const ua = navigator.userAgent || '';
