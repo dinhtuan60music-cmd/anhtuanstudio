@@ -1216,12 +1216,15 @@
   }
 }
 
+.external-browser-button{display:none}
+@media(max-width:720px){.external-browser-button{min-height:40px;margin-left:auto;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.42));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-family:"Manrope",sans-serif;font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap;cursor:pointer}}
 </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><img src="logo.png" alt="Anh Tuấn Studio" /><span>ANH TUẤN STUDIO</span></a>
+      <button class="external-browser-button" type="button" aria-label="Mở trang bằng trình duyệt">↗ MỞ TRÌNH DUYỆT</button>
     <nav class="main-nav">
     <a href="index.html">Trang chủ</a>
     <a href="shop.html">Shop</a>
@@ -1236,11 +1239,8 @@
       <div class="container">
         <span class="music-hero-label">♫ ANH TUẤN STUDIO MUSIC</span>
         <h1>DEMO KHÁCH</h1>
-       <p>
-  Một số ca khúc được thực hiện tại Anh Tuấn Studio.<br />
-  Kính mời quý khách lắng nghe và ghé Studio<br />
-  để lưu giữ những khoảnh khắc âm nhạc của riêng mình.
-</p>
+        <p>Một số ca khúc được thực hiện tại Anh Tuấn Studio,<br />Một số ca khúc được thực hiện tại Anh Tuấn Studio.
+Kính mời quý khách lắng nghe và ghé Studio để lưu giữ những khoảnh khắc âm nhạc của riêng mình.</p>
       </div>
     </section>
     <section class="container music-layout">
@@ -1440,6 +1440,22 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
     playButton.addEventListener("click",togglePlayback);previousButton.addEventListener("click",playPreviousSong);nextButton.addEventListener("click",playNextSong);backwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.max(0,audioPlayer.currentTime-10));forwardButton.addEventListener("click",()=>audioPlayer.currentTime=Math.min(audioPlayer.duration||0,audioPlayer.currentTime+10));progressBar.addEventListener("input",()=>{if(Number.isFinite(audioPlayer.duration))audioPlayer.currentTime=(Number(progressBar.value)/100)*audioPlayer.duration});volumeRange.addEventListener("input",()=>audioPlayer.volume=Number(volumeRange.value));copyCurrentTrackButton.addEventListener("click",copyCurrentTrackLink);downloadButton.addEventListener("click",(event)=>forceDownloadCurrentSong(event,featuredSongs[currentSongIndex],downloadButton));
     audioPlayer.addEventListener("play",()=>{playButton.textContent="❚❚";equalizer.classList.add("playing");vinyl.classList.add("playing");coverLogo.classList.add("playing");renderPlaylist()});audioPlayer.addEventListener("pause",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing");renderPlaylist()});audioPlayer.addEventListener("loadedmetadata",()=>durationElement.textContent=formatTime(audioPlayer.duration));audioPlayer.addEventListener("timeupdate",()=>{currentTimeElement.textContent=formatTime(audioPlayer.currentTime);if(Number.isFinite(audioPlayer.duration)){const progress=audioPlayer.currentTime/audioPlayer.duration*100;progressBar.value=progress||0;updateProgressBackground(progress)}});audioPlayer.addEventListener("ended",playNextSong);audioPlayer.addEventListener("error",()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")});
     audioPlayer.volume=Number(volumeRange.value);if(featuredSongs.length>0){const initialTrackIndex=Number.isInteger(requestedTrackIndex)&&requestedTrackIndex>=0&&requestedTrackIndex<featuredSongs.length?requestedTrackIndex:0;loadSong(initialTrackIndex,false);showCurrentSongPage()}else{currentTitle.textContent="Chưa có bài hát";currentArtist.textContent="Chưa có bài nào được bật Demo Khách";downloadButton.classList.add("hidden");copyCurrentTrackButton.classList.add("hidden")}renderPlaylist();
+  </script>
+  <script>
+    document.querySelector('.external-browser-button')?.addEventListener('click', async function () {
+      const url = window.location.href;
+      const ua = navigator.userAgent || '';
+      if (/Android/i.test(ua)) {
+        window.location.href = 'intent://' + url.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        return;
+      }
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        try { await navigator.clipboard.writeText(url); } catch (error) {}
+        alert('Đã sao chép đường dẫn. Quý khách chọn menu của Zalo → Mở bằng Safari, hoặc dán đường dẫn vào Safari.');
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
   </script>
 </body>
 </html>
