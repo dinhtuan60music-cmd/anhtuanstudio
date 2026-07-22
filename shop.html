@@ -14,13 +14,32 @@
     p{margin:14px 0 28px;color:#bdbdbd;line-height:1.7}
     a{display:inline-flex;min-height:44px;padding:0 20px;align-items:center;color:#fff;text-decoration:none;border-radius:999px;
       background:linear-gradient(145deg,#ff555c,#c70d14 56%,#70070b);font-weight:800}
+    .external-browser-button{display:none}
+    @media(max-width:720px){.external-browser-button{position:fixed;z-index:20;top:14px;left:14px;min-height:42px;padding:0 15px;display:inline-flex;align-items:center;justify-content:center;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.72));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap}}
   </style>
 </head>
 <body>
+  <button class="external-browser-button" type="button" aria-label="Mở trang bằng trình duyệt">↗ MỞ TRÌNH DUYỆT</button>
   <main class="box">
     <h1>SHOP</h1>
     <p>Gian hàng thiết bị thu âm của Anh Tuấn Studio đang được hoàn thiện.</p>
     <a href="index.html">TRỞ VỀ TRANG CHỦ</a>
   </main>
+  <script>
+    document.querySelector('.external-browser-button')?.addEventListener('click', async function () {
+      const url = window.location.href;
+      const ua = navigator.userAgent || '';
+      if (/Android/i.test(ua)) {
+        window.location.href = 'intent://' + url.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        return;
+      }
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        try { await navigator.clipboard.writeText(url); } catch (error) {}
+        alert('Đã sao chép đường dẫn. Quý khách chọn menu của Zalo → Mở bằng Safari, hoặc dán đường dẫn vào Safari.');
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  </script>
 </body>
 </html>
