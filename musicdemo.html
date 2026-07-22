@@ -1220,6 +1220,7 @@
 .customer-account-label{display:inline-flex!important;flex-direction:row;align-items:center;gap:5px;line-height:1.05!important;white-space:nowrap}
 .customer-account-label .account-prefix{display:inline;font-size:13px;font-weight:700;letter-spacing:.1px;opacity:.9}
 .customer-account-label .account-name{display:inline;font-size:17px;font-weight:900;white-space:nowrap}
+.composer-credit{margin-left:8px;color:#b9825c;font-size:.82em;font-weight:700}
 @keyframes menuShine{0%,58%{transform:translateX(-150%)}78%,100%{transform:translateX(150%)}}
 @media(min-width:721px){
   .main-nav a{min-height:44px;padding:0 15px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,75,82,.48);border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(225,29,37,.055)),rgba(8,8,8,.72);box-shadow:0 5px 16px rgba(0,0,0,.25),0 0 10px rgba(225,29,37,.08),inset 0 1px 0 rgba(255,255,255,.07)}
@@ -1454,7 +1455,8 @@ function getDownloadLink(song){
   }
 }
 
-function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!song)return;currentSongIndex=index;audioPlayer.src=song.listenLink;currentTitle.textContent=song.title;currentArtist.textContent=song.artist;coverLogo.src=song.avatar||"logo.png";coverLogo.alt=song.avatar?song.artist:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!song.avatar);
+function showArtistAndComposer(element,artist,composer){element.textContent=artist||"";if(!composer)return;const credit=document.createElement("span");credit.className="composer-credit";credit.textContent=`· Nhạc sĩ: ${composer}`;element.appendChild(credit)}
+function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!song)return;currentSongIndex=index;audioPlayer.src=song.listenLink;currentTitle.textContent=song.title;showArtistAndComposer(currentArtist,song.artist,song.composer||"");coverLogo.src=song.avatar||"logo.png";coverLogo.alt=song.avatar?song.artist:"Anh Tuấn Studio";coverLogo.classList.toggle("logo-fallback",!song.avatar);
                                               downloadButton.href=getDownloadLink(song);progressBar.value=0;currentTimeElement.textContent="0:00";durationElement.textContent="0:00";updateProgressBackground(0);renderPlaylist();if(shouldPlay)audioPlayer.play().catch(()=>{playButton.textContent="▶";equalizer.classList.remove("playing");vinyl.classList.remove("playing");coverLogo.classList.remove("playing")})}
     function togglePlayback(){if(featuredSongs.length===0)return;if(!audioPlayer.src){loadSong(currentSongIndex,true);return}audioPlayer.paused?audioPlayer.play().catch(()=>{}):audioPlayer.pause()}
     function playPreviousSong(){if(featuredSongs.length===0)return;const previousIndex=currentSongIndex<=0?featuredSongs.length-1:currentSongIndex-1;loadSong(previousIndex,true);showCurrentSongPage()}
