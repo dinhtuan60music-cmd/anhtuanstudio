@@ -33,6 +33,9 @@ button,input{font:inherit}
 .main-nav a:hover,.main-nav a.active{color:var(--red-light)}
 .main-nav a:hover::after,.main-nav a.active::after{width:100%}
 .external-browser-button{display:none}
+.customer-account-label{flex-direction:column;gap:2px;line-height:1.05!important}
+.customer-account-label .account-prefix{display:block;font-size:.68em;font-weight:600;letter-spacing:.15px;opacity:.78}
+.customer-account-label .account-name{display:block;font-size:.9em;font-weight:800;white-space:nowrap}
 
 /* HERO */
 .hero,.hero-clean{position:relative;min-height:100vh;overflow:hidden;display:grid;place-items:center;padding:110px 0 58px;background:linear-gradient(90deg,rgba(0,0,0,.24),rgba(0,0,0,.02) 38%,rgba(0,0,0,.02) 62%,rgba(0,0,0,.24)),url("background.png") center/cover no-repeat}
@@ -219,5 +222,4 @@ footer{position:relative;border-top:1px solid rgba(225,29,37,.24);background:rad
     transform:translateY(-2px);
     transition:.25s;
 }
-
 
