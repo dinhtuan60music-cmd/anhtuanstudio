@@ -1220,6 +1220,8 @@
 .customer-account-label{flex-direction:column;gap:2px;line-height:1.05!important}
 .customer-account-label .account-prefix{display:block;font-size:8px;font-weight:600;letter-spacing:.1px;opacity:.76}
 .customer-account-label .account-name{display:block;font-size:10px;font-weight:800;white-space:nowrap}
+.search-music-btn.customer-account-label .account-prefix{font-size:9px}
+.search-music-btn.customer-account-label .account-name{font-size:12px}
 @media(max-width:720px){
   .nav-wrap{min-height:0;padding:10px 0 8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px}
   .brand{min-width:0;flex:1 1 auto}
@@ -1269,8 +1271,8 @@ Kính mời quý khách lắng nghe và ghé Studio để lưu giữ những kho
 
       
       <aside class="playlist-panel">
-    <a href="https://music.anhtuanstudio.com/guest.php" class="search-music-btn">
-        🔍 KHÁCH TÌM KIẾM
+    <a id="customerSearchButton" href="https://music.anhtuanstudio.com/guest.php" class="search-music-btn">
+        ĐĂNG NHẬP
     </a>
         
         
@@ -1455,6 +1457,7 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
   <script>
     (async function () {
       const menuLink = document.getElementById('customerMenuLink');
+      const searchButton = document.getElementById('customerSearchButton');
       try {
         const response = await fetch('https://music.anhtuanstudio.com/customer.php?auth_status=1', {
           credentials: 'include',
@@ -1463,15 +1466,19 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
         if (!response.ok) return;
         const status = await response.json();
         if (!status.loggedIn || !status.name) return;
-        const prefix = document.createElement('span');
-        const name = document.createElement('span');
-        prefix.className = 'account-prefix';
-        name.className = 'account-name';
-        prefix.textContent = 'Nhạc của';
-        name.textContent = status.name;
-        menuLink.classList.add('customer-account-label');
-        menuLink.replaceChildren(prefix, name);
-        menuLink.href = status.url;
+        const showAccountLabel = function (element) {
+          const prefix = document.createElement('span');
+          const name = document.createElement('span');
+          prefix.className = 'account-prefix';
+          name.className = 'account-name';
+          prefix.textContent = 'Nhạc của';
+          name.textContent = status.name;
+          element.classList.add('customer-account-label');
+          element.replaceChildren(prefix, name);
+          element.href = status.url;
+        };
+        showAccountLabel(menuLink);
+        showAccountLabel(searchButton);
       } catch (error) {}
     }());
 
