@@ -1217,7 +1217,15 @@
 }
 
 .external-browser-button{display:none}
-@media(max-width:720px){.external-browser-button{min-height:40px;margin-left:auto;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.42));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-family:"Manrope",sans-serif;font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap;cursor:pointer}}
+@media(max-width:720px){
+  .nav-wrap{min-height:0;padding:10px 0 8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px}
+  .brand{min-width:0;flex:1 1 auto}
+  .external-browser-button{min-height:40px;margin-left:auto;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.42));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-family:"Manrope",sans-serif;font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap;cursor:pointer}
+  .main-nav{width:100%;padding-top:8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:4px;border-top:1px solid rgba(225,29,37,.14)}
+  .main-nav a,.main-nav a:nth-child(2){min-height:38px;padding:0 2px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;line-height:1.2;white-space:normal}
+  .main-nav a::after{bottom:0;left:16%;right:84%}
+  .main-nav a:hover::after,.main-nav a.active::after{right:16%}
+}
 </style>
 </head>
 <body>
