@@ -16,7 +16,7 @@
     body{min-height:100vh;overflow-x:hidden;color:var(--text);font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,rgba(225,29,37,.16),transparent 34%),linear-gradient(180deg,#080808 0%,#030303 52%,#000000 100%)}
     button,input,a{font:inherit;-webkit-tap-highlight-color:transparent}button{border:none}.hidden{display:none!important}.container{width:min(1220px,calc(100% - 36px));margin:0 auto}
     .topbar{position:sticky;top:0;z-index:100;background:rgba(2,2,2,.94);border-bottom:1px solid rgba(225,29,37,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{width:min(780px,65%);display:flex;align-items:center;justify-content:space-between;gap:14px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:clamp(17px,1.3vw,19px);font-weight:800;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
+    .nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{width:auto;margin-left:auto;display:flex;align-items:center;justify-content:flex-end;gap:10px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:clamp(17px,1.3vw,19px);font-weight:800;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
     .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:#43ffd8;font-size:12px;font-weight:900;letter-spacing:3px}
     
    /* TIÊU ĐỀ TRANG NGHE NHẠC */
@@ -1489,7 +1489,7 @@ function loadSong(index,shouldPlay=false){const song=featuredSongs[index];if(!so
           element.href = status.url;
         };
         showAccountLabel(menuLink);
-        showAccountLabel(searchButton);
+        searchButton.classList.add('hidden');
       } catch (error) {}
     }());
 
