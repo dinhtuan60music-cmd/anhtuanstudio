@@ -27,15 +27,15 @@ button,input{font:inherit}
 .brand{display:flex;align-items:center;gap:12px;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.5px}
 .brand img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(225,29,37,.40)) drop-shadow(0 0 22px rgba(225,29,37,.20))}
 .brand span{font-size:18px;background:linear-gradient(90deg,#ff3c45 0%,#ff3c45 46%,#ffffff 47%,#d7d7d7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.main-nav{display:flex;align-items:center;gap:26px}
-.main-nav a{position:relative;color:#f5f5f5;font-family:"Manrope",sans-serif;font-size:14px;font-weight:700;transition:.25s}
+.main-nav{width:min(740px,64%);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.main-nav a{position:relative;color:#f5f5f5;font-family:"Manrope",sans-serif;font-size:clamp(22px,1.7vw,26px);font-weight:800;transition:.25s}
 .main-nav a::after{content:"";position:absolute;left:50%;bottom:-10px;width:0;height:2px;transform:translateX(-50%);border-radius:999px;background:linear-gradient(90deg,#ff6167,#b90c12);box-shadow:0 0 12px rgba(225,29,37,.45);transition:.25s}
 .main-nav a:hover,.main-nav a.active{color:var(--red-light)}
 .main-nav a:hover::after,.main-nav a.active::after{width:100%}
 .external-browser-button{display:none}
-.customer-account-label{flex-direction:column;gap:2px;line-height:1.05!important}
-.customer-account-label .account-prefix{display:block;font-size:.68em;font-weight:600;letter-spacing:.15px;opacity:.78}
-.customer-account-label .account-name{display:block;font-size:.9em;font-weight:800;white-space:nowrap}
+.customer-account-label{display:inline-flex!important;flex-direction:row;align-items:center;gap:5px;line-height:1.05!important;white-space:nowrap}
+.customer-account-label .account-prefix{display:inline;font-size:18px;font-weight:700;letter-spacing:.15px;opacity:.9}
+.customer-account-label .account-name{display:inline;font-size:22px;font-weight:900;white-space:nowrap}
 
 /* HERO */
 .hero,.hero-clean{position:relative;min-height:100vh;overflow:hidden;display:grid;place-items:center;padding:110px 0 58px;background:linear-gradient(90deg,rgba(0,0,0,.24),rgba(0,0,0,.02) 38%,rgba(0,0,0,.02) 62%,rgba(0,0,0,.24)),url("background.png") center/cover no-repeat}
@@ -147,6 +147,9 @@ footer{position:relative;border-top:1px solid rgba(225,29,37,.24);background:rad
   .brand img{width:42px;height:42px}
   .brand span{font-size:15px}
   .external-browser-button{min-height:40px;margin-left:auto;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.42));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-family:"Manrope",sans-serif;font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap;cursor:pointer}
+  .customer-account-label{flex-direction:column;gap:2px;white-space:normal}
+  .customer-account-label .account-prefix{font-size:8px}
+  .customer-account-label .account-name{font-size:10px}
   .hero,.hero-clean{min-height:100svh;padding:88px 0 34px;background:linear-gradient(180deg,rgba(0,0,0,.14),rgba(0,0,0,.28),rgba(0,0,0,.62)),url("backgrounddt.png") center/cover no-repeat}
   .hero-content,.hero-content-clean{min-height:calc(100svh - 122px);justify-content:flex-end;padding-bottom:0}
   .hero-actions,.hero-buttons{width:100%;max-width:360px;padding:16px;display:grid;grid-template-columns:1fr;gap:14px}
@@ -222,4 +225,3 @@ footer{position:relative;border-top:1px solid rgba(225,29,37,.24);background:rad
     transform:translateY(-2px);
     transition:.25s;
 }
-
