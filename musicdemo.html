@@ -16,7 +16,7 @@
     body{min-height:100vh;overflow-x:hidden;color:var(--text);font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,rgba(225,29,37,.16),transparent 34%),linear-gradient(180deg,#080808 0%,#030303 52%,#000000 100%)}
     button,input,a{font:inherit;-webkit-tap-highlight-color:transparent}button{border:none}.hidden{display:none!important}.container{width:min(1220px,calc(100% - 36px));margin:0 auto}
     .topbar{position:sticky;top:0;z-index:100;background:rgba(2,2,2,.94);border-bottom:1px solid rgba(225,29,37,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .nav-wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{display:flex;align-items:center;gap:24px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:15px;font-weight:600;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
+    .nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{width:min(780px,65%);display:flex;align-items:center;justify-content:space-between;gap:14px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:clamp(22px,1.7vw,26px);font-weight:800;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
     .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:#43ffd8;font-size:12px;font-weight:900;letter-spacing:3px}
     
    /* TIÊU ĐỀ TRANG NGHE NHẠC */
@@ -1217,9 +1217,9 @@
 }
 
 .external-browser-button{display:none}
-.customer-account-label{flex-direction:column;gap:2px;line-height:1.05!important}
-.customer-account-label .account-prefix{display:block;font-size:8px;font-weight:600;letter-spacing:.1px;opacity:.76}
-.customer-account-label .account-name{display:block;font-size:10px;font-weight:800;white-space:nowrap}
+.customer-account-label{display:inline-flex!important;flex-direction:row;align-items:center;gap:5px;line-height:1.05!important;white-space:nowrap}
+.customer-account-label .account-prefix{display:inline;font-size:18px;font-weight:700;letter-spacing:.1px;opacity:.9}
+.customer-account-label .account-name{display:inline;font-size:22px;font-weight:900;white-space:nowrap}
 .search-music-btn.customer-account-label .account-prefix{font-size:9px}
 .search-music-btn.customer-account-label .account-name{font-size:12px}
 @media(max-width:720px){
@@ -1228,6 +1228,9 @@
   .external-browser-button{min-height:40px;margin-left:auto;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;border:1px solid rgba(255,85,92,.72);border-radius:999px;background:linear-gradient(145deg,rgba(255,70,78,.24),rgba(112,7,11,.42));box-shadow:0 0 20px rgba(225,29,37,.17),inset 0 1px 0 rgba(255,255,255,.10);font-family:"Manrope",sans-serif;font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap;cursor:pointer}
   .main-nav{width:100%;padding-top:8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:4px;border-top:1px solid rgba(225,29,37,.14)}
   .main-nav a,.main-nav a:nth-child(2){min-height:38px;padding:0 2px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;line-height:1.2;white-space:normal}
+  .customer-account-label{flex-direction:column;gap:2px;white-space:normal}
+  .customer-account-label .account-prefix{font-size:8px}
+  .customer-account-label .account-name{font-size:10px}
   .main-nav a::after{bottom:0;left:16%;right:84%}
   .main-nav a:hover::after,.main-nav a.active::after{right:16%}
 }
