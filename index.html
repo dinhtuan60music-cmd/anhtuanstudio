@@ -109,6 +109,8 @@
         <span>ANH TUẤN STUDIO</span>
       </a>
 
+      <button class="external-browser-button" type="button" aria-label="Mở trang bằng trình duyệt">↗ MỞ TRÌNH DUYỆT</button>
+
       <nav class="main-nav">
         <a class="active" href="index.html">Trang chủ</a>
         <a href="shop.html">Shop</a>
@@ -192,6 +194,23 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    document.querySelector('.external-browser-button')?.addEventListener('click', async function () {
+      const url = window.location.href;
+      const ua = navigator.userAgent || '';
+      if (/Android/i.test(ua)) {
+        window.location.href = 'intent://' + url.replace(/^https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        return;
+      }
+      if (/iPhone|iPad|iPod/i.test(ua)) {
+        try { await navigator.clipboard.writeText(url); } catch (error) {}
+        alert('Đã sao chép đường dẫn. Quý khách chọn menu của Zalo → Mở bằng Safari, hoặc dán đường dẫn vào Safari.');
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  </script>
 
 </body>
 </html>
