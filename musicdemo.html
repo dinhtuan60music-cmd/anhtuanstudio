@@ -16,7 +16,7 @@
     body{min-height:100vh;overflow-x:hidden;color:var(--text);font-family:"Be Vietnam Pro",Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,rgba(106,224,177,.16),transparent 34%),linear-gradient(180deg,#080808 0%,#030303 52%,#000000 100%)}
     button,input,a{font:inherit;-webkit-tap-highlight-color:transparent}button{border:none}.hidden{display:none!important}.container{width:min(1220px,calc(100% - 36px));margin:0 auto}
     .topbar{position:sticky;top:0;z-index:100;background:rgba(2,2,2,.94);border-bottom:1px solid rgba(106,224,177,.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{width:auto;margin-left:auto;display:flex;align-items:center;justify-content:flex-end;gap:10px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:clamp(17px,1.3vw,19px);font-weight:800;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
+    .nav-wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;color:var(--orange);text-decoration:none;font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:.7px}.brand img{width:40px;height:40px;object-fit:contain}.main-nav{width:auto;margin-left:auto;display:flex;align-items:center;justify-content:flex-end;gap:10px}.main-nav a{position:relative;color:#f4f4f4;text-decoration:none;font-family:"Manrope",sans-serif;font-size:clamp(15px,1.15vw,17px);font-weight:800;transition:.25s}.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:99px;background:var(--orange);transition:.25s}.main-nav a:hover,.main-nav a.active{color:var(--orange)}.main-nav a:hover::after,.main-nav a.active::after{right:0}
     .music-hero{padding:28px 0 18px;text-align:center}.music-hero-label{display:inline-block;margin-bottom:8px;color:#ffffff;font-size:12px;font-weight:900;letter-spacing:3px}
     
    /* TIÊU ĐỀ TRANG NGHE NHẠC */
@@ -1223,7 +1223,7 @@
 .composer-credit{margin-left:8px;color:#ffffff;font-size:.82em;font-weight:700}
 @keyframes menuShine{0%,58%{transform:translateX(-150%)}78%,100%{transform:translateX(150%)}}
 @media(min-width:721px){
-  .main-nav a{min-height:44px;padding:0 15px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(75,255,195,.48);border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(106,224,177,.055)),rgba(8,8,8,.72);box-shadow:0 5px 16px rgba(0,0,0,.25),0 0 10px rgba(106,224,177,.08),inset 0 1px 0 rgba(255,255,255,.07)}
+  .main-nav a{min-height:40px;padding:0 12px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(75,255,195,.48);border-radius:8px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(106,224,177,.055)),rgba(8,8,8,.72);box-shadow:0 5px 16px rgba(0,0,0,.25),0 0 10px rgba(106,224,177,.08),inset 0 1px 0 rgba(255,255,255,.07)}
   .main-nav a::before{content:"";position:absolute;inset:-1px;pointer-events:none;background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.22) 47%,transparent 66%);transform:translateX(-150%);animation:menuShine 4.8s ease-in-out infinite}
   .main-nav a:nth-child(2)::before{animation-delay:.35s}.main-nav a:nth-child(3)::before{animation-delay:.7s}.main-nav a:nth-child(4)::before{animation-delay:1.05s}.main-nav a:nth-child(5)::before{animation-delay:1.4s}
   .main-nav a:hover,.main-nav a.active{border-color:rgba(91,255,200,.9);background:linear-gradient(145deg,rgba(75,255,195,.15),rgba(5,105,72,.25));box-shadow:0 7px 20px rgba(0,0,0,.3),0 0 16px rgba(106,224,177,.2),inset 0 1px 0 rgba(255,255,255,.12)}
@@ -1242,6 +1242,17 @@
   .customer-account-label .account-name{font-size:10px}
   .main-nav a::after{bottom:0;left:16%;right:84%}
   .main-nav a:hover::after,.main-nav a.active::after{right:16%}
+}
+
+/* CHỈ KHÓA MENU TRÊN MÁY TÍNH - ĐIỆN THOẠI GIỮ NGUYÊN */
+@media(min-width:721px){
+  .topbar .main-nav a{
+    min-height:30px !important;
+    padding:0 8px !important;
+    border-radius:2px !important;
+    font-size:11px !important;
+  }
+  .topbar .main-nav a *{font-size:11px !important}
 }
 </style>
 </head>
